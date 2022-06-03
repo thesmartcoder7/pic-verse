@@ -14,7 +14,7 @@
 
 ## Description
 
-For this project, I decide to go dive just a wee bit on the entertainment side. With TMDB, I am working on a simple Netflix clone where users can signup or signin to get more information on their favorite movies and shows. [live site]()
+This project is an attemp to clone the instagram photo sharing platform by meta. The features used for this project are similar to the ones of the actual platform. The future plans for this project includes adding more user stories than the ones I currently have. [live site]()
 
 ## Behaviour Driven Development
 
