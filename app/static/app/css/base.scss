@@ -20,7 +20,7 @@ main {
   align-items: center;
   justify-content: space-between;
 
-  // left panel styling
+  // - - - left panel styling - - - //
   .left-panel {
     width: 20%;
     height: 90%;
@@ -184,6 +184,98 @@ main {
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
           }
+        }
+      }
+    }
+  }
+
+  // - - - main content styling - - - //
+  .main-content {
+    width: 80%;
+    height: 90%;
+    padding: 0 3%;
+
+    // top-bar styling
+    .top-bar {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      // search styling
+      .search {
+        width: 50%;
+        form {
+          width: 100%;
+          display: flex;
+          input {
+            padding: 2% 3%;
+            outline: none;
+            border: none;
+            border-left: 0.1vw solid rgb(173, 173, 173);
+            border-top: 0.1vw solid rgb(173, 173, 173);
+            border-bottom: 0.1vw solid rgb(173, 173, 173);
+            border-radius: 0.2vw 0 0 0.2vw;
+            font-size: 0.9vw;
+            color: rgb(173, 173, 173);
+            &::placeholder {
+              text-transform: capitalize;
+              font-size: 0.8vw;
+            }
+          }
+          button {
+            padding: 2% 3%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            outline: none;
+            border: none;
+            border-right: 0.1vw solid rgb(173, 173, 173);
+            border-top: 0.1vw solid rgb(173, 173, 173);
+            border-bottom: 0.1vw solid rgb(173, 173, 173);
+            border-radius: 0 0.2vw 0.2vw 0;
+            background-color: transparent;
+            cursor: pointer;
+            svg {
+              width: 1vw;
+              height: 1vw;
+            }
+          }
+        }
+      }
+
+      // user-action styling
+      .user-actions {
+        width: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+
+        svg {
+          width: 1.5vw;
+          height: 1.5vw;
+          margin-right: 5%;
+          cursor: pointer;
+        }
+
+        button {
+          padding: 1.5% 3%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          font-size: 0.9vw;
+          font-weight: 500;
+          //   border: 0.1vw solid rgb(173, 173, 173);
+          border: none;
+          outline: none;
+          border-radius: 0.2vw;
+          color: #fff;
+          background: linear-gradient(
+            to left,
+            rgb(168, 0, 168),
+            rgb(243, 64, 10)
+          );
         }
       }
     }

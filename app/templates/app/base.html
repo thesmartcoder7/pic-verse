@@ -133,7 +133,7 @@
               <svg aria-hidden="true" role="img" viewBox="0 0 24 24">
                 <path
                   fill="currentColor"
-                  d="m19 21l-7-3l-7 3V5c0-1.1.9-2 2-2h7a5.002 5.002 0 0 0 5 7.9V21zM17.83 9L15 6.17l1.41-1.41l1.41 1.41l3.54-3.54l1.41 1.41L17.83 9z"
+                  d="M17 11v6.97l-5-2.14l-5 2.14V5h6V3H7c-1.1 0-2 .9-2 2v16l7-3l7 3V11h-2zm.83-2L15 6.17l1.41-1.41l1.41 1.41l3.54-3.54l1.41 1.41L17.83 9z"
                 />
               </svg>
               Saved
@@ -167,7 +167,48 @@
           </p>
         </div>
       </div>
-      <div class="main-content"></div>
+
+      <!-- main content section -->
+      <div class="main-content">
+        <div class="top-bar">
+          <div class="search">
+            <form action="">
+              <input
+                type="text"
+                id="search"
+                name="search"
+                placeholder="search"
+              />
+              <button type="submit">
+                <svg aria-hidden="true" role="img" viewBox="0 0 24 24">
+                  <path
+                    fill="rgb(173, 173, 173)"
+                    d="m20.71 19.29l-3.4-3.39A7.92 7.92 0 0 0 19 11a8 8 0 1 0-8 8a7.92 7.92 0 0 0 4.9-1.69l3.39 3.4a1 1 0 0 0 1.42 0a1 1 0 0 0 0-1.42ZM5 11a6 6 0 1 1 6 6a6 6 0 0 1-6-6Z"
+                  />
+                </svg>
+              </button>
+            </form>
+          </div>
+          <div class="user-actions">
+            <svg aria-hidden="true" role="img" viewBox="0 0 24 24">
+              <path
+                fill="url(#grad1)"
+                d="m20.34 9.32l-14-7a3 3 0 0 0-4.08 3.9l2.4 5.37a1.06 1.06 0 0 1 0 .82l-2.4 5.37A3 3 0 0 0 5 22a3.14 3.14 0 0 0 1.35-.32l14-7a3 3 0 0 0 0-5.36Zm-.89 3.57l-14 7a1 1 0 0 1-1.35-1.3l2.39-5.37a2 2 0 0 0 .08-.22h6.89a1 1 0 0 0 0-2H6.57a2 2 0 0 0-.08-.22L4.1 5.41a1 1 0 0 1 1.35-1.3l14 7a1 1 0 0 1 0 1.78Z"
+              />
+            </svg>
+            <svg aria-hidden="true" role="img" viewBox="0 0 24 24">
+              <path
+                fill="url(#grad1)"
+                d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"
+              />
+            </svg>
+            <button>Add Post</button>
+          </div>
+        </div>
+        {% block content %}
+        <div class="dynamic-view">this is the dynamic view</div>
+        {% endblock %}
+      </div>
     </main>
   </body>
 </html>

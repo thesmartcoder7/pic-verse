@@ -255,4 +255,134 @@ main .left-panel .logout-button p a:hover {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+main .main-content {
+  width: 80%;
+  height: 90%;
+  padding: 0 3%;
+}
+
+main .main-content .top-bar {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+main .main-content .top-bar .search {
+  width: 50%;
+}
+
+main .main-content .top-bar .search form {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+main .main-content .top-bar .search form input {
+  padding: 2% 3%;
+  outline: none;
+  border: none;
+  border-left: 0.1vw solid #adadad;
+  border-top: 0.1vw solid #adadad;
+  border-bottom: 0.1vw solid #adadad;
+  border-radius: 0.2vw 0 0 0.2vw;
+  font-size: 0.9vw;
+  color: #adadad;
+}
+
+main .main-content .top-bar .search form input::-webkit-input-placeholder {
+  text-transform: capitalize;
+  font-size: 0.8vw;
+}
+
+main .main-content .top-bar .search form input:-ms-input-placeholder {
+  text-transform: capitalize;
+  font-size: 0.8vw;
+}
+
+main .main-content .top-bar .search form input::-ms-input-placeholder {
+  text-transform: capitalize;
+  font-size: 0.8vw;
+}
+
+main .main-content .top-bar .search form input::placeholder {
+  text-transform: capitalize;
+  font-size: 0.8vw;
+}
+
+main .main-content .top-bar .search form button {
+  padding: 2% 3%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  outline: none;
+  border: none;
+  border-right: 0.1vw solid #adadad;
+  border-top: 0.1vw solid #adadad;
+  border-bottom: 0.1vw solid #adadad;
+  border-radius: 0 0.2vw 0.2vw 0;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+main .main-content .top-bar .search form button svg {
+  width: 1vw;
+  height: 1vw;
+}
+
+main .main-content .top-bar .user-actions {
+  width: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+main .main-content .top-bar .user-actions svg {
+  width: 1.5vw;
+  height: 1.5vw;
+  margin-right: 5%;
+  cursor: pointer;
+}
+
+main .main-content .top-bar .user-actions button {
+  padding: 1.5% 3%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  cursor: pointer;
+  font-size: 0.9vw;
+  font-weight: 500;
+  border: none;
+  outline: none;
+  border-radius: 0.2vw;
+  color: #fff;
+  background: -webkit-gradient(linear, right top, left top, from(#a800a8), to(#f3400a));
+  background: linear-gradient(to left, #a800a8, #f3400a);
+}
 /*# sourceMappingURL=base.css.map */
