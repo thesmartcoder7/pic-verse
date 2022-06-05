@@ -1,6 +1,6 @@
-# Cool Movies
+# Instagram clone
 
-![Project Image]()
+![Project Image](app/static/app/images/readme-image.png)
 
 ### By: Samuel Martins
 
