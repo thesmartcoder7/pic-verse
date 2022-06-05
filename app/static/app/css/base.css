@@ -1,0 +1,258 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+  color: #3f3f3f;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+}
+
+main {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+main .left-panel {
+  width: 20%;
+  height: 90%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  border-right: solid 0.1vw #adadad;
+}
+
+main .left-panel .logo {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+main .left-panel .logo svg {
+  width: 1.5vw;
+  height: 1.5vw;
+  margin-right: 2%;
+}
+
+main .left-panel .logo img {
+  width: 6vw;
+  margin-top: 1%;
+}
+
+main .left-panel .avatar {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 10%;
+}
+
+main .left-panel .avatar .image-container {
+  width: 5.5vw;
+  height: 5.5vw;
+  padding: 1.5%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+  border: 0.15vw solid transparent;
+  background: -webkit-gradient(linear, left top, left bottom, from(white), to(white)) padding-box, -webkit-gradient(linear, right top, left top, from(#a800a8), to(#f3400a)) border-box;
+  background: linear-gradient(white, white) padding-box, linear-gradient(to left, #a800a8, #f3400a) border-box;
+}
+
+main .left-panel .avatar .image-container img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  border-radius: 50%;
+}
+
+main .left-panel .user-info {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+main .left-panel .user-info .names {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+main .left-panel .user-info .names h1 {
+  margin-top: 5%;
+  font-size: 1.1vw;
+  font-weight: 500;
+}
+
+main .left-panel .user-info .names h2 {
+  font-size: 0.9vw;
+  font-weight: 500;
+  background: -webkit-gradient(linear, right top, left top, from(#a800a8), to(#f3400a));
+  background: linear-gradient(to left, #a800a8, #f3400a);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+main .left-panel .user-info .info {
+  padding: 0 5%;
+  width: 100%;
+  margin-top: 7%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+main .left-panel .user-info .info div {
+  text-align: center;
+  width: 25%;
+  font-size: 0.8vw;
+  color: #555555;
+}
+
+main .left-panel .user-info .info .followers {
+  border-right: solid 0.1vw #adadad;
+  border-left: solid 0.1vw #adadad;
+  width: 35%;
+}
+
+main .left-panel .nav-panel {
+  padding-left: 15%;
+  margin-top: 15%;
+  width: 100%;
+}
+
+main .left-panel .nav-panel ul {
+  width: 100%;
+  list-style: none;
+}
+
+main .left-panel .nav-panel ul li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  margin: 12% 0;
+  font-size: 0.9vw;
+  cursor: pointer;
+}
+
+main .left-panel .nav-panel ul li:hover {
+  background: -webkit-gradient(linear, right top, left top, from(#a800a8), to(#f3400a));
+  background: linear-gradient(to left, #a800a8, #f3400a);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+main .left-panel .nav-panel ul li svg {
+  width: 1.5vw;
+  margin-right: 5%;
+}
+
+main .left-panel .logout-button {
+  width: 100%;
+  margin-top: 10%;
+  padding-left: 15%;
+}
+
+main .left-panel .logout-button p {
+  padding-top: 5%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+main .left-panel .logout-button p svg {
+  width: 1.5vw;
+  margin-right: 5%;
+}
+
+main .left-panel .logout-button p a {
+  text-decoration: none;
+  font-size: 0.9vw;
+}
+
+main .left-panel .logout-button p a:hover {
+  background: -webkit-gradient(linear, right top, left top, from(#a800a8), to(#f3400a));
+  background: linear-gradient(to left, #a800a8, #f3400a);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+/*# sourceMappingURL=base.css.map */

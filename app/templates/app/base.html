@@ -1,0 +1,173 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'app/css/base.css' %}" />
+    <link rel="shortcut icon" href="" type="image/x-icon" />
+    <link
+      rel="shortcut icon"
+      href="{% static 'app/images/instagram.png' %}"
+      type="image/x-icon"
+    />
+    <!-- stylesheet block -->
+    {% block style %} {% endblock %}
+
+    <!-- title block -->
+    {% block title %}
+    <title>Instagram</title>
+    {% endblock %}
+  </head>
+  <body>
+    <main>
+      <div class="left-panel">
+        <!-- instagram logo -->
+        <div class="logo">
+          <svg aria-hidden="true" role="img" viewBox="0 0 24 24">
+            <defs>
+              <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop
+                  offset="0%"
+                  style="stop-color: rgb(243, 64, 10); stop-opacity: 1"
+                />
+                <stop
+                  offset="100%"
+                  style="stop-color: rgb(168, 0, 168); stop-opacity: 1"
+                />
+              </linearGradient>
+            </defs>
+            <path
+              fill="url(#grad1)"
+              fill-rule="evenodd"
+              d="M7.465 1.066C8.638 1.012 9.012 1 12 1c2.988 0 3.362.013 4.534.066c1.172.053 1.972.24 2.672.511c.733.277 1.398.71 1.948 1.27c.56.549.992 1.213 1.268 1.947c.272.7.458 1.5.512 2.67C22.988 8.639 23 9.013 23 12c0 2.988-.013 3.362-.066 4.535c-.053 1.17-.24 1.97-.512 2.67a5.396 5.396 0 0 1-1.268 1.949c-.55.56-1.215.992-1.948 1.268c-.7.272-1.5.458-2.67.512c-1.174.054-1.548.066-4.536.066c-2.988 0-3.362-.013-4.535-.066c-1.17-.053-1.97-.24-2.67-.512a5.397 5.397 0 0 1-1.949-1.268a5.392 5.392 0 0 1-1.269-1.948c-.271-.7-.457-1.5-.511-2.67C1.012 15.361 1 14.987 1 12c0-2.988.013-3.362.066-4.534c.053-1.172.24-1.972.511-2.672a5.396 5.396 0 0 1 1.27-1.948a5.392 5.392 0 0 1 1.947-1.269c.7-.271 1.5-.457 2.67-.511Zm8.98 1.98c-1.16-.053-1.508-.064-4.445-.064c-2.937 0-3.285.011-4.445.064c-1.073.049-1.655.228-2.043.379c-.513.2-.88.437-1.265.822a3.412 3.412 0 0 0-.822 1.265c-.151.388-.33.97-.379 2.043c-.053 1.16-.064 1.508-.064 4.445c0 2.937.011 3.285.064 4.445c.049 1.073.228 1.655.379 2.043c.176.477.457.91.822 1.265c.355.365.788.646 1.265.822c.388.151.97.33 2.043.379c1.16.053 1.507.064 4.445.064c2.938 0 3.285-.011 4.445-.064c1.073-.049 1.655-.228 2.043-.379c.513-.2.88-.437 1.265-.822c.365-.355.646-.788.822-1.265c.151-.388.33-.97.379-2.043c.053-1.16.064-1.508.064-4.445c0-2.937-.011-3.285-.064-4.445c-.049-1.073-.228-1.655-.379-2.043c-.2-.513-.437-.88-.822-1.265a3.413 3.413 0 0 0-1.265-.822c-.388-.151-.97-.33-2.043-.379Zm-5.85 12.345a3.669 3.669 0 0 0 4-5.986a3.67 3.67 0 1 0-4 5.986ZM8.002 8.002a5.654 5.654 0 1 1 7.996 7.996a5.654 5.654 0 0 1-7.996-7.996Zm10.906-.814a1.337 1.337 0 1 0-1.89-1.89a1.337 1.337 0 0 0 1.89 1.89Z"
+              clip-rule="evenodd"
+            />
+          </svg>
+          <img
+            src="{% static 'app/images/instagram-word-logo.webp' %}"
+            alt="instagram-logo"
+          />
+        </div>
+
+        <!-- user avatar -->
+        <div class="avatar">
+          <div class="image-container">
+            <img src="{% static 'app/images/sam.jpeg' %}" alt="userimage" />
+          </div>
+        </div>
+        <div class="user-info">
+          <div class="names">
+            <h1>Samuel Martins</h1>
+            <h2>@thesmartcoder</h2>
+          </div>
+          <div class="info">
+            <div class="posts">
+              <p>10</p>
+              <p>Posts</p>
+            </div>
+            <div class="followers">
+              <p>100</p>
+              <p>Followers</p>
+            </div>
+            <div class="following">
+              <p>105</p>
+              <p>Following</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- nav panel -->
+        <div class="nav-panel">
+          <ul>
+            <li>
+              <svg aria-hidden="true" role="img" viewBox="0 0 24 24">
+                <path
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M22 20v-7.826a4 4 0 0 0-1.253-2.908l-7.373-6.968a2 2 0 0 0-2.748 0L3.253 9.266A4 4 0 0 0 2 12.174V20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2Z"
+                />
+              </svg>
+              Feed
+            </li>
+            <li>
+              <svg aria-hidden="true" role="img" viewBox="0 0 24 24">
+                <path
+                  fill="currentColor"
+                  d="M7 8a5 5 0 1 1 10 0A5 5 0 0 1 7 8Zm5 3a3 3 0 1 0 0-6a3 3 0 0 0 0 6Zm-5.657 5.343A8 8 0 0 0 4 22h2a6 6 0 1 1 12 0h2a8 8 0 0 0-13.657-5.657Z"
+                />
+              </svg>
+              Profile
+            </li>
+            <li>
+              <svg aria-hidden="true" role="img" viewBox="0 0 24 24">
+                <g
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <path
+                    d="m16.24 7.76l-2.12 6.36l-6.36 2.12l2.12-6.36l6.36-2.12z"
+                  />
+                </g>
+              </svg>
+              Explore
+            </li>
+            <li>
+              <svg aria-hidden="true" role="img" viewBox="0 0 24 24">
+                <path
+                  fill="currentColor"
+                  d="M18 6h-3.59l2.3-2.29a1 1 0 1 0-1.42-1.42L12 5.59l-3.29-3.3a1 1 0 1 0-1.42 1.42L9.59 6H6a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3V9a3 3 0 0 0-3-3Zm1 13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1Z"
+                />
+              </svg>
+              Igtv
+            </li>
+            <li>
+              <svg aria-hidden="true" role="img" viewBox="0 0 24 24">
+                <path
+                  fill="currentColor"
+                  d="m19 21l-7-3l-7 3V5c0-1.1.9-2 2-2h7a5.002 5.002 0 0 0 5 7.9V21zM17.83 9L15 6.17l1.41-1.41l1.41 1.41l3.54-3.54l1.41 1.41L17.83 9z"
+                />
+              </svg>
+              Saved
+            </li>
+            <li>
+              <svg aria-hidden="true" role="img" viewBox="0 0 24 24">
+                <path
+                  fill="currentColor"
+                  d="M13.82 22h-3.64a1 1 0 0 1-.977-.786l-.407-1.884a8.002 8.002 0 0 1-1.535-.887l-1.837.585a1 1 0 0 1-1.17-.453L2.43 15.424a1.006 1.006 0 0 1 .193-1.239l1.425-1.3a8.1 8.1 0 0 1 0-1.772L2.623 9.816a1.006 1.006 0 0 1-.193-1.24l1.82-3.153a1 1 0 0 1 1.17-.453l1.837.585c.244-.18.498-.348.76-.5c.253-.142.513-.271.779-.386l.408-1.882A1 1 0 0 1 10.18 2h3.64a1 1 0 0 1 .976.787l.412 1.883a7.993 7.993 0 0 1 1.534.887l1.838-.585a1 1 0 0 1 1.169.453l1.82 3.153c.232.407.152.922-.193 1.239l-1.425 1.3a8.1 8.1 0 0 1 0 1.772l1.425 1.3c.345.318.425.832.193 1.239l-1.82 3.153a1 1 0 0 1-1.17.453l-1.837-.585a7.98 7.98 0 0 1-1.534.886l-.412 1.879a1 1 0 0 1-.976.786Zm-6.2-5.771l.82.6c.185.136.377.261.577.375c.188.109.38.207.579.296l.933.409l.457 2.091h2.03l.457-2.092l.933-.409c.407-.18.794-.403 1.153-.666l.82-.6l2.042.65l1.015-1.758l-1.583-1.443l.112-1.012c.05-.443.05-.89 0-1.332l-.112-1.012l1.584-1.446l-1.016-1.759l-2.041.65l-.821-.6a6.227 6.227 0 0 0-1.153-.671l-.933-.409L13.016 4h-2.03l-.46 2.092l-.93.408a6.01 6.01 0 0 0-1.153.666l-.821.6l-2.04-.65L4.565 8.88l1.583 1.441l-.112 1.013c-.05.443-.05.89 0 1.332l.112 1.012l-1.583 1.443l1.015 1.758l2.04-.65ZM11.996 16a4 4 0 1 1 0-8a4 4 0 0 1 0 8Zm0-6a2 2 0 1 0 2 2.09v.4V12a2 2 0 0 0-2-2Z"
+                />
+              </svg>
+              Settings
+            </li>
+          </ul>
+        </div>
+
+        <!-- logout section -->
+        <div class="logout-button">
+          <p>
+            <svg aria-hidden="true" role="img" viewBox="0 0 32 32">
+              <path
+                fill="currentColor"
+                d="M6 30h12a2.002 2.002 0 0 0 2-2v-3h-2v3H6V4h12v3h2V4a2.002 2.002 0 0 0-2-2H6a2.002 2.002 0 0 0-2 2v24a2.002 2.002 0 0 0 2 2Z"
+              />
+              <path
+                fill="currentColor"
+                d="M20.586 20.586L24.172 17H10v-2h14.172l-3.586-3.586L22 10l6 6l-6 6l-1.414-1.414z"
+              />
+            </svg>
+            <a href="">Logout</a>
+          </p>
+        </div>
+      </div>
+      <div class="main-content"></div>
+    </main>
+  </body>
+</html>
