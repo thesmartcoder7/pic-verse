@@ -70,8 +70,10 @@ main {
           border: 0.1vw solid rgb(173, 173, 173);
           border-radius: 0.3vw;
           margin: 3% 0;
-          text-transform: capitalize;
           font-size: 0.8vw;
+          &::placeholder {
+            text-transform: lowercase;
+          }
         }
       }
       input[type="submit"] {

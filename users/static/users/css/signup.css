@@ -121,8 +121,23 @@ main .right form .fields input {
   border: 0.1vw solid #adadad;
   border-radius: 0.3vw;
   margin: 3% 0;
-  text-transform: capitalize;
   font-size: 0.8vw;
+}
+
+main .right form .fields input::-webkit-input-placeholder {
+  text-transform: lowercase;
+}
+
+main .right form .fields input:-ms-input-placeholder {
+  text-transform: lowercase;
+}
+
+main .right form .fields input::-ms-input-placeholder {
+  text-transform: lowercase;
+}
+
+main .right form .fields input::placeholder {
+  text-transform: lowercase;
 }
 
 main .right form input[type="submit"] {

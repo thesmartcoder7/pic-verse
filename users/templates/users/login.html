@@ -1,12 +1,52 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'users/css/signup.css' %}" />
+    <link
+      rel="shortcut icon"
+      href="{% static 'app/images/instagram.png' %}"
+      type="image/x-icon"
+    />
+    <title>Sign Up</title>
   </head>
   <body>
-    <h1>login page works!!</h1>
+    <main>
+      <div class="left">
+        <img
+          src="{% static 'users/images/login-signup.png'%}"
+          alt="login-signup"
+        />
+      </div>
+      <div class="right">
+        <form action="">
+          <div class="word-logo">
+            <img
+              src="{% static 'app/images/instagram-word-logo.webp' %}"
+              alt="instagram logo"
+            />
+          </div>
+          <div class="fields">
+            <input
+              type="text"
+              name="username"
+              id="username"
+              placeholder="username"
+            />
+            <input
+              type="password"
+              name="password"
+              id="password"
+              placeholder="password"
+            />
+          </div>
+          <input type="submit" value="Sign Up" />
+          <p>don't have an account yet? <a href="">Sign Up</a></p>
+        </form>
+      </div>
+    </main>
   </body>
 </html>
