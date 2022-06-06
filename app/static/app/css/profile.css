@@ -2,7 +2,7 @@
   margin-top: 3%;
 }
 
-.profile-view ul {
+.profile-view .profile-nav {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -16,7 +16,7 @@
   margin-bottom: 3%;
 }
 
-.profile-view ul li {
+.profile-view .profile-nav li {
   font-weight: 500;
   font-size: 1.1vw;
   margin: 0 1%;
@@ -24,7 +24,7 @@
   text-transform: capitalize;
 }
 
-.profile-view ul li.active {
+.profile-view .profile-nav li.active {
   background: -webkit-gradient(linear, right top, left top, from(#a800a8), to(#f3400a));
   background: linear-gradient(to left, #a800a8, #f3400a);
   background-clip: text;
@@ -32,7 +32,7 @@
   -webkit-text-fill-color: transparent;
 }
 
-.profile-view ul li:hover {
+.profile-view .profile-nav li:hover {
   background: -webkit-gradient(linear, right top, left top, from(#a800a8), to(#f3400a));
   background: linear-gradient(to left, #a800a8, #f3400a);
   background-clip: text;
