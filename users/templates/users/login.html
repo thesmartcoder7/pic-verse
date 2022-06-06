@@ -30,7 +30,13 @@
               alt="instagram logo"
             />
           </div>
-          <div class="fields">{{form}}</div>
+          <div class="fields">
+            <p class="login-label">Username:</p>
+            {{form.username}}
+
+            <p class="login-label">Password:</p>
+            {{form.password}}
+          </div>
           <input type="submit" value="Sign In" />
           <p>
             don't have an account yet?

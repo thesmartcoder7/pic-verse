@@ -136,4 +136,6 @@ MEDIA_URL = '/media/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = 'insta-home'
-LOGIN_URL  = 'users-login'
+LOGIN_URL  = 'user-login'
+
+# LOGOUT_REDIRECT_URL = "user-login"

@@ -118,6 +118,12 @@ main .right form .fields h3 {
   font-size: 1.2vw;
 }
 
+main .right form .fields .login-label {
+  width: 100%;
+  text-align: left;
+  font-size: 0.85;
+}
+
 main .right form .fields label {
   display: none;
 }
