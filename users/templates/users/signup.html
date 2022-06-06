@@ -22,7 +22,8 @@
         />
       </div>
       <div class="right">
-        <form action="">
+        <form method="POST">
+          {% csrf_token %}
           <div class="word-logo">
             <img
               src="{% static 'app/images/instagram-word-logo.webp' %}"
@@ -30,6 +31,7 @@
             />
           </div>
           <div class="fields">
+            <!-- {{form}} -->
             <input
               type="text"
               name="username"

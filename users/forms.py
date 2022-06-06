@@ -6,7 +6,7 @@ from .models import Profile
 
 class UserSignupForm(UserCreationForm):
     
-    email = forms.EmailField()
+    email = forms.EmailField(widget=forms.EmailInput(attrs={'placeholder':('youremail@company.com')}))
 
     class Meta:
         """
@@ -17,3 +17,8 @@ class UserSignupForm(UserCreationForm):
         """
         model = User
         fields = ['username', 'email', 'password1', 'password2']
+
+
+        #  def __init__(self, *args, **kwargs):
+        # super(CommentForm, self).__init__(*args, **kwargs)
+        # self.fields['comment'].widget.attrs.update({'placeholder':'Add a comment...'})
