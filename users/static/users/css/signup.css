@@ -114,6 +114,26 @@ main .right form .fields {
           justify-content: flex-start;
 }
 
+main .right form .fields h3 {
+  font-size: 1.2vw;
+}
+
+main .right form .fields label {
+  display: none;
+}
+
+main .right form .fields .helptext,
+main .right form .fields br {
+  display: none;
+}
+
+main .right form .fields ul.errorlist {
+  text-align: left;
+  list-style: none;
+  font-size: 0.9vw;
+  color: red;
+}
+
 main .right form .fields input {
   width: 100%;
   padding: 5% 10%;

@@ -63,6 +63,22 @@ main {
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
+        h3 {
+          font-size: 1.2vw;
+        }
+        label {
+          display: none;
+        }
+        .helptext,
+        br {
+          display: none;
+        }
+        ul.errorlist {
+          text-align: left;
+          list-style: none;
+          font-size: 0.9vw;
+          color: red;
+        }
         input {
           width: 100%;
           padding: 5% 10%;

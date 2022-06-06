@@ -11,7 +11,7 @@
       href="{% static 'app/images/instagram.png' %}"
       type="image/x-icon"
     />
-    <title>Sign Up</title>
+    <title>Logout</title>
   </head>
   <body>
     <main>
@@ -30,10 +30,11 @@
               alt="instagram logo"
             />
           </div>
-          <div class="fields">{{form}}</div>
-          <input type="submit" value="Sign Up" />
+          <div class="fields">
+            <h3>You have been logged out!</h3>
+          </div>
           <p>
-            already have an accout? <a href="{% url 'user-login' %}">Sign In</a>
+            <a href="{% url 'user-login' %}">Sign In</a>
           </p>
         </form>
       </div>

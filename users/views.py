@@ -6,14 +6,11 @@ def signup(request):
     if request.method == 'POST':
         form = UserSignupForm(request.POST)
         if form.is_valid():
-            return redirect('insta-home')
+            form.save()
+            return redirect('user-login')
         else:
             
              return render(request, 'users/signup.html', {'form':form})
     else:
         form = UserSignupForm()
         return render(request, 'users/signup.html', {'form':form})
-
-
-def login(request):
-    return render(request, 'users/login.html')

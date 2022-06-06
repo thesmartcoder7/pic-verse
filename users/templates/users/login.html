@@ -22,29 +22,20 @@
         />
       </div>
       <div class="right">
-        <form action="">
+        <form method="POST">
+          {% csrf_token %}
           <div class="word-logo">
             <img
               src="{% static 'app/images/instagram-word-logo.webp' %}"
               alt="instagram logo"
             />
           </div>
-          <div class="fields">
-            <input
-              type="text"
-              name="username"
-              id="username"
-              placeholder="username"
-            />
-            <input
-              type="password"
-              name="password"
-              id="password"
-              placeholder="password"
-            />
-          </div>
-          <input type="submit" value="Sign Up" />
-          <p>don't have an account yet? <a href="">Sign Up</a></p>
+          <div class="fields">{{form}}</div>
+          <input type="submit" value="Sign In" />
+          <p>
+            don't have an account yet?
+            <a href="{% url 'user-signup' %}">Sign Up</a>
+          </p>
         </form>
       </div>
     </main>
