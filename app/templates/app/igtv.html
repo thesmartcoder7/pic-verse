@@ -1,0 +1,23 @@
+{% extends 'app/base.html' %}
+
+<!-- load static -->
+{% load static %}
+
+<!-- stylesheet block -->
+{% block style %}
+<link rel="stylesheet" href="{% static 'app/css/index.css' %}" />
+{% endblock %}
+
+<!-- title block -->
+{% block title %}
+<title>IgTv</title>
+{% endblock %}
+
+<!-- block content -->
+{% block content %}
+<div class="feed-view">
+  <div class="latest">
+    <h3>Ig-Tv feature coming soon . . .</h3>
+  </div>
+</div>
+{% endblock %}

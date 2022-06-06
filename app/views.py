@@ -8,7 +8,15 @@ def home(request):
 
 def profile(request):
     return render(request, 'app/profile.html')
-    
+
 
 def explore(request):
     return render(request, 'app/explore.html')
+
+
+def settings(request):
+    return render(request, 'app/settings.html')
+
+
+def igtv(request):
+    return render(request, 'app/igtv.html')

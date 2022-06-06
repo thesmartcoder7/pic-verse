@@ -5,5 +5,7 @@ from . import views
 urlpatterns = [
     path('', views.home, name='insta-home'),
     path('profile/', views.profile, name='insta-profile'),
-    path('explore/', views.explore, name='insta-explore')
+    path('explore/', views.explore, name='insta-explore'),
+    path('settings/', views.settings, name='insta-settings'),
+    path('igtv/', views.igtv, name='insta-igtv')
 ]
