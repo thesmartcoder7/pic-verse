@@ -8,3 +8,7 @@ def home(request):
 
 def profile(request):
     return render(request, 'app/profile.html')
+    
+
+def explore(request):
+    return render(request, 'app/explore.html')
