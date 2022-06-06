@@ -224,7 +224,21 @@ main .left-panel .nav-panel ul li:hover {
   -webkit-text-fill-color: transparent;
 }
 
-main .left-panel .nav-panel ul li svg {
+main .left-panel .nav-panel ul li a {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  text-decoration: none;
+}
+
+main .left-panel .nav-panel ul li a svg {
   width: 1.5vw;
   margin-right: 5%;
 }

@@ -158,9 +158,16 @@ main {
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
           }
-          svg {
-            width: 1.5vw;
-            margin-right: 5%;
+          a {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            text-decoration: none;
+            svg {
+              width: 1.5vw;
+              margin-right: 5%;
+            }
           }
         }
       }
