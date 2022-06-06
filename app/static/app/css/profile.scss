@@ -1,0 +1,96 @@
+.profile-view {
+  margin-top: 3%;
+
+  ul {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    list-style: none;
+    margin-bottom: 3%;
+    li {
+      font-weight: 500;
+      font-size: 1.1vw;
+      margin: 0 1%;
+      cursor: pointer;
+      text-transform: capitalize;
+      &.active {
+        background: linear-gradient(
+          to left,
+          rgb(168, 0, 168),
+          rgb(243, 64, 10)
+        );
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      &:hover {
+        background: linear-gradient(
+          to left,
+          rgb(168, 0, 168),
+          rgb(243, 64, 10)
+        );
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    }
+  }
+  .profile-posts {
+    .coming-soon {
+      font-size: 1.2vw;
+      font-weight: 500;
+      letter-spacing: 0.05vw;
+    }
+    .all-posts,
+    .saved,
+    .tagged {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: space-between;
+      display: none;
+      &.active {
+        display: flex;
+      }
+
+      .image {
+        width: 18%;
+        border-radius: 0.5vw;
+        position: relative;
+        img {
+          width: 100%;
+          border-radius: 0.5vw;
+        }
+        .counters {
+          margin-top: 2%;
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          ul {
+            width: 100%;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            li {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              margin: 0 5%;
+              svg {
+                width: 1.2vw;
+                height: 1.2vw;
+                margin-right: 2%;
+              }
+              span {
+                font-size: 0.85vw;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

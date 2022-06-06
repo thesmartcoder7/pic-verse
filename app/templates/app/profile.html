@@ -1,0 +1,177 @@
+{% extends 'app/base.html' %}
+
+<!-- load static -->
+{% load static %}
+
+<!-- stylesheet block -->
+{% block style %}
+<link rel="stylesheet" href="{% static 'app/css/profile.css' %}" />
+{% endblock %}
+
+<!-- title block -->
+{% block title %}
+<title>Feed</title>
+{% endblock %}
+
+<!-- block content -->
+{% block content %}
+<div class="profile-view">
+  <div class="profile-posts">
+    <ul>
+      <li class="p-nav active">All-Posts</li>
+      <li class="p-nav">Saved</li>
+      <li class="p-nav">Tagged</li>
+    </ul>
+
+    <!-- my posts section -->
+    <div class="all-posts profile active">
+      <!-- test images -->
+      <div class="image">
+        <img src="{% static 'app/images/insta-sample.png' %}" alt="" />
+        <div class="counters">
+          <ul>
+            <li>
+              <svg aria-hidden="true" role="img" viewBox="0 0 24 24">
+                <path
+                  fill="currentColor"
+                  d="M2 8.4A5.4 5.4 0 0 1 7.5 3A5.991 5.991 0 0 1 12 5a5.991 5.991 0 0 1 4.5-2A5.4 5.4 0 0 1 22 8.4c0 5.356-6.379 9.4-10 12.6C8.387 17.773 2 13.76 2 8.4Z"
+                />
+              </svg>
+              <span>1.5k</span>
+            </li>
+            <li>
+              <svg aria-hidden="true" role="img" viewBox="0 0 24 24">
+                <path
+                  fill="currentColor"
+                  d="M12 2C6.486 2 2 5.589 2 10c0 2.908 1.898 5.515 5 6.934V22l5.34-4.005C17.697 17.852 22 14.32 22 10c0-4.411-4.486-8-10-8z"
+                />
+              </svg>
+              <span> 4k </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- test images -->
+      <div class="image">
+        <img src="{% static 'app/images/insta-sample.png' %}" alt="" />
+        <div class="counters">
+          <ul>
+            <li>
+              <svg aria-hidden="true" role="img" viewBox="0 0 24 24">
+                <path
+                  fill="currentColor"
+                  d="M2 8.4A5.4 5.4 0 0 1 7.5 3A5.991 5.991 0 0 1 12 5a5.991 5.991 0 0 1 4.5-2A5.4 5.4 0 0 1 22 8.4c0 5.356-6.379 9.4-10 12.6C8.387 17.773 2 13.76 2 8.4Z"
+                />
+              </svg>
+              <span>1.5k</span>
+            </li>
+            <li>
+              <svg aria-hidden="true" role="img" viewBox="0 0 24 24">
+                <path
+                  fill="currentColor"
+                  d="M12 2C6.486 2 2 5.589 2 10c0 2.908 1.898 5.515 5 6.934V22l5.34-4.005C17.697 17.852 22 14.32 22 10c0-4.411-4.486-8-10-8z"
+                />
+              </svg>
+              <span> 4k </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- test images -->
+      <div class="image">
+        <img src="{% static 'app/images/insta-sample.png' %}" alt="" />
+        <div class="counters">
+          <ul>
+            <li>
+              <svg aria-hidden="true" role="img" viewBox="0 0 24 24">
+                <path
+                  fill="currentColor"
+                  d="M2 8.4A5.4 5.4 0 0 1 7.5 3A5.991 5.991 0 0 1 12 5a5.991 5.991 0 0 1 4.5-2A5.4 5.4 0 0 1 22 8.4c0 5.356-6.379 9.4-10 12.6C8.387 17.773 2 13.76 2 8.4Z"
+                />
+              </svg>
+              <span>1.5k</span>
+            </li>
+            <li>
+              <svg aria-hidden="true" role="img" viewBox="0 0 24 24">
+                <path
+                  fill="currentColor"
+                  d="M12 2C6.486 2 2 5.589 2 10c0 2.908 1.898 5.515 5 6.934V22l5.34-4.005C17.697 17.852 22 14.32 22 10c0-4.411-4.486-8-10-8z"
+                />
+              </svg>
+              <span> 4k </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- test images -->
+      <div class="image">
+        <img src="{% static 'app/images/insta-sample.png' %}" alt="" />
+        <div class="counters">
+          <ul>
+            <li>
+              <svg aria-hidden="true" role="img" viewBox="0 0 24 24">
+                <path
+                  fill="currentColor"
+                  d="M2 8.4A5.4 5.4 0 0 1 7.5 3A5.991 5.991 0 0 1 12 5a5.991 5.991 0 0 1 4.5-2A5.4 5.4 0 0 1 22 8.4c0 5.356-6.379 9.4-10 12.6C8.387 17.773 2 13.76 2 8.4Z"
+                />
+              </svg>
+              <span>1.5k</span>
+            </li>
+            <li>
+              <svg aria-hidden="true" role="img" viewBox="0 0 24 24">
+                <path
+                  fill="currentColor"
+                  d="M12 2C6.486 2 2 5.589 2 10c0 2.908 1.898 5.515 5 6.934V22l5.34-4.005C17.697 17.852 22 14.32 22 10c0-4.411-4.486-8-10-8z"
+                />
+              </svg>
+              <span> 4k </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- test images -->
+      <div class="image">
+        <img src="{% static 'app/images/insta-sample.png' %}" alt="" />
+        <div class="counters">
+          <ul>
+            <li>
+              <svg aria-hidden="true" role="img" viewBox="0 0 24 24">
+                <path
+                  fill="currentColor"
+                  d="M2 8.4A5.4 5.4 0 0 1 7.5 3A5.991 5.991 0 0 1 12 5a5.991 5.991 0 0 1 4.5-2A5.4 5.4 0 0 1 22 8.4c0 5.356-6.379 9.4-10 12.6C8.387 17.773 2 13.76 2 8.4Z"
+                />
+              </svg>
+              <span>1.5k</span>
+            </li>
+            <li>
+              <svg aria-hidden="true" role="img" viewBox="0 0 24 24">
+                <path
+                  fill="currentColor"
+                  d="M12 2C6.486 2 2 5.589 2 10c0 2.908 1.898 5.515 5 6.934V22l5.34-4.005C17.697 17.852 22 14.32 22 10c0-4.411-4.486-8-10-8z"
+                />
+              </svg>
+              <span> 4k </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- saved posts section -->
+    <div class="saved profile">
+      <h3 class="coming-soon profile">&nbsp;&nbsp;Nothing saved yet . . .</h3>
+    </div>
+
+    <!-- tagged posts -->
+    <div class="tagged profile">
+      <h3 class="coming-soon profile">
+        &nbsp;&nbsp;You haven't been tagged yet . . .
+      </h3>
+    </div>
+  </div>
+</div>
+{% endblock %}
