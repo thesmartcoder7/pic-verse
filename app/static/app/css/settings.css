@@ -66,11 +66,11 @@
 
 .feed-view .latest .update form .picture {
   width: 100%;
-  margin-top: 2%;
+  margin-top: 5%;
 }
 
 .feed-view .latest .update form .picture p {
-  margin-bottom: 1%;
+  margin-bottom: 2%;
 }
 
 .feed-view .latest .update form .picture input {
@@ -99,7 +99,7 @@
 
 .feed-view .latest .update input[type="submit"] {
   padding: 2% 3%;
-  margin-top: 2%;
+  margin-top: 3%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
