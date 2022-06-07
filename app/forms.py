@@ -2,13 +2,15 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserChangeForm
 from users.models import Profile
+from .models import Post
 
 
 
-# class UserUpdateForm(forms.ModelForm):
-#     class Meta:
-#         model = User
-#         fields = ['first_name', 'last_name']
+class PostCreationForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ['image_path', 'image_name', 'image_caption']
+
 
 
 class UserUpdateForm(UserChangeForm):

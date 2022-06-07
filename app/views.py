@@ -5,7 +5,8 @@ from .forms import *
 # Create your views here.
 @login_required
 def home(request):
-    return render(request, 'app/index.html')
+    form = PostCreationForm()
+    return render(request, 'app/index.html', {'form': form})
 
 @login_required
 def profile(request):
