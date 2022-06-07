@@ -1,3 +1,21 @@
+@-webkit-keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 .feed-view {
   margin-top: 3%;
 }
@@ -52,6 +70,8 @@
   top: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.486);
+  -webkit-animation: appear 0.3s;
+          animation: appear 0.3s;
   display: none;
 }
 
@@ -93,6 +113,260 @@
   color: #fff;
 }
 
+.feed-view .latest .latest-posts .image .image-modal {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  background-color: rgba(0, 0, 0, 0.486);
+  -webkit-backdrop-filter: blur(0.2vw);
+          backdrop-filter: blur(0.2vw);
+  padding: 10%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-animation: appear 0.5s;
+          animation: appear 0.5s;
+  display: none;
+}
+
+.feed-view .latest .latest-posts .image .image-modal .close {
+  width: 3vw;
+  height: 3vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-radius: 50%;
+  position: absolute;
+  top: 14%;
+  right: 8%;
+  font-size: 1.3vw;
+  color: #fff;
+  background-color: #5c5c5c;
+  cursor: pointer;
+}
+
+.feed-view .latest .latest-posts .image .image-modal .left {
+  width: 50%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  overflow: hidden;
+}
+
+.feed-view .latest .latest-posts .image .image-modal .left img {
+  width: 100%;
+}
+
+.feed-view .latest .latest-posts .image .image-modal .right {
+  width: 50%;
+  background-color: #fff;
+  height: 100%;
+  padding: 1.5% 2%;
+}
+
+.feed-view .latest .latest-posts .image .image-modal .right .user {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.feed-view .latest .latest-posts .image .image-modal .right .user .all-info {
+  width: 100%;
+  height: 60%;
+}
+
+.feed-view .latest .latest-posts .image .image-modal .right .user .all-info .image-container {
+  width: 100%;
+  height: 20%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  margin-bottom: 5%;
+  padding-bottom: 2%;
+  border-bottom: 0.05vw solid rgba(206, 206, 206, 0.466);
+}
+
+.feed-view .latest .latest-posts .image .image-modal .right .user .all-info .image-container .avatar {
+  width: 4vw;
+  height: 4vw;
+  margin-right: 4%;
+  padding: 0.5%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+  border: 0.15vw solid transparent;
+  background: -webkit-gradient(linear, left top, left bottom, from(white), to(white)) padding-box, -webkit-gradient(linear, right top, left top, from(#a800a8), to(#f3400a)) border-box;
+  background: linear-gradient(white, white) padding-box, linear-gradient(to left, #a800a8, #f3400a) border-box;
+}
+
+.feed-view .latest .latest-posts .image .image-modal .right .user .all-info .image-container .avatar img {
+  width: 100%;
+  border-radius: 50%;
+}
+
+.feed-view .latest .latest-posts .image .image-modal .right .user .all-info .image-container .likes {
+  width: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.feed-view .latest .latest-posts .image .image-modal .right .user .all-info .image-container .likes svg {
+  width: 1.5vw;
+  height: 1.5vw;
+}
+
+.feed-view .latest .latest-posts .image .image-modal .right .user .all-info .image-container .likes span {
+  margin-left: 2%;
+  margin-right: 5%;
+}
+
+.feed-view .latest .latest-posts .image .image-modal .right .user .all-info .image-container .likes a {
+  margin: 0 2%;
+  padding: 1.5% 3%;
+  text-decoration: none;
+  background-color: #0095f6;
+  color: #fff;
+  border-radius: 0.2vw;
+  font-weight: 500;
+  font-size: 0.9vw;
+}
+
+.feed-view .latest .latest-posts .image .image-modal .right .user .all-info .all-comments {
+  width: 100%;
+  height: 70%;
+  padding: 0 5%;
+  overflow: auto;
+}
+
+.feed-view .latest .latest-posts .image .image-modal .right .user .all-info .all-comments::-webkit-scrollbar {
+  display: none;
+}
+
+.feed-view .latest .latest-posts .image .image-modal .right .user .all-info .all-comments .single-comment {
+  margin-bottom: 5%;
+}
+
+.feed-view .latest .latest-posts .image .image-modal .right .user .all-info .all-comments .single-comment a {
+  font-size: 0.9vw;
+  text-transform: capitalize;
+  text-decoration: none;
+  font-weight: 700;
+  line-height: 1.8vw;
+}
+
+.feed-view .latest .latest-posts .image .image-modal .right .user .all-info .all-comments .single-comment a:hover {
+  background: -webkit-gradient(linear, right top, left top, from(#a800a8), to(#f3400a));
+  background: linear-gradient(to left, #a800a8, #f3400a);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.feed-view .latest .latest-posts .image .image-modal .right .user .all-info .all-comments .single-comment a p {
+  font-size: 0.9vw;
+}
+
+.feed-view .latest .latest-posts .image .image-modal .right .user .user-comment {
+  width: 100%;
+  height: 40%;
+  padding: 5%;
+}
+
+.feed-view .latest .latest-posts .image .image-modal .right .user .user-comment form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  width: 100%;
+}
+
+.feed-view .latest .latest-posts .image .image-modal .right .user .user-comment form textarea {
+  width: 100%;
+  height: 8vw;
+  outline: none;
+  border: 0.1vw solid #adadad;
+  border-radius: 0.3vw;
+  padding: 3%;
+  margin-bottom: 2%;
+}
+
+.feed-view .latest .latest-posts .image .image-modal .right .user .user-comment form input {
+  outline: none;
+  border: none;
+  padding: 1.5% 3%;
+  text-decoration: none;
+  background-color: #0095f6;
+  color: #fff;
+  border-radius: 0.2vw;
+  font-weight: 500;
+  font-size: 0.9vw;
+}
+
 .feed-view .feed {
   margin-top: 7%;
 }
@@ -126,8 +400,8 @@
 }
 
 .feed-view .feed .feed-posts .image .counters {
-  margin-top: 2%;
   width: 100%;
+  height: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -137,6 +411,14 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  position: absolute;
+  border-radius: 0.5vw;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.486);
+  -webkit-animation: appear 0.3s;
+          animation: appear 0.3s;
+  display: none;
 }
 
 .feed-view .feed .feed-posts .image .counters ul {
@@ -174,5 +456,6 @@
 
 .feed-view .feed .feed-posts .image .counters ul li span {
   font-size: 0.85vw;
+  color: #fff;
 }
 /*# sourceMappingURL=index.css.map */

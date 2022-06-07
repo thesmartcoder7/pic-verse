@@ -3,7 +3,8 @@ let profileNavs = document.querySelectorAll(".p-nav");
 
 let hoverimages = document.querySelectorAll(".display_image");
 let imageCounters = document.querySelectorAll(".counters");
-console.log(imageCounters);
+
+let modalClosers = document.querySelectorAll(".close");
 
 for (let nav of profileNavs) {
   nav.addEventListener("click", (e) => {
@@ -23,14 +24,27 @@ for (let nav of profileNavs) {
 
 for (let image of hoverimages) {
   image.addEventListener("mouseenter", (e) => {
-    console.log(e);
     e.target.nextElementSibling.style.display = "flex";
+  });
+
+  image.addEventListener("click", (e) => {
+    console.log(e);
   });
 }
 
 for (let counter of imageCounters) {
   counter.addEventListener("mouseleave", (e) => {
-    console.log(e);
     e.target.style.display = "none";
+  });
+
+  counter.addEventListener("click", (e) => {
+    e.target.nextElementSibling.style.display = "flex";
+  });
+}
+
+for (let closer of modalClosers) {
+  closer.addEventListener("click", (e) => {
+    console.log(e);
+    e.target.parentElement.style.display = "none";
   });
 }
