@@ -5,8 +5,28 @@ from .forms import *
 # Create your views here.
 @login_required
 def home(request):
-    form = PostCreationForm()
-    return render(request, 'app/index.html', {'form': form})
+    post_form = PostCreationForm()
+    if request.method == 'POST':
+        post_form = PostCreationForm(request.POST, request.FILES, instance=request.user )
+        context = {
+            'post_form': post_form
+        }
+        if post_form.is_valid():
+            print('\n\nform gets to be validated\n\n')
+            post_form.save()
+            print(Post.objects.all())
+            return redirect('insta-home')
+        else:
+            print('\n\nthe form is not validated\n\n')
+            return render(request, 'app/index.html', context)
+    else:
+        post_form = PostCreationForm()
+        print('\n\nthe request is not even a post request\n\n')
+        context = {
+            'post_form': post_form
+        }
+        return render(request, 'app/index.html', context)
+
 
 @login_required
 def profile(request):

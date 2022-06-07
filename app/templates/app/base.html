@@ -203,15 +203,30 @@
                 d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"
               />
             </svg>
-            <button>Add Post</button>
+            <button class="toggle-add-post">Add Post</button>
           </div>
         </div>
         {% block content %} {% endblock %}
       </div>
 
       <div class="post-modal">
-        <form action="">
-          
+        <p class="close">&times;</p>
+        <form method="post" enctype="multipart/form-data">
+          <h3>Create a new post</h3>
+          {% csrf_token %}
+          <div>
+            <p class="post-form-label">Name:</p>
+            {{post_form.name}}
+          </div>
+          <div>
+            <p class="post-form-label">Image:</p>
+            {{post_form.image}}
+          </div>
+          <div>
+            <p class="post-form-label">Caption:</p>
+            {{post_form.caption}}
+          </div>
+          <div><input type="submit" value="Post" /></div>
         </form>
       </div>
     </main>

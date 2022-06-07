@@ -4,13 +4,13 @@ from django.contrib.auth.models import User
 
 
 class Post(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts')
-    image_path = models.ImageField(upload_to='post_images/', blank=True)
-    image_name = models.CharField(max_length=20)
-    image_caption = models.TextField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts', unique=False)
+    image = models.ImageField(upload_to='post_images/', blank=True)
+    name = models.CharField(max_length=20)
+    caption = models.TextField()
 
     def __str__(self) -> str:
-        return f"{self.image_name}"
+        return f"{self.name}"
 
 
 class Comment(models.Model):

@@ -437,4 +437,166 @@ main .main-content .top-bar .user-actions button:hover {
   -webkit-transition: 1s ease-in-out;
   transition: 1s ease-in-out;
 }
+
+main .post-modal {
+  background-color: #2020204d;
+  -webkit-backdrop-filter: blur(0.2vw);
+          backdrop-filter: blur(0.2vw);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 10%;
+  display: none;
+}
+
+main .post-modal .close {
+  width: 3vw;
+  height: 3vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-radius: 50%;
+  position: absolute;
+  top: 14%;
+  right: 27%;
+  font-size: 1.3vw;
+  color: #fff;
+  background-color: #5c5c5c;
+  cursor: pointer;
+}
+
+main .post-modal form {
+  background-color: #fff;
+  border-radius: 0.5vw;
+  padding: 5% 10%;
+  width: 50%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+main .post-modal form h3 {
+  width: 100%;
+  text-align: center;
+  font-size: 1.5vw;
+  text-transform: capitalize;
+  margin-bottom: 5%;
+}
+
+main .post-modal form div {
+  width: 100%;
+  margin: 2% 0;
+}
+
+main .post-modal form div .post-form-label {
+  font-size: 1vw;
+  font-weight: 500;
+  margin-bottom: 2%;
+}
+
+main .post-modal form div input {
+  width: 100%;
+  padding: 3%;
+  outline: none;
+  border: none;
+  border: 0.1vw solid #adadad;
+  border-radius: 0.2vw;
+  font-size: 0.85vw;
+  color: #4d4d4d;
+}
+
+main .post-modal form div input::-webkit-input-placeholder {
+  text-transform: capitalize;
+  font-size: 0.8vw;
+}
+
+main .post-modal form div input:-ms-input-placeholder {
+  text-transform: capitalize;
+  font-size: 0.8vw;
+}
+
+main .post-modal form div input::-ms-input-placeholder {
+  text-transform: capitalize;
+  font-size: 0.8vw;
+}
+
+main .post-modal form div input::placeholder {
+  text-transform: capitalize;
+  font-size: 0.8vw;
+}
+
+main .post-modal form div textarea {
+  width: 100%;
+  padding: 3%;
+  height: 7vw;
+  outline: none;
+  border: none;
+  border: 0.1vw solid #adadad;
+  border-radius: 0.2vw;
+  font-size: 0.85vw;
+  color: #4d4d4d;
+}
+
+main .post-modal form div textarea::-webkit-input-placeholder {
+  text-transform: capitalize;
+  font-size: 0.8vw;
+  margin-left: 5%;
+}
+
+main .post-modal form div textarea:-ms-input-placeholder {
+  text-transform: capitalize;
+  font-size: 0.8vw;
+  margin-left: 5%;
+}
+
+main .post-modal form div textarea::-ms-input-placeholder {
+  text-transform: capitalize;
+  font-size: 0.8vw;
+  margin-left: 5%;
+}
+
+main .post-modal form div textarea::placeholder {
+  text-transform: capitalize;
+  font-size: 0.8vw;
+  margin-left: 5%;
+}
+
+main .post-modal form div input[type="submit"] {
+  background-color: #0095f6;
+  color: #fff;
+  border-radius: 0.2vw;
+  font-weight: 500;
+  font-size: 0.9vw;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
 /*# sourceMappingURL=base.css.map */

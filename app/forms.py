@@ -9,7 +9,7 @@ from .models import Post
 class PostCreationForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ['image_path', 'image_name', 'image_caption']
+        fields = ['image', 'name', 'caption']
 
 
 

@@ -6,6 +6,13 @@ let imageCounters = document.querySelectorAll(".counters");
 
 let modalClosers = document.querySelectorAll(".close");
 
+let postModal = document.querySelector(".post-modal");
+let createPostToggle = document.querySelector(".toggle-add-post");
+
+createPostToggle.addEventListener("click", (e) => {
+  postModal.style.display = "flex";
+});
+
 for (let nav of profileNavs) {
   nav.addEventListener("click", (e) => {
     for (let nav of profileNavs) {
