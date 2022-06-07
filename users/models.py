@@ -12,19 +12,25 @@ class Profile(models.Model):
         return f'{self.user.username} Profile'
 
 
-class Follower(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE,)
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
 
-    def __str__(self):
-        return f'{self.user.username} followers'
+class Follow(models.Model):
+    follower = models.ForeignKey(User, on_delete=models.CASCADE, related_name='follower')
+    following = models.ForeignKey(User, on_delete=models.CASCADE, related_name='following')
 
 
-class Following(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
-    def __str__(self):
-        return f'{self.user.username} following'
+# class Follower(models.Model):
+#     user = models.ForeignKey(User, on_delete=models.CASCADE,)
+#     profile = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
+
+#     def __str__(self):
+#         return f'{self.user.username} followers'
+
+
+# class Following(models.Model):
+#     user = models.ForeignKey(User, on_delete=models.CASCADE)
+#     profile = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
+#     def __str__(self):
+#         return f'{self.user.username} following'
 
 
 
