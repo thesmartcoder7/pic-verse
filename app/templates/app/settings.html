@@ -5,7 +5,7 @@
 
 <!-- stylesheet block -->
 {% block style %}
-<link rel="stylesheet" href="{% static 'app/css/index.css' %}" />
+<link rel="stylesheet" href="{% static 'app/css/settings.css' %}" />
 {% endblock %}
 
 <!-- title block -->
@@ -17,7 +17,32 @@
 {% block content %}
 <div class="feed-view">
   <div class="latest">
-    <h3>Settings feature coming soon . . .</h3>
+    <h3>Update you profile details . . .</h3>
+    <div class="update">
+      <form method="post">
+        {% csrf_token %}
+        <!--  -->
+        <div class="names">
+          <div class="single">
+            <p class="update-label">First Name:</p>
+            {{u_form.first_name}}
+          </div>
+          <div class="single">
+            <p class="update-label">First Name:</p>
+            {{u_form.last_name}}
+          </div>
+        </div>
+        <div class="picture">
+          <p class="update-label">Profile Picture:</p>
+          {{p_form.image}}
+        </div>
+        <div class="bio-update">
+          <p class="update-label">A bit about you:</p>
+          {{p_form.bio}}
+        </div>
+        <input type="submit" value="Update" />
+      </form>
+    </div>
   </div>
 </div>
 {% endblock %}
