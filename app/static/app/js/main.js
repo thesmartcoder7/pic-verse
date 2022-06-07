@@ -23,7 +23,7 @@ for (let nav of profileNavs) {
 }
 
 for (let image of hoverimages) {
-  image.addEventListener("mouseenter", (e) => {
+  image.addEventListener("mouseover", (e) => {
     e.target.nextElementSibling.style.display = "flex";
   });
 
