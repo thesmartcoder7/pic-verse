@@ -9,6 +9,10 @@ let modalClosers = document.querySelectorAll(".close");
 let postModal = document.querySelector(".post-modal");
 let createPostToggle = document.querySelector(".toggle-add-post");
 
+document.querySelector(".disable-post-button").addEventListener("click", () => {
+  createPostToggle.style.display = none;
+});
+
 createPostToggle.addEventListener("click", (e) => {
   postModal.style.display = "flex";
 });

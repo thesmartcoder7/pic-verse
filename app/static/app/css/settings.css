@@ -128,4 +128,8 @@
   -webkit-transition: 1s ease-in-out;
   transition: 1s ease-in-out;
 }
+
+.toggle-add-post {
+  display: none !important;
+}
 /*# sourceMappingURL=settings.css.map */
