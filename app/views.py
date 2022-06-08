@@ -87,17 +87,16 @@ def explore(request):
 @login_required
 def settings(request):
     if request.method == 'POST':
-        post_form = PostCreationForm()
         u_form = UserUpdateForm(request.POST, instance=request.user)
         p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
         context = {
             'u_form': u_form,
-            'p_form': p_form,
-            'post_form': post_form
+            'p_form': p_form
         }
         if u_form.is_valid() and p_form.is_valid():
             u_form.save()
             p_form.save()
+            
             return redirect('insta-home')
         else:
             return render(request, 'app/settings.html', context)
