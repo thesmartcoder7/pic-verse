@@ -25,6 +25,7 @@
       overflow: hidden;
 
       .image {
+        animation: appear 0.5s ease-in-out;
         width: 18%;
         height: 13vw;
         border-radius: 0.5vw;

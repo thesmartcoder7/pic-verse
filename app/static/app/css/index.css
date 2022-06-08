@@ -46,6 +46,8 @@
 }
 
 .feed-view .latest .latest-posts .image {
+  -webkit-animation: appear 0.5s ease-in-out;
+          animation: appear 0.5s ease-in-out;
   width: 18%;
   height: 13vw;
   border-radius: 0.5vw;
