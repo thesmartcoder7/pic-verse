@@ -206,7 +206,7 @@
 
 .feed-view .latest .latest-posts .image .image-modal .right .user .all-info {
   width: 100%;
-  height: 60%;
+  height: 75%;
 }
 
 .feed-view .latest .latest-posts .image .image-modal .right .user .all-info .image-container {
@@ -324,7 +324,7 @@
 
 .feed-view .latest .latest-posts .image .image-modal .right .user .user-comment {
   width: 100%;
-  height: 40%;
+  height: 25%;
   padding: 5%;
 }
 
@@ -347,7 +347,7 @@
 
 .feed-view .latest .latest-posts .image .image-modal .right .user .user-comment form textarea {
   width: 100%;
-  height: 8vw;
+  height: 3vw;
   outline: none;
   border: 0.1vw solid #adadad;
   border-radius: 0.3vw;

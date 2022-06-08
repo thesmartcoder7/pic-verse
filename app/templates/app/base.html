@@ -54,7 +54,7 @@
         <!-- user avatar -->
         <div class="avatar">
           <div class="image-container">
-            <img src="{% static 'app/images/sam.jpeg' %}" alt="userimage" />
+            <img src="{{user.profile.image.url}}" alt="userimage" />
           </div>
         </div>
         <div class="user-info">
