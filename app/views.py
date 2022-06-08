@@ -9,10 +9,16 @@ from .models import Post
 @login_required
 def home(request):
     post_form = PostCreationForm()
+    posts = list(Post.objects.all())
+    posts.reverse()
+    final_posts = []
+    for i in range(5):
+        final_posts.append(posts[i])
     if request.method == 'POST':
         post_form = PostCreationForm(request.POST, request.FILES, instance=request.user )
         context = {
-            'post_form': post_form
+            'post_form': post_form,
+            'posts': final_posts
         }
         if post_form.is_valid():
             name = post_form.cleaned_data.get('name')
@@ -22,11 +28,16 @@ def home(request):
             post.save()
             return redirect('insta-home')
         else:
+            context = {
+                'post_form': post_form,
+                'posts': final_posts
+            }
             return render(request, 'app/index.html', context)
     else:
         post_form = PostCreationForm()
         context = {
-            'post_form': post_form
+            'post_form': post_form,
+            'posts': final_posts
         }
         return render(request, 'app/index.html', context)
 

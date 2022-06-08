@@ -8,7 +8,7 @@ class Post(models.Model):
     image = models.ImageField(upload_to='post_images/', blank=True)
     name = models.CharField(max_length=20)
     caption = models.TextField()
-    likes = models.IntegerField(default=0)
+    likes = models.IntegerField(default=0, blank=True)
 
     def __str__(self) -> str:
         return f"{self.name}"

@@ -87,13 +87,22 @@ main .left-panel .avatar {
 main .left-panel .avatar .image-container {
   width: 5.5vw;
   height: 5.5vw;
-  padding: 1.5%;
+  padding: 1%;
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 50%;
   border: 0.15vw solid transparent;
   background: -webkit-gradient(linear, left top, left bottom, from(white), to(white)) padding-box, -webkit-gradient(linear, right top, left top, from(#a800a8), to(#f3400a)) border-box;
   background: linear-gradient(white, white) padding-box, linear-gradient(to left, #a800a8, #f3400a) border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 main .left-panel .avatar .image-container img {

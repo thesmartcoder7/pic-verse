@@ -57,13 +57,16 @@ main {
       .image-container {
         width: 5.5vw;
         height: 5.5vw;
-        padding: 1.5%;
+        padding: 1%;
         object-fit: cover;
         border-radius: 50%;
         border: 0.15vw solid transparent;
         background: linear-gradient(white, white) padding-box,
           linear-gradient(to left, rgb(168, 0, 168), rgb(243, 64, 10))
             border-box;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         img {
           object-fit: cover;
           width: 100%;
