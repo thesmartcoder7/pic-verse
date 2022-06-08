@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .forms import * 
-from .models import Post
+from .models import *
 
 
 
@@ -146,3 +146,24 @@ def igtv(request):
             'post_form': post_form
         }
         return render(request, 'app/igtv.html', context)
+
+
+
+@login_required
+def like(request, post_id):
+    user = request.user
+    post = Post.objects.get(id=post_id)
+    current_likes = post.likes
+
+    liked_by_current_user = Like.objects.filter(user=user, post=post).count()
+    if not liked_by_current_user:
+        Like.objects.create(user=user, post=post)
+        current_likes = current_likes + 1
+    else:
+        Like.objects.filter(user=user, post=post).delete()
+        current_likes = current_likes - 1 
+
+    post.likes = current_likes
+    post.save()
+
+    return redirect('insta-home')
