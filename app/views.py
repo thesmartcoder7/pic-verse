@@ -40,7 +40,8 @@ def home(request):
     post_form = PostCreationForm()
     c_form = CommentForm(request.POST)
     posts = list(Post.objects.all())
-    all_likes = Like.objects.all()
+    # all_likes = Like.objects.all()
+    all_comments = list(Comment.objects.all())
     posts.reverse()
     final_posts = []
     for i in range(5):
@@ -58,7 +59,7 @@ def home(request):
         context = {
             'post_form': post_form,
             'posts': final_posts,
-            'all_likes': all_likes,
+            'all_comments': all_comments,
             'c_form': c_form
         }
         if post_form.is_valid():
@@ -72,7 +73,7 @@ def home(request):
             context = {
                 'post_form': post_form,
                 'posts': final_posts,
-                'all_likes': all_likes,
+                'all_comments': all_comments,
                 'c_form': c_form
             }
             return render(request, 'app/index.html', context)
@@ -81,7 +82,7 @@ def home(request):
         context = {
             'post_form': post_form,
             'posts': final_posts,
-            'all_likes': all_likes,
+            'all_comments': all_comments,
             'c_form': c_form
         }
         return render(request, 'app/index.html', context)
@@ -226,7 +227,6 @@ def like(request, post_id):
 
 @login_required
 def comments(request, post_id):
-    print(f'\n\nthis is  the entry point to this view function\n\n')
     c_form = CommentForm(request.POST)
     if request.method == 'POST':
         c_form = CommentForm(request.POST)
@@ -235,12 +235,11 @@ def comments(request, post_id):
             post = Post.objects.filter(id=post_id).first()
             new, created = Comment.objects.get_or_create(user=user, content=request.POST['content'], post=post)
             new.save()
-            print(f'\n\nthe form gets validated and to here\n\n')
+            post.comments += 1
+            post.save()
             return redirect('insta-home')
         else:
-            print(f'\n\nthe form does not get validated and to here\n\n')
             return redirect('insta-home')
     else:
         c_form = CommentForm(request.POST)
-        print(f'\n\nthis is not even a post request\n\n')
         return redirect('insta-home')
