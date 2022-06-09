@@ -82,12 +82,14 @@
             <div class="user">
               <div class="all-info">
                 <div class="image-container">
-                  <div class="avatar">
-                    <img
-                      src="{{post.0.user.profile.image.url}}"
-                      alt="{{post.0.user.username}}"
-                    />
-                  </div>
+                  <a href="{% url 'insta-user' post.0.user.username %}">
+                    <div class="avatar">
+                      <img
+                        src="{{post.0.user.profile.image.url}}"
+                        alt="{{post.0.user.username}}"
+                      />
+                    </div>
+                  </a>
 
                   <div class="likes">
                     <div class="caption">{{post.0.caption}}</div>
