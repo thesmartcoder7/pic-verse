@@ -73,13 +73,13 @@
                         d="M2 8.4A5.4 5.4 0 0 1 7.5 3A5.991 5.991 0 0 1 12 5a5.991 5.991 0 0 1 4.5-2A5.4 5.4 0 0 1 22 8.4c0 5.356-6.379 9.4-10 12.6C8.387 17.773 2 13.76 2 8.4Z"
                       />
                     </svg>
-                    {% if post.likes == 1 %}
+                    {% if post.0.likes == 1 %}
                     <span>{{post.0.likes}} Like</span>
                     {% else %}
                     <span>{{post.0.likes}} Likes</span>
                     {% endif %}
                     <a href="{% url 'insta-like' post.0.id %}">Like</a>
-                    {% if user.is_authenticated and user != post.user %}
+                    {% if user.is_authenticated and user != post.0.user %}
                     <!--  -->
                     {% if post.1 %}
                     <a href="{% url 'user-follow' post.0.user.username %}"
