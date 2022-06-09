@@ -9,6 +9,8 @@ python-dotenv = "*"
 psycopg2 = "*"
 django-crispy-forms = "*"
 pillow = "*"
+whitenoise = "*"
+django-heroku = "*"
 
 [dev-packages]
 
