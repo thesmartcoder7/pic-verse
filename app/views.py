@@ -378,3 +378,21 @@ def comments(request, post_id):
     else:
         c_form = CommentForm(request.POST)
         return redirect('insta-home')
+
+
+
+@login_required
+def search(request):
+    if request.method == 'POST':
+        all_users = User.objects.all()
+        filtered_users = []
+        search_term = request.POST['search'].split(' ')
+        for user in all_users:
+            for term in search_term:
+                if term in user.username and user not in filtered_users and term != "" \
+                    or term in user.first_name and user not in filtered_users and term != "" \
+                    or term in user.last_name and user not in filtered_users and term != "":
+                    filtered_users.append(user)
+
+
+    return render(request, 'app/search.html', {'found_users': filtered_users})

@@ -173,7 +173,8 @@
       <div class="main-content">
         <div class="top-bar">
           <div class="search">
-            <form action="">
+            <form action="{% url 'insta-search'%}" method="post">
+              {% csrf_token %}
               <input
                 type="text"
                 id="search"

@@ -1,0 +1,44 @@
+{% extends 'app/base.html' %}
+
+<!-- load static -->
+{% load static %}
+
+<!-- stylesheet block -->
+{% block style %}
+<link rel="stylesheet" href="{% static 'app/css/search.css' %}" />
+{% endblock %}
+
+<!-- title block -->
+{% block title %}
+<title>Search</title>
+{% endblock %}
+
+<!-- block content -->
+{% block content %}
+<div class="feed-view">
+  <div class="latest">
+    {% if found_users %}
+    <h3>Search Results . . .</h3>
+    <div class="found">
+      {% for result in found_users %}
+      <div class="single">
+        <a href="{% url 'insta-user'  result.username %}">
+          <div class="avatar">
+            <div class="image-container">
+              <img src="{{result.profile.image.url}}" alt="userimage" />
+            </div>
+            <div class="names">
+              <h2>@{{result.username}}</h2>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      {% endfor %}
+    </div>
+    {% else %}
+    <h3>No results found . . .</h3>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
