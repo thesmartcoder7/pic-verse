@@ -313,6 +313,7 @@ main .main-content::-webkit-scrollbar-thumb {
 
 main .main-content .top-bar {
   width: 100%;
+  background-color: #fff;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -324,6 +325,8 @@ main .main-content .top-bar {
           justify-content: space-between;
   position: -webkit-sticky;
   position: sticky;
+  z-index: 2;
+  padding-bottom: 2%;
   top: 0;
 }
 

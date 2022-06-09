@@ -5,6 +5,8 @@ from users.models import Follow
 from .forms import * 
 from .models import *
 
+import random
+
 
 
 
@@ -43,7 +45,7 @@ def home(request):
     all_comments = list(Comment.objects.all())
     posts.reverse()
     final_posts = []
-
+    feeder_posts = []
     for i in range(5):
         final_posts.append(
             (
@@ -52,7 +54,18 @@ def home(request):
                 check_like(request.user, posts[i].id)
             )
         )
-        
+    
+    for i in range(len(posts)):
+        feeder_posts.append(
+            (
+                posts[i], 
+                check_follow(request.user, posts[i].user.username),
+                check_like(request.user, posts[i].id)
+            )
+        )
+
+    random.shuffle(feeder_posts)
+
     if request.method == 'POST':
         post_form = PostCreationForm(request.POST, request.FILES, instance=request.user )
         c_form = CommentForm(request.POST)
@@ -60,7 +73,8 @@ def home(request):
             'post_form': post_form,
             'posts': final_posts,
             'all_comments': all_comments,
-            'c_form': c_form
+            'c_form': c_form,
+            'randomized_posts': feeder_posts
         }
         if post_form.is_valid():
             name = post_form.cleaned_data.get('name')
@@ -74,7 +88,8 @@ def home(request):
                 'post_form': post_form,
                 'posts': final_posts,
                 'all_comments': all_comments,
-                'c_form': c_form
+                'c_form': c_form,
+                'randomized_posts': feeder_posts
             }
             return render(request, 'app/index.html', context)
     else:
@@ -83,7 +98,8 @@ def home(request):
             'post_form': post_form,
             'posts': final_posts,
             'all_comments': all_comments,
-            'c_form': c_form
+            'c_form': c_form,
+            'randomized_posts': feeder_posts
         }
         return render(request, 'app/index.html', context)
 
@@ -150,7 +166,6 @@ def explore(request):
     all_comments = list(Comment.objects.all())
     posts.reverse()
     final_posts = []
-
     for i in range(len(posts)):
         final_posts.append(
             (
@@ -159,7 +174,7 @@ def explore(request):
                 check_like(request.user, posts[i].id)
             )
         )
-        
+     
     if request.method == 'POST':
         post_form = PostCreationForm(request.POST, request.FILES, instance=request.user )
         c_form = CommentForm(request.POST)
