@@ -277,7 +277,7 @@ def single_user(request, username):
     all_comments = list(Comment.objects.all())
     posts.reverse()
     final_posts = []
-
+    follow = check_follow(request.user, user)
     for i in range(len(posts)):
         final_posts.append(
             (
@@ -295,7 +295,8 @@ def single_user(request, username):
             'posts': final_posts,
             'all_comments': all_comments,
             'c_form': c_form,
-            'filtered_user': user
+            'filtered_user': user,
+            'follow': follow
         }
         if post_form.is_valid():
             name = post_form.cleaned_data.get('name')
@@ -310,7 +311,8 @@ def single_user(request, username):
                 'posts': final_posts,
                 'all_comments': all_comments,
                 'c_form': c_form,
-                'filtered_user': user
+                'filtered_user': user,
+                'follow': follow
             }
             return render(request, 'app/user_profile.html', context)
     else:
@@ -320,7 +322,8 @@ def single_user(request, username):
             'posts': final_posts,
             'all_comments': all_comments,
             'c_form': c_form,
-            'filtered_user': user
+            'filtered_user': user,
+            'follow': follow
         }
         return render(request, 'app/user_profile.html', context)
 

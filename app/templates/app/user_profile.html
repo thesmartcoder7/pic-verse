@@ -45,7 +45,11 @@
           </div>
         </div>
         <div class="follow-unfollow">
-          <a href="">Follow</a>
+          {% if follow %}
+          <a href="{% url 'user-follow' filtered_user.username %}">Unfollow</a>
+          {% else %}
+          <a href="{% url 'user-follow' filtered_user.username %}">Follow</a>
+          {% endif %}
         </div>
       </div>
     </div>
