@@ -46,6 +46,8 @@ def home(request):
     posts.reverse()
     final_posts = []
     feeder_posts = []
+    current_user = User.objects.filter(username=request.user.username).first()
+    print(f'\n{current_user.profile}\n')
     for i in range(5):
         final_posts.append(
             (

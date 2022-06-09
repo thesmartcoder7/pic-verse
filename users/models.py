@@ -11,11 +11,22 @@ class Profile(models.Model):
     def __str__(self):
         return f'{self.user.username} Profile'
 
+    def profile_save(self):
+        self.save()
+
+    def profile_delete(self):
+        self.delete()
+
+
 
 
 class Follow(models.Model):
     follower = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='following')
     following = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='follower')
 
+    def follow(self):
+        self.save()
 
+    def unfollow(self):
+        self.delete()
 
