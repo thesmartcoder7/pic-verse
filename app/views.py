@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+
+from users.models import Follow
 from .forms import * 
 from .models import *
 
@@ -10,6 +12,7 @@ from .models import *
 def home(request):
     post_form = PostCreationForm()
     posts = list(Post.objects.all())
+    all_likes = Like.objects.all()
     posts.reverse()
     final_posts = []
     for i in range(5):
@@ -18,7 +21,8 @@ def home(request):
         post_form = PostCreationForm(request.POST, request.FILES, instance=request.user )
         context = {
             'post_form': post_form,
-            'posts': final_posts
+            'posts': final_posts,
+            'all_likes': all_likes
         }
         if post_form.is_valid():
             name = post_form.cleaned_data.get('name')
@@ -30,14 +34,16 @@ def home(request):
         else:
             context = {
                 'post_form': post_form,
-                'posts': final_posts
+                'posts': final_posts,
+                'all_likes': all_likes
             }
             return render(request, 'app/index.html', context)
     else:
         post_form = PostCreationForm()
         context = {
             'post_form': post_form,
-            'posts': final_posts
+            'posts': final_posts,
+            'all_likes': all_likes
         }
         return render(request, 'app/index.html', context)
 
@@ -167,3 +173,4 @@ def like(request, post_id):
     post.save()
 
     return redirect('insta-home')
+
