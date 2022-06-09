@@ -64,6 +64,7 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  margin-bottom: 2%;
 }
 
 .feed-view .latest .latest-posts .image img {

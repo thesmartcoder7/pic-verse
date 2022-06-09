@@ -16,116 +16,134 @@
 <!-- block content -->
 {% block content %}
 <div class="feed-view">
-  <div class="feed">
+  <div class="latest">
     <h3>See what others have posted . . .</h3>
-    <div class="feed-posts">
-      <!-- test images -->
+    <div class="latest-posts">
+      {% if posts %}
+      <!--  -->
+      {% for post in posts %}
       <div class="image">
-        <img src="{% static 'app/images/insta-sample-1.png' %}" alt="" />
+        <img
+          class="display_image"
+          src="{{post.0.image.url}}"
+          alt="{{post.0.title}}"
+        />
         <div class="counters">
           <ul>
             <li>
               <svg aria-hidden="true" role="img" viewBox="0 0 24 24">
                 <path
-                  fill="currentColor"
+                  fill="#fff"
                   d="M2 8.4A5.4 5.4 0 0 1 7.5 3A5.991 5.991 0 0 1 12 5a5.991 5.991 0 0 1 4.5-2A5.4 5.4 0 0 1 22 8.4c0 5.356-6.379 9.4-10 12.6C8.387 17.773 2 13.76 2 8.4Z"
                 />
               </svg>
-              <span>1.5k</span>
+              <span>{{post.0.likes}}</span>
             </li>
             <li>
               <svg aria-hidden="true" role="img" viewBox="0 0 24 24">
                 <path
-                  fill="currentColor"
+                  fill="#fff"
                   d="M12 2C6.486 2 2 5.589 2 10c0 2.908 1.898 5.515 5 6.934V22l5.34-4.005C17.697 17.852 22 14.32 22 10c0-4.411-4.486-8-10-8z"
                 />
               </svg>
-              <span> 4k </span>
+              <span> {{post.0.comments}} </span>
             </li>
           </ul>
         </div>
-      </div>
+        <div class="image-modal">
+          <p class="close">&times;</p>
+          <div class="left">
+            <img class="display_image" src="{{post.0.image.url}}" alt="" />
+          </div>
+          <div class="right">
+            <div class="user">
+              <div class="all-info">
+                <div class="image-container">
+                  <div class="avatar">
+                    <img
+                      src="{{post.0.user.profile.image.url}}"
+                      alt="{{post.0.user.username}}"
+                    />
+                  </div>
 
-      <!-- test images -->
-      <div class="image">
-        <img src="{% static 'app/images/insta-sample-1.png' %}" alt="" />
-        <div class="counters">
-          <ul>
-            <li>
-              <svg aria-hidden="true" role="img" viewBox="0 0 24 24">
-                <path
-                  fill="currentColor"
-                  d="M2 8.4A5.4 5.4 0 0 1 7.5 3A5.991 5.991 0 0 1 12 5a5.991 5.991 0 0 1 4.5-2A5.4 5.4 0 0 1 22 8.4c0 5.356-6.379 9.4-10 12.6C8.387 17.773 2 13.76 2 8.4Z"
-                />
-              </svg>
-              <span>1.5k</span>
-            </li>
-            <li>
-              <svg aria-hidden="true" role="img" viewBox="0 0 24 24">
-                <path
-                  fill="currentColor"
-                  d="M12 2C6.486 2 2 5.589 2 10c0 2.908 1.898 5.515 5 6.934V22l5.34-4.005C17.697 17.852 22 14.32 22 10c0-4.411-4.486-8-10-8z"
-                />
-              </svg>
-              <span> 4k </span>
-            </li>
-          </ul>
-        </div>
-      </div>
+                  <div class="likes">
+                    <div class="caption">{{post.0.caption}}</div>
+                    <div class="data">
+                      <svg aria-hidden="true" role="img" viewBox="0 0 24 24">
+                        <path
+                          fill="#af2634"
+                          d="M2 8.4A5.4 5.4 0 0 1 7.5 3A5.991 5.991 0 0 1 12 5a5.991 5.991 0 0 1 4.5-2A5.4 5.4 0 0 1 22 8.4c0 5.356-6.379 9.4-10 12.6C8.387 17.773 2 13.76 2 8.4Z"
+                        />
+                      </svg>
+                      {% if post.0.likes == 1 %}
+                      <span>{{post.0.likes}} Like</span>
+                      {% else %}
+                      <span>{{post.0.likes}} Likes</span>
+                      {% endif %}
 
-      <!-- test images -->
-      <div class="image">
-        <img src="{% static 'app/images/insta-sample-1.png' %}" alt="" />
-        <div class="counters">
-          <ul>
-            <li>
-              <svg aria-hidden="true" role="img" viewBox="0 0 24 24">
-                <path
-                  fill="currentColor"
-                  d="M2 8.4A5.4 5.4 0 0 1 7.5 3A5.991 5.991 0 0 1 12 5a5.991 5.991 0 0 1 4.5-2A5.4 5.4 0 0 1 22 8.4c0 5.356-6.379 9.4-10 12.6C8.387 17.773 2 13.76 2 8.4Z"
-                />
-              </svg>
-              <span>1.5k</span>
-            </li>
-            <li>
-              <svg aria-hidden="true" role="img" viewBox="0 0 24 24">
-                <path
-                  fill="currentColor"
-                  d="M12 2C6.486 2 2 5.589 2 10c0 2.908 1.898 5.515 5 6.934V22l5.34-4.005C17.697 17.852 22 14.32 22 10c0-4.411-4.486-8-10-8z"
-                />
-              </svg>
-              <span> 4k </span>
-            </li>
-          </ul>
-        </div>
-      </div>
+                      <!--  -->
+                      {% if post.2 %}
+                      <a href="{% url 'insta-like' post.0.id %}">Unlike</a>
+                      {% else %}
+                      <a href="{% url 'insta-like' post.0.id %}">Like</a>
+                      {% endif %}
+                      <!--  -->
 
-      <!-- test images -->
-      <div class="image">
-        <img src="{% static 'app/images/insta-sample-1.png' %}" alt="" />
-        <div class="counters">
-          <ul>
-            <li>
-              <svg aria-hidden="true" role="img" viewBox="0 0 24 24">
-                <path
-                  fill="currentColor"
-                  d="M2 8.4A5.4 5.4 0 0 1 7.5 3A5.991 5.991 0 0 1 12 5a5.991 5.991 0 0 1 4.5-2A5.4 5.4 0 0 1 22 8.4c0 5.356-6.379 9.4-10 12.6C8.387 17.773 2 13.76 2 8.4Z"
-                />
-              </svg>
-              <span>1.5k</span>
-            </li>
-            <li>
-              <svg aria-hidden="true" role="img" viewBox="0 0 24 24">
-                <path
-                  fill="currentColor"
-                  d="M12 2C6.486 2 2 5.589 2 10c0 2.908 1.898 5.515 5 6.934V22l5.34-4.005C17.697 17.852 22 14.32 22 10c0-4.411-4.486-8-10-8z"
-                />
-              </svg>
-              <span> 4k </span>
-            </li>
-          </ul>
+                      {% if user.is_authenticated and user != post.0.user %}
+                      <!--  -->
+                      {% if post.1 %}
+                      <a href="{% url 'user-follow' post.0.user.username %}"
+                        >Unfollow</a
+                      >
+                      {% else %}
+                      <a href="{% url 'user-follow' post.0.user.username %}"
+                        >Follow</a
+                      >
+                      {% endif %}
+                      <!--  -->
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+                <div class="all-comments">
+                  {% if all_comments %}
+                  <!--  -->
+                  {% for comment in all_comments %}
+                  <!--  -->
+                  {% if comment.post.id == post.0.id %}
+                  <div class="single-comment">
+                    <a href="" class="username">{{comment.user}}</a>
+                    <br />
+                    <p>{{comment.content}}</p>
+                  </div>
+                  {% endif %}
+                  <!--  -->
+                  {% endfor %}
+                  <!--  -->
+                  {% else %}
+                  <div class="single-comment">
+                    <p>There are no comments for this post.</p>
+                  </div>
+                  <!--  -->
+                  {% endif %}
+                </div>
+              </div>
+              <div class="user-comment">
+                <form
+                  action="{% url 'insta-comment' post.0.id %}"
+                  method="post"
+                >
+                  {% csrf_token %} {{c_form}}
+                  <input type="submit" value="comment" />
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+      {% endfor %}
+      <!--  -->
+      {% endif %}
     </div>
   </div>
 </div>

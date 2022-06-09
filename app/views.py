@@ -145,27 +145,54 @@ def profile(request):
 @login_required
 def explore(request):
     post_form = PostCreationForm()
+    c_form = CommentForm(request.POST)
+    posts = list(Post.objects.all())
+    all_comments = list(Comment.objects.all())
+    posts.reverse()
+    final_posts = []
+
+    for i in range(len(posts)):
+        final_posts.append(
+            (
+                posts[i], 
+                check_follow(request.user, posts[i].user.username),
+                check_like(request.user, posts[i].id)
+            )
+        )
+        
     if request.method == 'POST':
         post_form = PostCreationForm(request.POST, request.FILES, instance=request.user )
+        c_form = CommentForm(request.POST)
         context = {
-            'post_form': post_form
+            'post_form': post_form,
+            'posts': final_posts,
+            'all_comments': all_comments,
+            'c_form': c_form
         }
         if post_form.is_valid():
             name = post_form.cleaned_data.get('name')
             image = post_form.cleaned_data.get('image')
             caption = post_form.cleaned_data.get('caption')
-            post, created = Post.objects.get_or_create(name=name, image=image, caption=caption, user=request.user)
+            post,created = Post.objects.get_or_create(name=name, image=image, caption=caption, user=request.user)
             post.save()
-            return redirect('insta-home')
+            return redirect('insta-explore')
         else:
+            context = {
+                'post_form': post_form,
+                'posts': final_posts,
+                'all_comments': all_comments,
+                'c_form': c_form
+            }
             return render(request, 'app/explore.html', context)
     else:
         post_form = PostCreationForm()
         context = {
-            'post_form': post_form
+            'post_form': post_form,
+            'posts': final_posts,
+            'all_comments': all_comments,
+            'c_form': c_form
         }
         return render(request, 'app/explore.html', context)
-
 
 
 @login_required
