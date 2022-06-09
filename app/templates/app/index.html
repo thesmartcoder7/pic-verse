@@ -67,105 +67,65 @@
                   </div>
 
                   <div class="likes">
-                    <svg aria-hidden="true" role="img" viewBox="0 0 24 24">
-                      <path
-                        fill="#af2634"
-                        d="M2 8.4A5.4 5.4 0 0 1 7.5 3A5.991 5.991 0 0 1 12 5a5.991 5.991 0 0 1 4.5-2A5.4 5.4 0 0 1 22 8.4c0 5.356-6.379 9.4-10 12.6C8.387 17.773 2 13.76 2 8.4Z"
-                      />
-                    </svg>
-                    {% if post.0.likes == 1 %}
-                    <span>{{post.0.likes}} Like</span>
-                    {% else %}
-                    <span>{{post.0.likes}} Likes</span>
-                    {% endif %}
+                    <div class="caption">{{post.0.caption}}</div>
+                    <div class="data">
+                      <svg aria-hidden="true" role="img" viewBox="0 0 24 24">
+                        <path
+                          fill="#af2634"
+                          d="M2 8.4A5.4 5.4 0 0 1 7.5 3A5.991 5.991 0 0 1 12 5a5.991 5.991 0 0 1 4.5-2A5.4 5.4 0 0 1 22 8.4c0 5.356-6.379 9.4-10 12.6C8.387 17.773 2 13.76 2 8.4Z"
+                        />
+                      </svg>
+                      {% if post.0.likes == 1 %}
+                      <span>{{post.0.likes}} Like</span>
+                      {% else %}
+                      <span>{{post.0.likes}} Likes</span>
+                      {% endif %}
 
-                    <!--  -->
-                    {% if post.2 %}
-                    <a href="{% url 'insta-like' post.0.id %}">Unlike</a>
-                    {% else %}
-                    <a href="{% url 'insta-like' post.0.id %}">Like</a>
-                    {% endif %}
-                    <!--  -->
+                      <!--  -->
+                      {% if post.2 %}
+                      <a href="{% url 'insta-like' post.0.id %}">Unlike</a>
+                      {% else %}
+                      <a href="{% url 'insta-like' post.0.id %}">Like</a>
+                      {% endif %}
+                      <!--  -->
 
-                    {% if user.is_authenticated and user != post.0.user %}
-                    <!--  -->
-                    {% if post.1 %}
-                    <a href="{% url 'user-follow' post.0.user.username %}"
-                      >Unfollow</a
-                    >
-                    {% else %}
-                    <a href="{% url 'user-follow' post.0.user.username %}"
-                      >Follow</a
-                    >
-                    {% endif %}
-                    <!--  -->
-                    {% endif %}
+                      {% if user.is_authenticated and user != post.0.user %}
+                      <!--  -->
+                      {% if post.1 %}
+                      <a href="{% url 'user-follow' post.0.user.username %}"
+                        >Unfollow</a
+                      >
+                      {% else %}
+                      <a href="{% url 'user-follow' post.0.user.username %}"
+                        >Follow</a
+                      >
+                      {% endif %}
+                      <!--  -->
+                      {% endif %}
+                    </div>
                   </div>
                 </div>
                 <div class="all-comments">
-                  <!-- test single comment -->
+                  {% if all_comments %}
+                  <!--  -->
+                  {% for comment in all_comments %}
+                  <!--  -->
+                  {% if comment.post.id == post.0.id %}
                   <div class="single-comment">
-                    <a href="" class="username">username</a>
+                    <a href="" class="username">{{comment.user}}</a>
                     <br />
-                    <p>
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Similique, necessitatibus.
-                    </p>
+                    <p>{{comment.content}}</p>
                   </div>
-
-                  <!-- test single comment -->
+                  {% endif %}
+                  <!--  -->
+                  {% endfor %}
+                  <!--  -->
+                  {% else %}
                   <div class="single-comment">
-                    <a href="" class="username">username</a>
-                    <p>
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Similique, necessitatibus.
-                    </p>
+                    <p>There are no comments for this post.</p>
                   </div>
-
-                  <!-- test single comment -->
-                  <div class="single-comment">
-                    <a href="" class="username">username</a>
-                    <p>
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Similique, necessitatibus.
-                    </p>
-                  </div>
-
-                  <!-- test single comment -->
-                  <div class="single-comment">
-                    <a href="" class="username">username</a>
-                    <p>
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Similique, necessitatibus.
-                    </p>
-                  </div>
-
-                  <!-- test single comment -->
-                  <div class="single-comment">
-                    <a href="" class="username">username</a>
-                    <p>
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Similique, necessitatibus.
-                    </p>
-                  </div>
-
-                  <!-- test single comment -->
-                  <div class="single-comment">
-                    <a href="" class="username">username</a>
-                    <p>
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Similique, necessitatibus.
-                    </p>
-                  </div>
-
-                  <!-- test single comment -->
-                  <div class="single-comment">
-                    <a href="" class="username">username</a>
-                    <p>
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Similique, necessitatibus.
-                    </p>
-                  </div>
+                  <!--  -->
+                  {% endif %}
                 </div>
               </div>
               <div class="user-comment">
@@ -173,14 +133,7 @@
                   action="{% url 'insta-comment' post.0.id %}"
                   method="post"
                 >
-                  {% csrf_token %}
-                  <!-- <textarea
-                    name="comment"
-                    id="comment"
-                    cols="30"
-                    rows="10"
-                  ></textarea> -->
-                  {{c_form}}
+                  {% csrf_token %} {{c_form}}
                   <input type="submit" value="comment" />
                 </form>
               </div>

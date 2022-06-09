@@ -280,6 +280,23 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.feed-view .latest .latest-posts .image .image-modal .right .user .all-info .image-container .likes .data {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -288,24 +305,30 @@
           justify-content: flex-start;
 }
 
-.feed-view .latest .latest-posts .image .image-modal .right .user .all-info .image-container .likes svg {
+.feed-view .latest .latest-posts .image .image-modal .right .user .all-info .image-container .likes .data svg {
   width: 1.5vw;
   height: 1.5vw;
 }
 
-.feed-view .latest .latest-posts .image .image-modal .right .user .all-info .image-container .likes span {
+.feed-view .latest .latest-posts .image .image-modal .right .user .all-info .image-container .likes .data span {
   margin-left: 2%;
   margin-right: 5%;
+  font-size: 0.9vw;
 }
 
-.feed-view .latest .latest-posts .image .image-modal .right .user .all-info .image-container .likes a {
+.feed-view .latest .latest-posts .image .image-modal .right .user .all-info .image-container .likes .data a {
   margin: 0 2%;
-  padding: 1.5% 3%;
+  padding: 1% 3%;
   text-decoration: none;
   background-color: #0095f6;
   color: #fff;
   border-radius: 0.2vw;
   font-weight: 500;
+  font-size: 0.9vw;
+}
+
+.feed-view .latest .latest-posts .image .image-modal .right .user .all-info .image-container .likes .caption {
+  margin-bottom: 3%;
   font-size: 0.9vw;
 }
 

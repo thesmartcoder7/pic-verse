@@ -40,8 +40,8 @@ def home(request):
     post_form = PostCreationForm()
     c_form = CommentForm(request.POST)
     posts = list(Post.objects.all())
-    # all_likes = Like.objects.all()
     all_comments = list(Comment.objects.all())
+  
     posts.reverse()
     final_posts = []
     for i in range(5):
