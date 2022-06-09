@@ -169,13 +169,15 @@
                 </div>
               </div>
               <div class="user-comment">
-                <form method="post">
-                  <textarea
+                <form action="{% url 'insta-comment' post.0.id %}" method="post">
+                  {% csrf_token %}
+                  <!-- <textarea
                     name="comment"
                     id="comment"
                     cols="30"
                     rows="10"
-                  ></textarea>
+                  ></textarea> -->
+                  {{c_form}}
                   <input type="submit" value="comment" />
                 </form>
               </div>

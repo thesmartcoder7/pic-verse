@@ -38,6 +38,7 @@ def check_like(logged_user, post_id):
 @login_required
 def home(request):
     post_form = PostCreationForm()
+    c_form = CommentForm(request.POST)
     posts = list(Post.objects.all())
     all_likes = Like.objects.all()
     posts.reverse()
@@ -53,10 +54,12 @@ def home(request):
         
     if request.method == 'POST':
         post_form = PostCreationForm(request.POST, request.FILES, instance=request.user )
+        c_form = CommentForm(request.POST)
         context = {
             'post_form': post_form,
             'posts': final_posts,
             'all_likes': all_likes,
+            'c_form': c_form
         }
         if post_form.is_valid():
             name = post_form.cleaned_data.get('name')
@@ -70,6 +73,7 @@ def home(request):
                 'post_form': post_form,
                 'posts': final_posts,
                 'all_likes': all_likes,
+                'c_form': c_form
             }
             return render(request, 'app/index.html', context)
     else:
@@ -78,6 +82,7 @@ def home(request):
             'post_form': post_form,
             'posts': final_posts,
             'all_likes': all_likes,
+            'c_form': c_form
         }
         return render(request, 'app/index.html', context)
 
@@ -192,21 +197,28 @@ def igtv(request):
 
 @login_required
 def like(request, post_id):
-    user = request.user
-    post = Post.objects.get(id=post_id)
-    current_likes = post.likes
+    user = User.objects.filter(username=request.user).first()
+    post = Post.objects.filter(id=post_id).first()
 
-    liked_by_current_user = Like.objects.filter(user=user, post=post).count()
-    if not liked_by_current_user:
-        Like.objects.create(user=user, post=post)
-        current_likes = current_likes + 1
+    like = Like.objects.filter(user = request.user)
+    if like:
+        for item in like:
+            print(f'\n{item.post}, {post}\n')
+            if item.post == post:
+                item.delete()
+                post.likes -= 1
+                post.save() 
+            else:
+                new, created = Like.objects.get_or_create(user=user, post=post)
+                new.save()
+                post.likes += 1
+                post.save() 
     else:
-        Like.objects.filter(user=user, post=post).delete()
-        current_likes = current_likes - 1 
-
-    post.likes = current_likes
-    post.save()
-
+        new, created = Like.objects.get_or_create(user=user, post=post)
+        new.save()
+        post.likes += 1
+        post.save()
+    
     return redirect('insta-home')
 
 
@@ -214,10 +226,21 @@ def like(request, post_id):
 
 @login_required
 def comments(request, post_id):
+    print(f'\n\nthis is  the entry point to this view function\n\n')
+    c_form = CommentForm(request.POST)
     if request.method == 'POST':
         c_form = CommentForm(request.POST)
         if c_form.is_valid():
-            new, created = Comment.objects.get_or_create(user=request.user.id, content=request['comment'], post=post_id)
+            user = User.objects.filter(username = request.user).first()
+            post = Post.objects.filter(id=post_id).first()
+            new, created = Comment.objects.get_or_create(user=user, content=request.POST['content'], post=post)
             new.save()
+            print(f'\n\nthe form gets validated and to here\n\n')
+            return redirect('insta-home')
         else:
-            pass
+            print(f'\n\nthe form does not get validated and to here\n\n')
+            return redirect('insta-home')
+    else:
+        c_form = CommentForm(request.POST)
+        print(f'\n\nthis is not even a post request\n\n')
+        return redirect('insta-home')

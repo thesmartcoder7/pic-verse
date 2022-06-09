@@ -9,5 +9,5 @@ urlpatterns = [
     path('settings/', views.settings, name='insta-settings'),
     path('igtv/', views.igtv, name='insta-igtv'),
     path('like/<post_id>/', views.like, name='insta-like'),
-    path('comment/<post_id>/', views.like, name='insta-comment'),
+    path('comment/<post_id>/', views.comments, name='insta-comment'),
 ]
