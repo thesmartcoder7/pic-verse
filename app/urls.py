@@ -10,4 +10,5 @@ urlpatterns = [
     path('igtv/', views.igtv, name='insta-igtv'),
     path('like/<post_id>/', views.like, name='insta-like'),
     path('comment/<post_id>/', views.comments, name='insta-comment'),
+    path('user/<username>/', views.single_user, name='insta-user'),
 ]

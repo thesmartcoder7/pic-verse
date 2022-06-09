@@ -269,6 +269,65 @@ def igtv(request):
 
 
 @login_required
+def single_user(request, username):
+    post_form = PostCreationForm()
+    c_form = CommentForm(request.POST)
+    user = User.objects.filter(username=username).first()
+    posts = list(Post.objects.filter(user=user))
+    all_comments = list(Comment.objects.all())
+    posts.reverse()
+    final_posts = []
+
+    for i in range(len(posts)):
+        final_posts.append(
+            (
+                posts[i], 
+                check_follow(request.user, posts[i].user.username),
+                check_like(request.user, posts[i].id)
+            )
+        )
+        
+    if request.method == 'POST':
+        post_form = PostCreationForm(request.POST, request.FILES, instance=request.user )
+        c_form = CommentForm(request.POST)
+        context = {
+            'post_form': post_form,
+            'posts': final_posts,
+            'all_comments': all_comments,
+            'c_form': c_form,
+            'filtered_user': user
+        }
+        if post_form.is_valid():
+            name = post_form.cleaned_data.get('name')
+            image = post_form.cleaned_data.get('image')
+            caption = post_form.cleaned_data.get('caption')
+            post,created = Post.objects.get_or_create(name=name, image=image, caption=caption, user=request.user)
+            post.save()
+            return redirect('insta-profile')
+        else:
+            context = {
+                'post_form': post_form,
+                'posts': final_posts,
+                'all_comments': all_comments,
+                'c_form': c_form,
+                'filtered_user': user
+            }
+            return render(request, 'app/user_profile.html', context)
+    else:
+        post_form = PostCreationForm()
+        context = {
+            'post_form': post_form,
+            'posts': final_posts,
+            'all_comments': all_comments,
+            'c_form': c_form,
+            'filtered_user': user
+        }
+        return render(request, 'app/user_profile.html', context)
+
+
+
+
+@login_required
 def like(request, post_id):
     user = User.objects.filter(username=request.user).first()
     post = Post.objects.filter(id=post_id).first()
