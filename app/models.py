@@ -14,6 +14,18 @@ class Post(models.Model):
     def __str__(self) -> str:
         return f"{self.name}"
 
+    def save_post(self):
+        self.save()
+
+    def delete_post(self):
+        self.delete()
+
+    def update_post(self, image, caption, name):
+        self.image = image
+        self.name = name
+        self.caption = caption
+        self.save()
+
 
 
 class Comment(models.Model):
@@ -24,6 +36,12 @@ class Comment(models.Model):
     def __str__(self) -> str:
         return f"{self.post} Comment"
 
+    def save_comment(self):
+        self.save()
+
+    def delete_comment(self):
+        self.delete()
+
 
 
 class Like(models.Model):
@@ -33,6 +51,11 @@ class Like(models.Model):
     def __str__(self) -> str:
         return f"{self.user.username} Likes"
 
+    def save_like(self):
+        self.save()
+
+    def delete_like(self):
+        self.delete()
 
 
 
