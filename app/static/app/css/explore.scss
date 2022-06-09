@@ -14,6 +14,50 @@
     margin-bottom: 2%;
     font-size: 1.2vw;
   }
+  h2 {
+    margin-bottom: 2%;
+    font-size: 1.1vw;
+  }
+  .users {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 5%;
+    .avatar {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-right: 5%;
+      .image-container {
+        width: 3.5vw;
+        height: 3.5vw;
+        padding: 1%;
+        margin-bottom: 7%;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 0.15vw solid transparent;
+        background: linear-gradient(white, white) padding-box,
+          linear-gradient(to left, rgb(168, 0, 168), rgb(243, 64, 10))
+            border-box;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        img {
+          object-fit: cover;
+          width: 100%;
+          border-radius: 50%;
+        }
+      }
+      .names {
+        h2 {
+          font-size: 0.9vw;
+          font-weight: 500;
+        }
+      }
+    }
+  }
   .latest {
     .latest-posts {
       width: 100%;

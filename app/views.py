@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-
+from django.contrib.auth.models import User
 from users.models import Follow
 from .forms import * 
 from .models import *
@@ -164,6 +164,7 @@ def explore(request):
     c_form = CommentForm(request.POST)
     posts = list(Post.objects.all())
     all_comments = list(Comment.objects.all())
+    all_users = list(User.objects.all())
     posts.reverse()
     final_posts = []
     for i in range(len(posts)):
@@ -182,7 +183,8 @@ def explore(request):
             'post_form': post_form,
             'posts': final_posts,
             'all_comments': all_comments,
-            'c_form': c_form
+            'c_form': c_form,
+            'all_users': all_users
         }
         if post_form.is_valid():
             name = post_form.cleaned_data.get('name')
@@ -196,7 +198,8 @@ def explore(request):
                 'post_form': post_form,
                 'posts': final_posts,
                 'all_comments': all_comments,
-                'c_form': c_form
+                'c_form': c_form,
+                'all_users': all_users
             }
             return render(request, 'app/explore.html', context)
     else:
@@ -205,7 +208,8 @@ def explore(request):
             'post_form': post_form,
             'posts': final_posts,
             'all_comments': all_comments,
-            'c_form': c_form
+            'c_form': c_form,
+            'all_users': all_users
         }
         return render(request, 'app/explore.html', context)
 

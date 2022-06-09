@@ -16,6 +16,23 @@
 <!-- block content -->
 {% block content %}
 <div class="feed-view">
+  <h2>Other Users . . .</h2>
+  <div class="users">
+    {% if all_users %}
+    <!--  -->
+    {% for user in all_users %}
+    <div class="avatar">
+      <div class="image-container">
+        <img src="{{user.profile.image.url}}" alt="userimage" />
+      </div>
+      <div class="names">
+        <h2>@{{user.username}}</h2>
+      </div>
+    </div>
+    {% endfor %}
+    <!--  -->
+    {% endif %}
+  </div>
   <div class="latest">
     <h3>See what others have posted . . .</h3>
     <div class="latest-posts">

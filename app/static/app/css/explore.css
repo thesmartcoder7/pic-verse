@@ -25,6 +25,76 @@
   font-size: 1.2vw;
 }
 
+.feed-view h2 {
+  margin-bottom: 2%;
+  font-size: 1.1vw;
+}
+
+.feed-view .users {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  margin-bottom: 5%;
+}
+
+.feed-view .users .avatar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-right: 5%;
+}
+
+.feed-view .users .avatar .image-container {
+  width: 3.5vw;
+  height: 3.5vw;
+  padding: 1%;
+  margin-bottom: 7%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+  border: 0.15vw solid transparent;
+  background: -webkit-gradient(linear, left top, left bottom, from(white), to(white)) padding-box, -webkit-gradient(linear, right top, left top, from(#a800a8), to(#f3400a)) border-box;
+  background: linear-gradient(white, white) padding-box, linear-gradient(to left, #a800a8, #f3400a) border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.feed-view .users .avatar .image-container img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  border-radius: 50%;
+}
+
+.feed-view .users .avatar .names h2 {
+  font-size: 0.9vw;
+  font-weight: 500;
+}
+
 .feed-view .latest .latest-posts {
   width: 100%;
   display: -webkit-box;
