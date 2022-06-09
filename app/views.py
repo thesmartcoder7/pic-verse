@@ -23,9 +23,6 @@ def check_follow(logged_user, post_user):
         return False
 
 
-def check():
-    return True
-
 
 
 # Create your views here.
@@ -38,14 +35,13 @@ def home(request):
     final_posts = []
     for i in range(5):
         final_posts.append((posts[i], check_follow(request.user, posts[i].user.username)))
-        
+
     if request.method == 'POST':
         post_form = PostCreationForm(request.POST, request.FILES, instance=request.user )
         context = {
             'post_form': post_form,
             'posts': final_posts,
             'all_likes': all_likes,
-            'follow_check': check()
         }
         if post_form.is_valid():
             name = post_form.cleaned_data.get('name')
@@ -59,7 +55,6 @@ def home(request):
                 'post_form': post_form,
                 'posts': final_posts,
                 'all_likes': all_likes,
-                'follow_check': check()
             }
             return render(request, 'app/index.html', context)
     else:
@@ -68,7 +63,6 @@ def home(request):
             'post_form': post_form,
             'posts': final_posts,
             'all_likes': all_likes,
-            'follow_check': check()
         }
         return render(request, 'app/index.html', context)
 
