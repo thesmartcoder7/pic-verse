@@ -137,7 +137,7 @@
                   <!--  -->
                   {% if comment.post.id == post.0.id %}
                   <div class="single-comment">
-                    <a href="" class="username">{{comment.user}}</a>
+                    <a href="{% url 'insta-user' comment.user.username %}" class="username">{{comment.user}}</a>
                     <br />
                     <p>{{comment.content}}</p>
                   </div>
