@@ -11,8 +11,8 @@ from .models import *
 def check_follow(logged_user, post_user):
     user = User.objects.filter(username=post_user).first()
     followee_profile = Profile.objects.filter(user=user).first()
-
     follow = Follow.objects.filter(follower = logged_user.id )
+
     if follow:
         for item in follow:
             if item.following == followee_profile:
@@ -41,9 +41,9 @@ def home(request):
     c_form = CommentForm(request.POST)
     posts = list(Post.objects.all())
     all_comments = list(Comment.objects.all())
-  
     posts.reverse()
     final_posts = []
+
     for i in range(5):
         final_posts.append(
             (
@@ -92,10 +92,29 @@ def home(request):
 @login_required
 def profile(request):
     post_form = PostCreationForm()
+    c_form = CommentForm(request.POST)
+    posts = list(Post.objects.filter(user= request.user))
+    all_comments = list(Comment.objects.all())
+    posts.reverse()
+    final_posts = []
+
+    for i in range(len(posts)):
+        final_posts.append(
+            (
+                posts[i], 
+                check_follow(request.user, posts[i].user.username),
+                check_like(request.user, posts[i].id)
+            )
+        )
+        
     if request.method == 'POST':
         post_form = PostCreationForm(request.POST, request.FILES, instance=request.user )
+        c_form = CommentForm(request.POST)
         context = {
-            'post_form': post_form
+            'post_form': post_form,
+            'posts': final_posts,
+            'all_comments': all_comments,
+            'c_form': c_form
         }
         if post_form.is_valid():
             name = post_form.cleaned_data.get('name')
@@ -103,16 +122,24 @@ def profile(request):
             caption = post_form.cleaned_data.get('caption')
             post,created = Post.objects.get_or_create(name=name, image=image, caption=caption, user=request.user)
             post.save()
-            return redirect('insta-home')
+            return redirect('insta-profile')
         else:
+            context = {
+                'post_form': post_form,
+                'posts': final_posts,
+                'all_comments': all_comments,
+                'c_form': c_form
+            }
             return render(request, 'app/profile.html', context)
     else:
         post_form = PostCreationForm()
         context = {
-            'post_form': post_form
+            'post_form': post_form,
+            'posts': final_posts,
+            'all_comments': all_comments,
+            'c_form': c_form
         }
         return render(request, 'app/profile.html', context)
-
 
 
 @login_required
@@ -168,7 +195,6 @@ def settings(request):
 
 
 
-
 @login_required
 def igtv(request):
     post_form = PostCreationForm()
@@ -200,8 +226,8 @@ def igtv(request):
 def like(request, post_id):
     user = User.objects.filter(username=request.user).first()
     post = Post.objects.filter(id=post_id).first()
-
     like = Like.objects.filter(user = request.user)
+
     if like:
         for item in like:
             print(f'\n{item.post}, {post}\n')
@@ -221,7 +247,6 @@ def like(request, post_id):
         post.save()
     
     return redirect('insta-home')
-
 
 
 
