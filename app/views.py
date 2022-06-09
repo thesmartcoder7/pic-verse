@@ -7,6 +7,27 @@ from .models import *
 
 
 
+
+def check_follow(logged_user, post_user):
+    user = User.objects.filter(username=post_user).first()
+    followee_profile = Profile.objects.filter(user=user).first()
+
+    follow = Follow.objects.filter(follower = logged_user.id )
+    if follow:
+        for item in follow:
+            if item.following == followee_profile:
+                return True
+            else:
+                return False
+    else:
+        return False
+
+
+def check():
+    return True
+
+
+
 # Create your views here.
 @login_required
 def home(request):
@@ -16,13 +37,15 @@ def home(request):
     posts.reverse()
     final_posts = []
     for i in range(5):
-        final_posts.append(posts[i])
+        final_posts.append((posts[i], check_follow(request.user, posts[i].user.username)))
+        
     if request.method == 'POST':
         post_form = PostCreationForm(request.POST, request.FILES, instance=request.user )
         context = {
             'post_form': post_form,
             'posts': final_posts,
-            'all_likes': all_likes
+            'all_likes': all_likes,
+            'follow_check': check()
         }
         if post_form.is_valid():
             name = post_form.cleaned_data.get('name')
@@ -35,7 +58,8 @@ def home(request):
             context = {
                 'post_form': post_form,
                 'posts': final_posts,
-                'all_likes': all_likes
+                'all_likes': all_likes,
+                'follow_check': check()
             }
             return render(request, 'app/index.html', context)
     else:
@@ -43,7 +67,8 @@ def home(request):
         context = {
             'post_form': post_form,
             'posts': final_posts,
-            'all_likes': all_likes
+            'all_likes': all_likes,
+            'follow_check': check()
         }
         return render(request, 'app/index.html', context)
 

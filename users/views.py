@@ -1,3 +1,4 @@
+from calendar import c
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, get_object_or_404
@@ -40,3 +41,18 @@ def follow(request, username):
         new.save()
     
     return redirect('insta-home')
+
+
+# def check_follow(logged_user, post_user):
+#     user = User.objects.filter(username=post_user).first()
+#     followee_profile = Profile.objects.filter(user=user).first()
+
+#     follow = Follow.objects.filter(follower = logged_user.id )
+#     if follow:
+#         for item in follow:
+#             if item.following == followee_profile:
+#                 return True
+#             else:
+#                 return False
+#     else:
+#         return False
