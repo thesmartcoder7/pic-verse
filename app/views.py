@@ -23,6 +23,15 @@ def check_follow(logged_user, post_user):
         return False
 
 
+def check_like(logged_user, post_id):
+    likes = Like.objects.filter(user = logged_user.id )
+    if likes:
+        for like in likes:
+            if like.user == logged_user and like.post.id == post_id:
+                return True
+            else:
+                return False
+
 
 
 # Create your views here.
@@ -34,8 +43,14 @@ def home(request):
     posts.reverse()
     final_posts = []
     for i in range(5):
-        final_posts.append((posts[i], check_follow(request.user, posts[i].user.username)))
-
+        final_posts.append(
+            (
+                posts[i], 
+                check_follow(request.user, posts[i].user.username),
+                check_like(request.user, posts[i].id)
+            )
+        )
+        
     if request.method == 'POST':
         post_form = PostCreationForm(request.POST, request.FILES, instance=request.user )
         context = {
@@ -174,6 +189,7 @@ def igtv(request):
 
 
 
+
 @login_required
 def like(request, post_id):
     user = request.user
@@ -193,3 +209,15 @@ def like(request, post_id):
 
     return redirect('insta-home')
 
+
+
+
+@login_required
+def comments(request, post_id):
+    if request.method == 'POST':
+        c_form = CommentForm(request.POST)
+        if c_form.is_valid():
+            new, created = Comment.objects.get_or_create(user=request.user.id, content=request['comment'], post=post_id)
+            new.save()
+        else:
+            pass

@@ -78,7 +78,15 @@
                     {% else %}
                     <span>{{post.0.likes}} Likes</span>
                     {% endif %}
+
+                    <!--  -->
+                    {% if post.2 %}
+                    <a href="{% url 'insta-like' post.0.id %}">Unlike</a>
+                    {% else %}
                     <a href="{% url 'insta-like' post.0.id %}">Like</a>
+                    {% endif %}
+                    <!--  -->
+
                     {% if user.is_authenticated and user != post.0.user %}
                     <!--  -->
                     {% if post.1 %}
@@ -161,8 +169,13 @@
                 </div>
               </div>
               <div class="user-comment">
-                <form action="">
-                  <textarea name="" id="" cols="30" rows="10"></textarea>
+                <form method="post">
+                  <textarea
+                    name="comment"
+                    id="comment"
+                    cols="30"
+                    rows="10"
+                  ></textarea>
                   <input type="submit" value="comment" />
                 </form>
               </div>
