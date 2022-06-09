@@ -11,6 +11,7 @@ django-crispy-forms = "*"
 pillow = "*"
 whitenoise = "*"
 django-heroku = "*"
+gunicorn = "*"
 
 [dev-packages]
 
