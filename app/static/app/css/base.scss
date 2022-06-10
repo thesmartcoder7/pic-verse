@@ -235,7 +235,7 @@ main {
       align-items: center;
       justify-content: space-between;
       position: sticky;
-      z-index: 2;
+      z-index: 1;
       padding-bottom: 2%;
       top: 0;
 
@@ -330,6 +330,7 @@ main {
   .post-modal {
     background-color: #2020204d;
     backdrop-filter: blur(0.2vw);
+    z-index: 7;
     top: 0;
     left: 0;
     width: 100%;

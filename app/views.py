@@ -47,7 +47,7 @@ def home(request):
     final_posts = []
     feeder_posts = []
     current_user = User.objects.filter(username=request.user.username).first()
-    print(f'\n{current_user.profile}\n')
+    # print(f'\n{current_user.profile}\n')
     for i in range(5):
         final_posts.append(
             (
@@ -340,7 +340,6 @@ def like(request, post_id):
 
     if like:
         for item in like:
-            print(f'\n{item.post}, {post}\n')
             if item.post == post:
                 item.delete()
                 post.likes -= 1
