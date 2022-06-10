@@ -47,7 +47,13 @@ def home(request):
     final_posts = []
     feeder_posts = []
     current_user = User.objects.filter(username=request.user.username).first()
-    # print(f'\n{current_user.profile}\n')
+    user_following = []
+    all_follows = Follow.objects.filter( follower=current_user.profile)
+
+    for follow in all_follows:
+        user_following.append(follow.following.user.id)
+
+
     for i in range(5):
         final_posts.append(
             (
@@ -58,12 +64,14 @@ def home(request):
         )
     
     for i in range(len(posts)):
-        feeder_posts.append(
-            (
-                posts[i], 
-                check_follow(request.user, posts[i].user.username),
-                check_like(request.user, posts[i].id)
-            )
+        for id in user_following:
+            if posts[i].user.id == id:
+                feeder_posts.append(
+                    (
+                        posts[i], 
+                        check_follow(request.user, posts[i].user.username),
+                        check_like(request.user, posts[i].id)
+                    )
         )
 
     random.shuffle(feeder_posts)
