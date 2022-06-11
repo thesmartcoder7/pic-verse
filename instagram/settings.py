@@ -152,6 +152,9 @@ LOGIN_URL  = 'user-login'
 LOGOUT_REDIRECT_URL = "user-login"
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+CLOUDINARY_URL = os.getenv('CLOUDINARY_URL')
+
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': os.getenv('CLOUD_NAME'),
     'API_KEY': os.getenv('API_KEY'),
