@@ -16,6 +16,9 @@
 
 This project is an attemp to clone the instagram photo sharing platform by meta. The features used for this project are similar to the ones of the actual platform. The future plans for this project includes adding more user stories than the ones I currently have. [live site]()
 
+# Note: 
+This project is by no means complete. Therefore, don't be alarmed when you encounter bugs in any form. Development is ongoing
+
 ## Behaviour Driven Development
 
 The user is able to;
