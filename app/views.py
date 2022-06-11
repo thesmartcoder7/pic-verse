@@ -62,6 +62,15 @@ def home(request):
                     check_like(request.user, posts[i].id)
                 )
             )
+    else:
+        for i in range(len(posts)):
+            final_posts.append(
+                (
+                    posts[i], 
+                    check_follow(request.user, posts[i].user.username),
+                    check_like(request.user, posts[i].id)
+                )
+            )
     
     for i in range(len(posts)):
         for id in user_following:
