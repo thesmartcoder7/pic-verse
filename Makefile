@@ -19,5 +19,8 @@ migrate:
 test:
 	python manage.py test
 
-collect:
+static files:
 	python manage.py collectstatic
+
+active:
+	pipenv shell
