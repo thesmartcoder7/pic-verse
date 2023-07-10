@@ -2,8 +2,7 @@
 * {
   margin: 0;
   padding: 0;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   font-family: "Roboto", sans-serif;
 }
 
@@ -17,156 +16,90 @@ main {
   height: 100%;
   width: 100%;
   padding: 5%;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
 }
-
 main .left {
   width: 50%;
   height: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
+  align-items: flex-start;
+  justify-content: flex-end;
 }
-
 main .left img {
   width: 35vw;
 }
-
 main .right {
   width: 50%;
   padding: 5% 7%;
   height: 100%;
-  border-left: 0.1vw solid #adadad;
-  display: -webkit-box;
-  display: -ms-flexbox;
+  border-left: 0.1vw solid rgb(173, 173, 173);
   display: flex;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
+  align-items: flex-start;
+  justify-content: flex-start;
 }
-
 main .right form {
   width: 70%;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
 }
-
 main .right form .word-logo {
   margin-bottom: 5%;
   width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
 }
-
 main .right form .word-logo img {
   width: 15vw;
 }
-
 main .right form .fields {
   width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
 }
-
 main .right form .fields h3 {
   font-size: 1.2vw;
 }
-
 main .right form .fields .login-label {
   width: 100%;
   text-align: left;
   font-size: 0.85;
 }
-
 main .right form .fields label {
   display: none;
 }
-
 main .right form .fields .helptext,
 main .right form .fields br {
   display: none;
 }
-
 main .right form .fields ul.errorlist {
   text-align: left;
   list-style: none;
   font-size: 0.9vw;
   color: red;
 }
-
 main .right form .fields input {
   width: 100%;
   padding: 5% 10%;
   outline: none;
-  border: 0.1vw solid #adadad;
+  border: 0.1vw solid rgb(173, 173, 173);
   border-radius: 0.3vw;
   margin: 3% 0;
   font-size: 0.8vw;
 }
-
-main .right form .fields input::-webkit-input-placeholder {
+main .right form .fields input::-moz-placeholder {
   text-transform: lowercase;
 }
-
-main .right form .fields input:-ms-input-placeholder {
-  text-transform: lowercase;
-}
-
-main .right form .fields input::-ms-input-placeholder {
-  text-transform: lowercase;
-}
-
 main .right form .fields input::placeholder {
   text-transform: lowercase;
 }
-
-main .right form input[type="submit"] {
+main .right form input[type=submit] {
   width: 100%;
   padding: 5% 10%;
   margin: 3% 0;
@@ -180,24 +113,19 @@ main .right form input[type="submit"] {
   font-size: 0.9vw;
   cursor: pointer;
 }
-
-main .right form input[type="submit"]:hover {
+main .right form input[type=submit]:hover {
   background-color: #26a8ff;
 }
-
 main .right form p {
   text-transform: capitalize;
   font-size: 1vw;
   margin-top: 2%;
 }
-
 main .right form p a {
   color: #0095f6;
   font-weight: 500;
   text-decoration: none;
 }
-
 main .right form p a:hover {
   color: #26a8ff;
-}
-/*# sourceMappingURL=signup.css.map */
+}/*# sourceMappingURL=signup.css.map */

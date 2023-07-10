@@ -29,7 +29,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-b@vnlu2&py^!5kf7fwbeo#8io48)+amx*(2gej@%5%qm#a!vn%'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -147,7 +147,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 django_heroku.settings(locals())
 
 LOGIN_REDIRECT_URL = 'insta-home'
-LOGIN_URL  = 'user-login'
+LOGIN_URL = 'user-login'
 
 LOGOUT_REDIRECT_URL = "user-login"
 
