@@ -50,7 +50,7 @@
             </li>
           </ul>
         </div>
-        <div class="image-modal">
+        <div class="image-modal" id="insta-image-modal">
           <p class="close">&times;</p>
           <div class="left">
             <img class="display_image" src="{{post.0.image.url}}" alt="" />
@@ -79,7 +79,11 @@
                       </svg>
 
                       <!--  -->
-                      <div class="likes-counter">
+                      <div
+                        class="likes-counter"
+                        id="likes-counter"
+                        hx-swap-oob="true"
+                      >
                         {% if post.0.likes == 1 %}
                         <span>{{post.0.likes}} Like</span>
                         {% else %}
@@ -88,17 +92,27 @@
                       </div>
 
                       <!--  -->
-                      <div class="likes-boolean">
+                      <div class="likes-boolean" id="likes-boolean">
                         {% if post.2 %}
-                        <a href="{% url 'insta-like' post.0.id %}">Unlike</a>
+                        <a
+                          hx-post="{% url 'insta-like' post.0.id %}"
+                          hx-swap="none"
+                          hx-target="#likes-boolean"
+                          >Unlike</a
+                        >
                         {% else %}
-                        <a href="{% url 'insta-like' post.0.id %}">Like</a>
+                        <a
+                          hx-post="{% url 'insta-like' post.0.id %}"
+                          hx-swap="none"
+                          hx-target="#likes-boolean"
+                          >Like</a
+                        >
                         {% endif %}
                       </div>
 
                       <!--  -->
 
-                      <div class="follows-boolean">
+                      <div class="follows-boolean" id="follows-boolean">
                         {% if user.is_authenticated and user != post.0.user %}
                         <!--  -->
                         {% if post.1 %}

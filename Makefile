@@ -21,3 +21,7 @@ static files:
 
 active:
 	pipenv shell
+
+js:
+	tsc app/static/app/js/*.ts -w
+
