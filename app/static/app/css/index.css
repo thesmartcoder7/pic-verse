@@ -189,14 +189,18 @@
   width: 1.5vw;
   height: 1.5vw;
 }
-.feed-view .latest .latest-posts .image .image-modal .right .user .all-info .image-container .likes .data span {
+.feed-view .latest .latest-posts .image .image-modal .right .user .all-info .image-container .likes .data .likes-counter {
   margin-left: 2%;
   margin-right: 5%;
   font-size: 0.9vw;
 }
-.feed-view .latest .latest-posts .image .image-modal .right .user .all-info .image-container .likes .data a {
+.feed-view .latest .latest-posts .image .image-modal .right .user .all-info .image-container .likes .data .likes-boolean,
+.feed-view .latest .latest-posts .image .image-modal .right .user .all-info .image-container .likes .data .follows-boolean {
   margin: 0 2%;
-  padding: 1% 3%;
+}
+.feed-view .latest .latest-posts .image .image-modal .right .user .all-info .image-container .likes .data .likes-boolean a,
+.feed-view .latest .latest-posts .image .image-modal .right .user .all-info .image-container .likes .data .follows-boolean a {
+  padding: 0.5vw 1vw;
   text-decoration: none;
   background-color: #0095f6;
   color: #fff;
