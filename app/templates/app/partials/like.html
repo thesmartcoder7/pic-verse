@@ -1,0 +1,17 @@
+<a
+  id="htmx-like-button"
+  hx-post="{% url 'insta-like' post.0.id %}"
+  hx-swap="innerHTML"
+  hx-target="this"
+  hx-swap-oob="true"
+  >Unlike</a
+>
+
+<!--  -->
+<div class="likes-counter" id="likes-counter" hx-swap-oob="true">
+  {% if post.0.likes == 1 %}
+  <span>{{post.0.likes}} Like</span>
+  {% else %}
+  <span>{{post.0.likes}} Likes</span>
+  {% endif %}
+</div>

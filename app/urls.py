@@ -11,5 +11,6 @@ urlpatterns = [
     path('like/<post_id>/', views.like, name='insta-like'),
     path('comment/<post_id>/', views.comments, name='insta-comment'),
     path('user/<username>/', views.single_user, name='insta-user'),
-    path('search/',views.search, name='insta-search')
+    path('search/', views.search, name='insta-search'),
+    path('likes_update/<int:id>/', views.update_likes, name='likes-update')
 ]

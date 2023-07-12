@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from users.models import Follow
 from .forms import *
 from .models import *
+from django_htmx.http import trigger_client_event
 
 import random
 
@@ -355,25 +356,38 @@ def single_user(request, username):
 def like(request, post_id):
     user = User.objects.filter(username=request.user).first()
     post = Post.objects.filter(id=post_id).first()
-    like = Like.objects.filter(user=request.user)
-    if like:
-        for item in like:
+    likes = Like.objects.filter(user=request.user)
+    response = None
+    context = {'post': post}
+    if likes:
+        for item in likes:
             if item.post == post:
                 item.delete()
                 post.likes -= 1
                 post.save()
+                response = render(request, 'app/partials/unlike.html', context)
             else:
                 new, created = Like.objects.get_or_create(user=user, post=post)
                 new.save()
                 post.likes += 1
                 post.save()
+                response = render(request, 'app/partials/like.html', context)
     else:
         new, created = Like.objects.get_or_create(user=user, post=post)
         new.save()
         post.likes += 1
         post.save()
+        response = render(request, 'app/partials/like.html', context)
 
-    return redirect('insta-home')
+    return response
+
+
+def update_likes(request, id):
+    post = Post.objects.get(pk=id)
+    print("\nupdate_likes function fires")
+    print(f"{type(post.likes)}\n")
+    context = {'post': post}
+    return render(request, 'app/partials.html')
 
 
 @login_required
