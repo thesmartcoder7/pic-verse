@@ -78,3 +78,17 @@ def update_follower_text(request, id):
         return HttpResponse('Followers')
     else:
         return HttpResponse('Follower')
+
+
+def update_status_text(request, first, second):
+    user1 = User.objects.get(id=first)
+    user2 = User.objects.get(id=second)
+
+    for item in user1.profile.following.all():
+        if item.following == user2.profile:
+            response = HttpResponse('Unfollow')
+
+        else:
+            response = HttpResponse('Follow')
+
+    return response

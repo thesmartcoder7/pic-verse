@@ -14,6 +14,8 @@ urlpatterns = [
     path('update_followers/<int:id>', views.update_followers,
          name='update-followers-count'),
     path('update_follower_text/<int:id>', views.update_follower_text,
-         name='update-follower-text')
+         name='update-follower-text'),
+    path('update_status_text/<int:first>/<int:second>', views.update_status_text,
+         name='user-follow-status')
 
 ]
