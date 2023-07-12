@@ -387,7 +387,6 @@ def like(request, post_id):
 
 def update_likes(request, id):
     post = Post.objects.get(pk=id)
-    print("\nupdate_likes function fires")
     if post.likes:
         if post.likes > 1 or post == 0:
             return HttpResponse(f'{post.likes} Likes')

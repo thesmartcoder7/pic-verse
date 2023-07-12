@@ -73,7 +73,15 @@
               <p>Followers</p>
             </div>
             <div class="following">
-              <p class="count">{{user.profile.following.count}}</p>
+              <p
+                class="count"
+                id="htmx-user-following"
+                hx-trigger="update-following from:body"
+                hx-get="{% url 'update-following-count' user.id %}"
+                hx-swap="innerHTML"
+              >
+                {{user.profile.following.count}}
+              </p>
               <p>Following</p>
             </div>
           </div>

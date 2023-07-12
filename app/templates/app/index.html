@@ -120,11 +120,25 @@
                         {% if user.is_authenticated and user != post.0.user %}
                         <!--  -->
                         {% if post.1 %}
-                        <a href="{% url 'user-follow' post.0.user.username %}"
+                        <!-- <a href="{% url 'user-follow' post.0.user.username %}"
+                          >Unfollow</a
+                        > -->
+                        <a
+                          id="htmx-unfollow-button"
+                          hx-post="{% url 'user-follow' post.0.user.username %}"
+                          hx-swap="innerHTML"
+                          hx-target="this"
                           >Unfollow</a
                         >
                         {% else %}
-                        <a href="{% url 'user-follow' post.0.user.username %}"
+                        <!-- <a href="{% url 'user-follow' post.0.user.username %}"
+                          >Follow</a
+                        > -->
+                        <a
+                          id="htmx-unfollow-button"
+                          hx-post="{% url 'user-follow' post.0.user.username %}"
+                          hx-swap="innerHTML"
+                          hx-target="this"
                           >Follow</a
                         >
                         {% endif %}
