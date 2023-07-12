@@ -67,4 +67,14 @@ def update_following(request, id):
 
 def update_followers(request, id):
     user = User.objects.get(id=id)
-    return HttpResponse(len(user.profile.follower.all()))
+    response = HttpResponse(len(user.profile.follower.all()))
+    trigger_client_event(response, 'update-follower-text', id)
+    return response
+
+
+def update_follower_text(request, id):
+    user = User.objects.get(id=id)
+    if len(user.profile.follower.all()) > 1 or len(user.profile.follower.all()) == 0:
+        return HttpResponse('Followers')
+    else:
+        return HttpResponse('Follower')

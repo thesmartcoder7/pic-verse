@@ -38,7 +38,6 @@
           <div class="followers">
             <p
               class="count"
-              class="count"
               id="htmx-user-followers"
               hx-trigger="update-followers from:body"
               hx-get="{% url 'update-followers-count' filtered_user.id %}"
@@ -46,7 +45,36 @@
             >
               {{filtered_user.profile.follower.count}}
             </p>
-            <p>Followers</p>
+            <!-- conditional text -->
+            {% if filtered_user.profile.follower.count > 1 %}
+            <p
+              id="htmx-user-followers-text"
+              hx-trigger="update-follower-text from:body"
+              hx-get="{% url 'update-follower-text' filtered_user.id %}"
+              hx-swap="innerHTML"
+            >
+              Followers
+            </p>
+            {% elif filtered_user.profile.follower.count == 0%}
+            <p
+              id="htmx-user-followers-text"
+              hx-trigger="update-follower-text from:body"
+              hx-get="{% url 'update-follower-text' filtered_user.id %}"
+              hx-swap="innerHTML"
+            >
+              Followers
+            </p>
+            {% else %}
+            <p
+              id="htmx-user-followers-text"
+              hx-trigger="update-follower-text from:body"
+              hx-get="{% url 'update-follower-text' filtered_user.id %}"
+              hx-swap="innerHTML"
+            >
+              Follower
+            </p>
+            {% endif %}
+            <!-- end of conditional text -->
           </div>
           <div class="following">
             <p class="count">{{filtered_user.profile.following.count}}</p>

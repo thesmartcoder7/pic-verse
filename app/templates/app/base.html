@@ -70,7 +70,13 @@
             </div>
             <div class="followers">
               <p class="count">{{user.profile.follower.count}}</p>
+              {% if user.profile.follower.count > 1 %}
               <p>Followers</p>
+              {% elif user.profile.follower.count == 0%}
+              <p>Followers</p>
+              {% else %}
+              <p>Follower</p>
+              {% endif %}
             </div>
             <div class="following">
               <p
