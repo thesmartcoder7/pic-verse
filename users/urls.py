@@ -10,5 +10,8 @@ urlpatterns = [
     path('signup/', views.signup, name='user-signup'),
     path('like/<username>/', views.follow, name='user-follow'),
     path('update_follow/<int:id>', views.update_following,
-         name='update-following-count')
+         name='update-following-count'),
+    path('update_followers/<int:id>', views.update_followers,
+         name='update-followers-count')
+
 ]

@@ -35,12 +35,16 @@ def follow(request, username):
                 item.delete()
                 response = HttpResponse('Follow')
                 trigger_client_event(response, 'update-following', user.id)
+                trigger_client_event(
+                    response, 'update-followers', followee_profile.user.id)
             else:
                 new, created = Follow.objects.get_or_create(
                     follower=item.follower, following=followee_profile)
                 new.save()
                 response = HttpResponse('Unfollow')
                 trigger_client_event(response, 'update-following', user.id)
+                trigger_client_event(
+                    response, 'update-followers', followee_profile.user.id)
     else:
         follower_user = User.objects.filter(username=request.user).first()
         follower_profile = Profile.objects.filter(user=follower_user).first()
@@ -49,6 +53,8 @@ def follow(request, username):
         new.save()
         response = HttpResponse('Unfollow')
         trigger_client_event(response, 'update-following', user.id)
+        trigger_client_event(response, 'update-followers',
+                             followee_profile.user.id)
 
     return response
 
@@ -56,5 +62,9 @@ def follow(request, username):
 # update followers ajax helper function:
 def update_following(request, id):
     user = User.objects.get(id=id)
-    print(len(user.profile.following.all()))
     return HttpResponse(len(user.profile.following.all()))
+
+
+def update_followers(request, id):
+    user = User.objects.get(id=id)
+    return HttpResponse(len(user.profile.follower.all()))

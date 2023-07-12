@@ -36,7 +36,16 @@
             <p>Posts</p>
           </div>
           <div class="followers">
-            <p class="count">{{filtered_user.profile.follower.count}}</p>
+            <p
+              class="count"
+              class="count"
+              id="htmx-user-followers"
+              hx-trigger="update-followers from:body"
+              hx-get="{% url 'update-followers-count' filtered_user.id %}"
+              hx-swap="innerHTML"
+            >
+              {{filtered_user.profile.follower.count}}
+            </p>
             <p>Followers</p>
           </div>
           <div class="following">
@@ -46,9 +55,21 @@
         </div>
         <div class="follow-unfollow">
           {% if follow %}
-          <a href="{% url 'user-follow' filtered_user.username %}">Unfollow</a>
+          <a
+            id="htmx-unfollow-button"
+            hx-post="{% url 'user-follow' filtered_user.username %}"
+            hx-swap="innerHTML"
+            hx-target="this"
+            >Unfollow</a
+          >
           {% else %}
-          <a href="{% url 'user-follow' filtered_user.username %}">Follow</a>
+          <a
+            id="htmx-unfollow-button"
+            hx-post="{% url 'user-follow' filtered_user.username %}"
+            hx-swap="innerHTML"
+            hx-target="this"
+            >Follow</a
+          >
           {% endif %}
         </div>
       </div>
