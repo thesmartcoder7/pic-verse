@@ -82,7 +82,9 @@
                       <div
                         class="likes-counter"
                         id="likes-counter"
-                        hx-swap-oob="true"
+                        hx-trigger="update-likes from:body"
+                        hx-get="{% url 'update-likes' post.0.id %}"
+                        hx-swap="innerHTML"
                       >
                         {% if post.0.likes == 1 %}
                         <span>{{post.0.likes}} Like</span>
@@ -97,7 +99,7 @@
                         <a
                           id="htmx-like-button"
                           hx-post="{% url 'insta-like' post.0.id %}"
-                          hx-swap="outerHTML"
+                          hx-swap="innerHTML"
                           hx-target="this"
                           >Unlike</a
                         >
@@ -105,7 +107,7 @@
                         <a
                           id="htmx-like-button"
                           hx-post="{% url 'insta-like' post.0.id %}"
-                          hx-swap="outerHTML"
+                          hx-swap="innerHTML"
                           hx-target="this"
                           >Like</a
                         >

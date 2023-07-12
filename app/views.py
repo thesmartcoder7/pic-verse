@@ -365,19 +365,22 @@ def like(request, post_id):
                 item.delete()
                 post.likes -= 1
                 post.save()
-                response = render(request, 'app/partials/unlike.html', context)
+                response = HttpResponse('Like')
+                trigger_client_event(response, 'update-likes', post.id)
             else:
                 new, created = Like.objects.get_or_create(user=user, post=post)
                 new.save()
                 post.likes += 1
                 post.save()
-                response = render(request, 'app/partials/like.html', context)
+                response = HttpResponse('Unlike')
+                trigger_client_event(response, 'update-likes', post.id)
     else:
         new, created = Like.objects.get_or_create(user=user, post=post)
         new.save()
         post.likes += 1
         post.save()
-        response = render(request, 'app/partials/like.html', context)
+        response = HttpResponse('Unlike')
+        trigger_client_event(response, 'update-likes', post.id)
 
     return response
 
@@ -385,9 +388,13 @@ def like(request, post_id):
 def update_likes(request, id):
     post = Post.objects.get(pk=id)
     print("\nupdate_likes function fires")
-    print(f"{type(post.likes)}\n")
-    context = {'post': post}
-    return render(request, 'app/partials.html')
+    if post.likes:
+        if post.likes > 1 or post == 0:
+            return HttpResponse(f'{post.likes} Likes')
+        else:
+            return HttpResponse(f'{post.likes} Like')
+    else:
+        return HttpResponse(f'{post.likes} Likes')
 
 
 @login_required
