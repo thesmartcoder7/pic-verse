@@ -7,6 +7,7 @@ from .models import *
 from django_htmx.http import trigger_client_event
 
 import random
+import json
 
 
 def check_follow(logged_user, post_user):
@@ -265,12 +266,54 @@ def settings(request):
 
 @login_required
 def igtv(request):
+    # post_form = PostCreationForm()
+    # if request.method == 'POST':
+    #     post_form = PostCreationForm(
+    #         request.POST, request.FILES, instance=request.user)
+    #     context = {
+    #         'post_form': post_form
+    #     }
+    #     if post_form.is_valid():
+    #         name = post_form.cleaned_data.get('name')
+    #         image = post_form.cleaned_data.get('image')
+    #         caption = post_form.cleaned_data.get('caption')
+    #         post, created = Post.objects.get_or_create(
+    #             name=name, image=image, caption=caption, user=request.user)
+    #         post.save()
+    #         return redirect('insta-home')
+    #     else:
+    #         return render(request, 'app/igtv.html', context)
+    # else:
+    #     post_form = PostCreationForm()
+    #     context = {
+    #         'post_form': post_form
+    #     }
+    #     return render(request, 'app/igtv.html', context)
     post_form = PostCreationForm()
+    c_form = CommentForm(request.POST)
+    posts = list(Post.objects.filter(user=request.user))
+    all_comments = list(Comment.objects.all())
+    posts.reverse()
+    final_posts = []
+
+    for i in range(len(posts)):
+        final_posts.append(
+            (
+                posts[i],
+                check_follow(request.user, posts[i].user.username),
+                check_like(request.user, posts[i].id)
+            )
+        )
+
     if request.method == 'POST':
         post_form = PostCreationForm(
             request.POST, request.FILES, instance=request.user)
+        c_form = CommentForm(request.POST)
         context = {
-            'post_form': post_form
+            'post_form': post_form,
+            'posts': final_posts,
+            'all_comments': all_comments,
+            'c_form': c_form
         }
         if post_form.is_valid():
             name = post_form.cleaned_data.get('name')
@@ -279,13 +322,22 @@ def igtv(request):
             post, created = Post.objects.get_or_create(
                 name=name, image=image, caption=caption, user=request.user)
             post.save()
-            return redirect('insta-home')
+            return redirect('insta-profile')
         else:
-            return render(request, 'app/igtv.html', context)
+            context = {
+                'post_form': post_form,
+                'posts': final_posts,
+                'all_comments': all_comments,
+                'c_form': c_form
+            }
+            return render(request, 'app/profile.html', context)
     else:
         post_form = PostCreationForm()
         context = {
-            'post_form': post_form
+            'post_form': post_form,
+            'posts': final_posts,
+            'all_comments': all_comments,
+            'c_form': c_form
         }
         return render(request, 'app/igtv.html', context)
 
@@ -357,7 +409,10 @@ def like(request, post_id):
     user = User.objects.filter(username=request.user).first()
     post = Post.objects.filter(id=post_id).first()
     likes = Like.objects.filter(user=request.user)
-    response = None
+    response = {
+        'status': False,
+        'message': 'An issuer occured!',
+    }
     context = {'post': post}
     if likes:
         for item in likes:
@@ -365,24 +420,39 @@ def like(request, post_id):
                 item.delete()
                 post.likes -= 1
                 post.save()
-                response = HttpResponse('Like')
-                trigger_client_event(response, 'update-likes', post.id)
+                response = {
+                    'status': True,
+                    'likes': post.likes,
+                    'button_text': 'Like'
+                }
+                # response = HttpResponse('Like')
+                # trigger_client_event(response, 'update-likes', post.id)
             else:
                 new, created = Like.objects.get_or_create(user=user, post=post)
                 new.save()
                 post.likes += 1
                 post.save()
-                response = HttpResponse('Unlike')
-                trigger_client_event(response, 'update-likes', post.id)
+                response = {
+                    'status': True,
+                    'likes': post.likes,
+                    'button_text': 'Unlike'
+                }
+                # response = HttpResponse('Unlike')
+                # trigger_client_event(response, 'update-likes', post.id)
     else:
         new, created = Like.objects.get_or_create(user=user, post=post)
         new.save()
         post.likes += 1
         post.save()
-        response = HttpResponse('Unlike')
-        trigger_client_event(response, 'update-likes', post.id)
+        response = {
+            'status': True,
+            'likes': post.likes,
+            'button_text': 'Unlike'
+        }
+        # response = HttpResponse('Unlike')
+        # trigger_client_event(response, 'update-likes', post.id)
 
-    return response
+    return HttpResponse(json.dumps(response))
 
 
 def update_likes(request, id):

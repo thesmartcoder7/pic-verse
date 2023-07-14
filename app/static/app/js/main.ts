@@ -89,3 +89,46 @@ if (modalClosers) {
     });
   }
 }
+
+// ajax function to update the likes on a post based on a click event
+let likeRequest = (id: string, csrf: string, e: Event) => {
+  let req = new XMLHttpRequest();
+  let url = `${document.URL}like/${id}/`;
+  let headers = {
+    "Content-Type": "application/json",
+    "X-CSRFToken": csrf,
+  };
+
+  req.open("POST", url, true);
+
+  for (let header in headers) {
+    req.setRequestHeader(header, headers[header]);
+  }
+
+  req.onreadystatechange = () => {
+    if (req.readyState == 4) {
+      if (req.status == 200) {
+        let res = JSON.parse(req.responseText);
+        if (res.status) {
+          let txt = res.likes > 1 || res.likes == 0 ? "Likes" : "Like";
+          let count = res.likes;
+          let element = e.target as HTMLAnchorElement;
+          element.textContent = res.button_text;
+          let counter = element.offsetParent?.querySelector(
+            ".likes-counter"
+          ) as HTMLSpanElement;
+          counter.textContent = `${count} ${txt}`;
+          console.log(e);
+          let svg = element.offsetParent?.previousElementSibling?.querySelector(
+            ".likes-counter-svg"
+          ) as HTMLSpanElement;
+          svg.textContent = count;
+        } else {
+          alert("Error Occured");
+        }
+      }
+    }
+  };
+
+  req.send();
+};

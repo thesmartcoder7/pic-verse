@@ -12,7 +12,13 @@
       href="{% static 'app/images/instagram.png' %}"
       type="image/x-icon"
     />
-    <script src="{% static 'app/js/htmx-min.js' %}"></script>
+    <!-- <script src="{% static 'app/js/htmx-min.js' %}"></script> -->
+    <script
+      src="https://unpkg.com/htmx.org@1.9.2"
+      integrity="sha384-L6OqL9pRWyyFU3+/bjdSri+iIphTN/bvYyM37tICVyOJkWZLpP2vGn6VUEXgzg6h"
+      crossorigin="anonymous"
+    ></script>
+
     <!-- stylesheet block -->
     {% block style %} {% endblock %}
 
@@ -69,7 +75,9 @@
               <p>Posts</p>
             </div>
             <div class="followers">
-              <p class="count">{{user.profile.follower.count}}</p>
+              <p class="count user-follower-count">
+                {{user.profile.follower.count}}
+              </p>
               {% if user.profile.follower.count > 1 %}
               <p>Followers</p>
               {% elif user.profile.follower.count == 0%}
@@ -79,13 +87,7 @@
               {% endif %}
             </div>
             <div class="following">
-              <p
-                class="count"
-                id="htmx-user-following"
-                hx-trigger="update-following from:body"
-                hx-get="{% url 'update-following-count' user.id %}"
-                hx-swap="innerHTML"
-              >
+              <p class="count user-following-count">
                 {{user.profile.following.count}}
               </p>
               <p>Following</p>

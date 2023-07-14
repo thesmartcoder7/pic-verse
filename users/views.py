@@ -83,6 +83,7 @@ def update_follower_text(request, id):
 def update_status_text(request, first, second):
     user1 = User.objects.get(id=first)
     user2 = User.objects.get(id=second)
+    response = None
 
     for item in user1.profile.following.all():
         if item.following == user2.profile:

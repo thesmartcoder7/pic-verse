@@ -5,19 +5,247 @@
 
 <!-- stylesheet block -->
 {% block style %}
-<link rel="stylesheet" href="{% static 'app/css/index.css' %}" />
+<link rel="stylesheet" href="{% static 'app/css/profile.css' %}" />
 {% endblock %}
 
 <!-- title block -->
 {% block title %}
-<title>IgTv</title>
+<title>Profile</title>
 {% endblock %}
 
 <!-- block content -->
 {% block content %}
-<div class="feed-view">
-  <div class="latest">
-    <h3>Ig-Tv feature coming soon . . .</h3>
+<div class="profile-view">
+  <div class="profile-posts">
+    <ul class="profile-nav">
+      <li class="p-nav active">All-Posts</li>
+      <li class="p-nav">Saved</li>
+      <li class="p-nav">Tagged</li>
+    </ul>
+
+    <!-- my posts section -->
+    <div class="all-posts profile active">
+      {% if posts %}
+      <!--  -->
+      {% for post in posts %}
+      <div class="image" data-id="{{post.0.id}}">
+        <img
+          class="display_image"
+          src="{{post.0.image.url}}"
+          alt="{{post.0.title}}"
+        />
+        <div class="counters">
+          <ul>
+            <li>
+              <svg aria-hidden="true" role="img" viewBox="0 0 24 24">
+                <path
+                  fill="#fff"
+                  d="M2 8.4A5.4 5.4 0 0 1 7.5 3A5.991 5.991 0 0 1 12 5a5.991 5.991 0 0 1 4.5-2A5.4 5.4 0 0 1 22 8.4c0 5.356-6.379 9.4-10 12.6C8.387 17.773 2 13.76 2 8.4Z"
+                />
+              </svg>
+              <span class="likes-counter-svg">{{post.0.likes}}</span>
+            </li>
+            <li>
+              <svg aria-hidden="true" role="img" viewBox="0 0 24 24">
+                <path
+                  fill="#fff"
+                  d="M12 2C6.486 2 2 5.589 2 10c0 2.908 1.898 5.515 5 6.934V22l5.34-4.005C17.697 17.852 22 14.32 22 10c0-4.411-4.486-8-10-8z"
+                />
+              </svg>
+              <span> {{post.0.comments}} </span>
+            </li>
+          </ul>
+        </div>
+        <div class="image-modal" id="insta-image-modal">
+          <p class="close">&times;</p>
+          <div class="left">
+            <img class="display_image" src="{{post.0.image.url}}" alt="" />
+          </div>
+          <div class="right">
+            <div class="user">
+              <div class="all-info">
+                <div class="image-container">
+                  <a href="{% url 'insta-user' post.0.user.username %}">
+                    <div class="avatar">
+                      <img
+                        src="{{post.0.user.profile.image.url}}"
+                        alt="{{post.0.user.username}}"
+                      />
+                    </div>
+                  </a>
+
+                  <div class="likes">
+                    <div class="caption">{{post.0.caption}}</div>
+                    <div class="data" id="like-and-display">
+                      <svg aria-hidden="true" role="img" viewBox="0 0 24 24">
+                        <path
+                          fill="#af2634"
+                          d="M2 8.4A5.4 5.4 0 0 1 7.5 3A5.991 5.991 0 0 1 12 5a5.991 5.991 0 0 1 4.5-2A5.4 5.4 0 0 1 22 8.4c0 5.356-6.379 9.4-10 12.6C8.387 17.773 2 13.76 2 8.4Z"
+                        />
+                      </svg>
+
+                      <!--  -->
+                      <div class="likes-counter">
+                        {% if post.0.likes == 1 %}
+                        <span id="ajax-likes-counter"
+                          >{{post.0.likes}} Like</span
+                        >
+                        {% else %}
+                        <span id="ajax-likes-counter"
+                          >{{post.0.likes}} Likes</span
+                        >
+                        {% endif %}
+                      </div>
+
+                      <!--  -->
+                      <div class="likes-boolean">
+                        {% if post.2 %}
+                        <a id="htmx-like-button" data-id="{{post.0.id}}"
+                          >Unlike</a
+                        >
+                        {% else %}
+                        <a id="htmx-like-button" data-id="{{post.0.id}}"
+                          >Like</a
+                        >
+                        {% endif %}
+                      </div>
+
+                      <!-- test ajax javascript -->
+                      <script>
+                        let id = document.querySelector("#htmx-like-button");
+                        let parent = id.closest(".image");
+                        let token = "{{csrf_token}}";
+                        id.addEventListener("click", () => {
+                          let connection = new XMLHttpRequest();
+                          let url = `http://127.0.0.1:8000/like/${id.getAttribute(
+                            "data-id"
+                          )}/`;
+                          connection.open("POST", url);
+
+                          connection.setRequestHeader(
+                            "Content-Type",
+                            "application/json"
+                          );
+                          connection.setRequestHeader("X-CSRFToken", token);
+                          connection.onreadystatechange = () => {
+                            if (connection.readyState == 4) {
+                              if (connection.status == 200) {
+                                let response = JSON.parse(
+                                  connection.responseText
+                                );
+                                if (response.status) {
+                                  let txt =
+                                    response.likes > 1 || response.likes == 0
+                                      ? "Likes"
+                                      : "Like";
+                                  document.getElementById(
+                                    "ajax-likes-counter"
+                                  ).innerHTML = `${response.likes} ${txt}`;
+                                  id.textContent = response.button_text;
+                                  parent.querySelector(
+                                    ".likes-counter-svg"
+                                  ).textContent = response.likes;
+                                } else {
+                                  alert("Error Occured");
+                                }
+                              }
+                            }
+                          };
+                          // connection.open("POST", 'https://google.com', true);
+                          connection.send();
+                        });
+                        // ajax.open('POST', '/like/' +  )
+                      </script>
+                      <!--  -->
+
+                      <div class="follows-boolean" id="follows-boolean">
+                        {% if user.is_authenticated and user != post.0.user %}
+                        <!--  -->
+                        {% if post.1 %}
+                        <!-- <a href="{% url 'user-follow' post.0.user.username %}"
+                          >Unfollow</a
+                        > -->
+                        <a
+                          id="htmx-unfollow-button"
+                          hx-post="{% url 'user-follow' post.0.user.username %}"
+                          hx-swap="innerHTML"
+                          hx-target="this"
+                          >Unfollow</a
+                        >
+                        {% else %}
+                        <!-- <a href="{% url 'user-follow' post.0.user.username %}"
+                          >Follow</a
+                        > -->
+                        <a
+                          id="htmx-unfollow-button"
+                          hx-post="{% url 'user-follow' post.0.user.username %}"
+                          hx-swap="innerHTML"
+                          hx-target="this"
+                          >Follow</a
+                        >
+                        {% endif %}
+                        <!--  -->
+                        {% endif %}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="all-comments">
+                  {% if all_comments %}
+                  <!--  -->
+                  {% for comment in all_comments %}
+                  <!--  -->
+                  {% if comment.post.id == post.0.id %}
+                  <div class="single-comment">
+                    <a
+                      href="{% url 'insta-user' comment.user.username %}"
+                      class="username"
+                      >{{comment.user}}</a
+                    >
+                    <br />
+                    <p>{{comment.content}}</p>
+                  </div>
+                  {% endif %}
+                  <!--  -->
+                  {% endfor %}
+                  <!--  -->
+                  {% else %}
+                  <div class="single-comment">
+                    <p>There are no comments for this post.</p>
+                  </div>
+                  <!--  -->
+                  {% endif %}
+                </div>
+              </div>
+              <div class="user-comment">
+                <form
+                  action="{% url 'insta-comment' post.0.id %}"
+                  method="post"
+                >
+                  {% csrf_token %} {{c_form}}
+                  <input type="submit" value="comment" />
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+      <!--  -->
+      {% endif %}
+    </div>
+
+    <!-- saved posts section -->
+    <div class="saved profile">
+      <h3 class="coming-soon profile">&nbsp;&nbsp;Nothing saved yet . . .</h3>
+    </div>
+
+    <!-- tagged posts -->
+    <div class="tagged profile">
+      <h3 class="coming-soon profile">
+        &nbsp;&nbsp;You haven't been tagged yet . . .
+      </h3>
+    </div>
   </div>
 </div>
 {% endblock %}
