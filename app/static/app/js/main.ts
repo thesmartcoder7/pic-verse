@@ -110,19 +110,85 @@ let likeRequest = (id: string, csrf: string, e: Event) => {
       if (req.status == 200) {
         let res = JSON.parse(req.responseText);
         if (res.status) {
-          let txt = res.likes > 1 || res.likes == 0 ? "Likes" : "Like";
+          let text = res.likes > 1 || res.likes == 0 ? "Likes" : "Like";
           let count = res.likes;
           let element = e.target as HTMLAnchorElement;
           element.textContent = res.button_text;
-          let counter = element.offsetParent?.querySelector(
-            ".likes-counter"
-          ) as HTMLSpanElement;
-          counter.textContent = `${count} ${txt}`;
-          console.log(e);
-          let svg = element.offsetParent?.previousElementSibling?.querySelector(
+
+          let likeSvgs = document.querySelectorAll(
             ".likes-counter-svg"
-          ) as HTMLSpanElement;
-          svg.textContent = count;
+          ) as NodeListOf<HTMLSpanElement>;
+          if (likeSvgs) {
+            likeSvgs.forEach((svg) => {
+              if (svg.getAttribute("data-id") == id) {
+                svg.textContent = count;
+              }
+            });
+          }
+
+          let likeCounters = document.querySelectorAll(
+            ".post-like-counter"
+          ) as NodeListOf<HTMLSpanElement>;
+          if (likeCounters) {
+            likeCounters.forEach((counter) => {
+              if (counter.getAttribute("data-id") == id) {
+                counter.textContent = `${count} ${text}`;
+              }
+            });
+          }
+        } else {
+          alert("Error Occured");
+        }
+      }
+    }
+  };
+
+  req.send();
+};
+
+// ajax function to update the likes on a post based on a click event
+let followRequest = (username: string, csrf: string, e: Event) => {
+  let req = new XMLHttpRequest();
+  let url = `${document.URL}users/follow/${username}/`;
+  let headers = {
+    "Content-Type": "application/json",
+    "X-CSRFToken": csrf,
+  };
+
+  req.open("POST", url, true);
+
+  for (let header in headers) {
+    req.setRequestHeader(header, headers[header]);
+  }
+
+  req.onreadystatechange = () => {
+    if (req.readyState == 4) {
+      if (req.status == 200) {
+        let res = JSON.parse(req.responseText);
+        if (res.status) {
+          console.log(res);
+
+          // let likeSvgs = document.querySelectorAll(
+          //   ".likes-counter-svg"
+          // ) as NodeListOf<HTMLSpanElement>;
+          // if (likeSvgs) {
+          //   likeSvgs.forEach((svg) => {
+          //     if (svg.getAttribute("data-id") == id) {
+          //       svg.textContent = count;
+          //     }
+          //   });
+          // }
+
+          // let likeCounters = document.querySelectorAll(
+          //   ".post-like-counter"
+          // ) as NodeListOf<HTMLSpanElement>;
+          // if (likeCounters) {
+          //   likeCounters.forEach((counter) => {
+          //     if (counter.getAttribute("data-id") == id) {
+          //       counter.textContent = `${count} ${text}`;
+          //     }
+          //   });
+          // }
         } else {
           alert("Error Occured");
         }

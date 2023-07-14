@@ -8,14 +8,6 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'),
          name='user-logout'),
     path('signup/', views.signup, name='user-signup'),
-    path('like/<username>/', views.follow, name='user-follow'),
-    path('update_follow/<int:id>', views.update_following,
-         name='update-following-count'),
-    path('update_followers/<int:id>', views.update_followers,
-         name='update-followers-count'),
-    path('update_follower_text/<int:id>', views.update_follower_text,
-         name='update-follower-text'),
-    path('update_status_text/<int:first>/<int:second>', views.update_status_text,
-         name='user-follow-status')
-
+    path('follow/<username>/', views.follow, name='user-follow'),
+    path('dummy/', views.follow_count, name='followcount')
 ]

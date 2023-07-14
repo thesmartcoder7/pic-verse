@@ -82,20 +82,77 @@ var likeRequest = function (id, csrf, e) {
         req.setRequestHeader(header, headers[header]);
     }
     req.onreadystatechange = function () {
-        var _a, _b, _c;
         if (req.readyState == 4) {
             if (req.status == 200) {
                 var res = JSON.parse(req.responseText);
                 if (res.status) {
-                    var txt = res.likes > 1 || res.likes == 0 ? "Likes" : "Like";
-                    var count = res.likes;
+                    var text_1 = res.likes > 1 || res.likes == 0 ? "Likes" : "Like";
+                    var count_1 = res.likes;
                     var element = e.target;
                     element.textContent = res.button_text;
-                    var counter = (_a = element.offsetParent) === null || _a === void 0 ? void 0 : _a.querySelector(".likes-counter");
-                    counter.textContent = "".concat(count, " ").concat(txt);
-                    console.log(e);
-                    var svg = (_c = (_b = element.offsetParent) === null || _b === void 0 ? void 0 : _b.previousElementSibling) === null || _c === void 0 ? void 0 : _c.querySelector(".likes-counter-svg");
-                    svg.textContent = count;
+                    var likeSvgs = document.querySelectorAll(".likes-counter-svg");
+                    if (likeSvgs) {
+                        likeSvgs.forEach(function (svg) {
+                            if (svg.getAttribute("data-id") == id) {
+                                svg.textContent = count_1;
+                            }
+                        });
+                    }
+                    var likeCounters = document.querySelectorAll(".post-like-counter");
+                    if (likeCounters) {
+                        likeCounters.forEach(function (counter) {
+                            if (counter.getAttribute("data-id") == id) {
+                                counter.textContent = "".concat(count_1, " ").concat(text_1);
+                            }
+                        });
+                    }
+                }
+                else {
+                    alert("Error Occured");
+                }
+            }
+        }
+    };
+    req.send();
+};
+// ajax function to update the likes on a post based on a click event
+var followRequest = function (username, csrf, e) {
+    var req = new XMLHttpRequest();
+    var url = "".concat(document.URL, "users/follow/").concat(username, "/");
+    var headers = {
+        "Content-Type": "application/json",
+        "X-CSRFToken": csrf
+    };
+    req.open("POST", url, true);
+    for (var header in headers) {
+        req.setRequestHeader(header, headers[header]);
+    }
+    req.onreadystatechange = function () {
+        if (req.readyState == 4) {
+            if (req.status == 200) {
+                var res = JSON.parse(req.responseText);
+                if (res.status) {
+                    console.log(res);
+                    // let likeSvgs = document.querySelectorAll(
+                    //   ".likes-counter-svg"
+                    // ) as NodeListOf<HTMLSpanElement>;
+                    // if (likeSvgs) {
+                    //   likeSvgs.forEach((svg) => {
+                    //     if (svg.getAttribute("data-id") == id) {
+                    //       svg.textContent = count;
+                    //     }
+                    //   });
+                    // }
+                    // let likeCounters = document.querySelectorAll(
+                    //   ".post-like-counter"
+                    // ) as NodeListOf<HTMLSpanElement>;
+                    // if (likeCounters) {
+                    //   likeCounters.forEach((counter) => {
+                    //     if (counter.getAttribute("data-id") == id) {
+                    //       counter.textContent = `${count} ${text}`;
+                    //     }
+                    //   });
+                    // }
                 }
                 else {
                     alert("Error Occured");
