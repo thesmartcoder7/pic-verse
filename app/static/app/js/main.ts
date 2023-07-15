@@ -112,8 +112,17 @@ let likeRequest = (id: string, csrf: string, e: Event) => {
         if (res.status) {
           let text = res.likes > 1 || res.likes == 0 ? "Likes" : "Like";
           let count = res.likes;
-          let element = e.target as HTMLAnchorElement;
-          element.textContent = res.button_text;
+
+          let likeButtons = document.querySelectorAll(
+            ".ajax-like-button"
+          ) as NodeListOf<HTMLAnchorElement>;
+          if (likeButtons) {
+            likeButtons.forEach((button) => {
+              if (button.getAttribute("data-id") == id) {
+                button.textContent = res.button_text;
+              }
+            });
+          }
 
           let likeSvgs = document.querySelectorAll(
             ".likes-counter-svg"

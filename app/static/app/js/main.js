@@ -84,12 +84,18 @@ var likeRequest = function (id, csrf, e) {
     req.onreadystatechange = function () {
         if (req.readyState == 4) {
             if (req.status == 200) {
-                var res = JSON.parse(req.responseText);
-                if (res.status) {
-                    var text_1 = res.likes > 1 || res.likes == 0 ? "Likes" : "Like";
-                    var count_1 = res.likes;
-                    var element = e.target;
-                    element.textContent = res.button_text;
+                var res_1 = JSON.parse(req.responseText);
+                if (res_1.status) {
+                    var text_1 = res_1.likes > 1 || res_1.likes == 0 ? "Likes" : "Like";
+                    var count_1 = res_1.likes;
+                    var likeButtons = document.querySelectorAll(".ajax-like-button");
+                    if (likeButtons) {
+                        likeButtons.forEach(function (button) {
+                            if (button.getAttribute("data-id") == id) {
+                                button.textContent = res_1.button_text;
+                            }
+                        });
+                    }
                     var likeSvgs = document.querySelectorAll(".likes-counter-svg");
                     if (likeSvgs) {
                         likeSvgs.forEach(function (svg) {

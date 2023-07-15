@@ -100,12 +100,14 @@
                         {% if post.2 %}
                         <a
                           class="ajax-like-button"
+                          data-id="{{post.0.id}}"
                           onclick="likeRequest('{{post.0.id}}', '{{csrf_token}}', event)"
                           >Unlike</a
                         >
                         {% else %}
                         <a
                           class="ajax-like-button"
+                          data-id="{{post.0.id}}"
                           onclick="likeRequest('{{post.0.id}}', '{{csrf_token}}', event)"
                           >Like</a
                         >
@@ -252,9 +254,13 @@
                       <!--  -->
                       <div class="likes-counter">
                         {% if post.0.likes == 1 %}
-                        <span>{{post.0.likes}} Like</span>
+                        <span class="post-like-counter" data-id="{{post.0.id}}"
+                          >{{post.0.likes}} Like</span
+                        >
                         {% else %}
-                        <span>{{post.0.likes}} Likes</span>
+                        <span class="post-like-counter" data-id="{{post.0.id}}"
+                          >{{post.0.likes}} Likes</span
+                        >
                         {% endif %}
                       </div>
 
@@ -263,12 +269,14 @@
                         {% if post.2 %}
                         <a
                           class="ajax-like-button"
+                          data-id="{{post.0.id}}"
                           onclick="likeRequest('{{post.0.id}}', '{{csrf_token}}', event)"
                           >Unlike</a
                         >
                         {% else %}
                         <a
                           class="ajax-like-button"
+                          data-id="{{post.0.id}}"
                           onclick="likeRequest('{{post.0.id}}', '{{csrf_token}}', event)"
                           >Like</a
                         >
@@ -281,9 +289,17 @@
                         {% if user.is_authenticated and user != post.0.user %}
                         <!--  -->
                         {% if post.1 %}
-                        <a class="ajax-follow-button">Unfollow</a>
+                        <a
+                          class="ajax-follow-button"
+                          onclick="followRequest('{{user.username}}', '{{csrf_token}}', event)"
+                          >Unfollow</a
+                        >
                         {% else %}
-                        <a class="ajax-follow-button">Follow</a>
+                        <a
+                          class="ajax-follow-button"
+                          onclick="followRequest('{{user.username}}', '{{csrf_token}}', event)"
+                          >Follow</a
+                        >
                         {% endif %}
                         <!--  -->
                         {% endif %}
