@@ -92,7 +92,7 @@ if (modalClosers) {
 
 // ajax function to update the likes on a post based on a click event
 let likeRequest = (id: string, csrf: string, e: Event) => {
-  let baseURL = new URL(document.URL)
+  let baseURL = new URL(document.URL);
   let req = new XMLHttpRequest();
   let url = `${baseURL.origin}/like/${id}/`;
   let headers = {
@@ -157,8 +157,13 @@ let likeRequest = (id: string, csrf: string, e: Event) => {
 };
 
 // ajax function to update the likes on a post based on a click event
-let followRequest = (user1: string, user2: string, csrf: string, id: string) => {
-  let baseURL = new URL(document.URL)
+let followRequest = (
+  user1: string,
+  user2: string,
+  csrf: string,
+  id: string
+) => {
+  let baseURL = new URL(document.URL);
   let req = new XMLHttpRequest();
   let url = `${baseURL.origin}/users/follow/${user1}/${user2}/`;
   let headers = {
@@ -188,33 +193,23 @@ let followRequest = (user1: string, user2: string, csrf: string, id: string) => 
             });
           }
 
-          let userFollowingCount = document.querySelectorAll('.user-following-count') as NodeListOf<HTMLParagraphElement>
-          if(userFollowingCount){
-            userFollowingCount.forEach((count)=>{
-              count.textContent = res.auth_following
-            })
+          let userFollowingCount = document.querySelectorAll(
+            ".user-following-count"
+          ) as NodeListOf<HTMLParagraphElement>;
+          if (userFollowingCount) {
+            userFollowingCount.forEach((count) => {
+              count.textContent = res.auth_following;
+            });
           }
-          // let likeSvgs = document.querySelectorAll(
-          //   ".likes-counter-svg"
-          // ) as NodeListOf<HTMLSpanElement>;
-          // if (likeSvgs) {
-          //   likeSvgs.forEach((svg) => {
-          //     if (svg.getAttribute("data-id") == id) {
-          //       svg.textContent = count;
-          //     }
-          //   });
-          // }
 
-          // let likeCounters = document.querySelectorAll(
-          //   ".post-like-counter"
-          // ) as NodeListOf<HTMLSpanElement>;
-          // if (likeCounters) {
-          //   likeCounters.forEach((counter) => {
-          //     if (counter.getAttribute("data-id") == id) {
-          //       counter.textContent = `${count} ${text}`;
-          //     }
-          //   });
-          // }
+          let followeeCount = document.querySelectorAll(
+            ".followee-following-count"
+          ) as NodeListOf<HTMLParagraphElement>;
+          if (followeeCount) {
+            followeeCount.forEach((count) => {
+              count.textContent = res.followee_following;
+            });
+          }
         } else {
           alert("Error Occured");
         }

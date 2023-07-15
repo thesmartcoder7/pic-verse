@@ -148,32 +148,18 @@ var followRequest = function (user1, user2, csrf, id) {
                             }
                         });
                     }
-                    var userFollowingCount = document.querySelectorAll('.user-following-count');
+                    var userFollowingCount = document.querySelectorAll(".user-following-count");
                     if (userFollowingCount) {
                         userFollowingCount.forEach(function (count) {
                             count.textContent = res_2.auth_following;
                         });
                     }
-                    // let likeSvgs = document.querySelectorAll(
-                    //   ".likes-counter-svg"
-                    // ) as NodeListOf<HTMLSpanElement>;
-                    // if (likeSvgs) {
-                    //   likeSvgs.forEach((svg) => {
-                    //     if (svg.getAttribute("data-id") == id) {
-                    //       svg.textContent = count;
-                    //     }
-                    //   });
-                    // }
-                    // let likeCounters = document.querySelectorAll(
-                    //   ".post-like-counter"
-                    // ) as NodeListOf<HTMLSpanElement>;
-                    // if (likeCounters) {
-                    //   likeCounters.forEach((counter) => {
-                    //     if (counter.getAttribute("data-id") == id) {
-                    //       counter.textContent = `${count} ${text}`;
-                    //     }
-                    //   });
-                    // }
+                    var followeeCount = document.querySelectorAll(".followee-following-count");
+                    if (followeeCount) {
+                        followeeCount.forEach(function (count) {
+                            count.textContent = res_2.followee_following;
+                        });
+                    }
                 }
                 else {
                     alert("Error Occured");

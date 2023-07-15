@@ -36,7 +36,9 @@
             <p>Posts</p>
           </div>
           <div class="followers">
-            <p class="count">{{filtered_user.profile.follower.count}}</p>
+            <p class="count followee-following-count">
+              {{filtered_user.profile.follower.count}}
+            </p>
             <!-- conditional text -->
             {% if filtered_user.profile.follower.count > 1 %}
             <p>Followers</p>
@@ -52,11 +54,25 @@
             <p>Following</p>
           </div>
         </div>
-        <div class="follow-unfollow">
+        <div class="follows-boolean follow-unfollow">
+          {% if user.is_authenticated and user != filtered_user %}
+          <!--  -->
           {% if follow %}
-          <a>Unfollow</a>
+          <a
+            class="ajax-follow-button"
+            data-id="{{filtered_user.id}}"
+            onclick="followRequest('{{user.username}}', '{{filtered_user.username}}', '{{csrf_token}}', '{{filtered_user.id}}')"
+            >Unfollow</a
+          >
           {% else %}
-          <a>Follow</a>
+          <a
+            class="ajax-follow-button"
+            data-id="{{filtered_user.id}}"
+            onclick="followRequest('{{user.username}}', '{{filtered_user.username}}', '{{csrf_token}}','{{filtered_user.id}}')"
+            >Follow</a
+          >
+          {% endif %}
+          <!--  -->
           {% endif %}
         </div>
       </div>

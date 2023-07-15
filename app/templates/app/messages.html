@@ -1,0 +1,21 @@
+{% extends 'app/base.html' %}
+
+<!-- load static -->
+{% load static %}
+
+<!-- stylesheet block -->
+{% block style %}
+<link rel="stylesheet" href="{% static 'app/css/messages.css' %}" />
+{% endblock %}
+
+<!-- title block -->
+{% block title %}
+<title>Messages</title>
+{% endblock %}
+
+<!-- block content -->
+{% block content %}
+<div class="messages">
+  <h3 class="coming-soon profile">&nbsp;&nbsp;Coming Soon . . .</h3>
+</div>
+{% endblock %}

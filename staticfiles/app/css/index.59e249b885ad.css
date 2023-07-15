@@ -13,51 +13,6 @@
   margin-bottom: 2%;
   font-size: 1.2vw;
 }
-.feed-view h2 {
-  margin-bottom: 2%;
-  font-size: 1.1vw;
-}
-.feed-view .users {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  margin-bottom: 5%;
-}
-.feed-view .users a {
-  margin-right: 5%;
-  text-decoration: none;
-}
-.feed-view .users .avatar {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-.feed-view .users .avatar .image-container {
-  width: 3.5vw;
-  height: 3.5vw;
-  padding: 1%;
-  margin-bottom: 7%;
-  -o-object-fit: cover;
-     object-fit: cover;
-  border-radius: 50%;
-  border: 0.15vw solid transparent;
-  background: linear-gradient(white, white) padding-box, linear-gradient(to left, rgb(168, 0, 168), rgb(243, 64, 10)) border-box;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.feed-view .users .avatar .image-container img {
-  -o-object-fit: cover;
-     object-fit: cover;
-  width: 100%;
-  border-radius: 50%;
-}
-.feed-view .users .avatar .names h2 {
-  font-size: 0.9vw;
-  font-weight: 500;
-}
 .feed-view .latest .latest-posts {
   width: 100%;
   display: flex;
@@ -69,8 +24,8 @@
 }
 .feed-view .latest .latest-posts .image {
   animation: appear 0.5s ease-in-out;
-  width: 23%;
-  height: 15vw;
+  width: 18%;
+  height: 13vw;
   border-radius: 0.5vw;
   position: relative;
   margin-right: 2%;
@@ -197,7 +152,7 @@
   border-bottom: 0.05vw solid rgba(206, 206, 206, 0.466);
 }
 .feed-view .latest .latest-posts .image .image-modal .right .user .all-info .image-container a {
-  margin-right: 0.5vw;
+  margin-right: 5%;
 }
 .feed-view .latest .latest-posts .image .image-modal .right .user .all-info .image-container a .avatar {
   width: 4vw;
@@ -465,10 +420,13 @@
   padding-bottom: 2%;
   border-bottom: 0.05vw solid rgba(206, 206, 206, 0.466);
 }
-.feed-view .feed .feed-posts .image .image-modal .right .user .all-info .image-container .avatar {
+.feed-view .feed .feed-posts .image .image-modal .right .user .all-info .image-container a {
+  margin-right: 5%;
+}
+.feed-view .feed .feed-posts .image .image-modal .right .user .all-info .image-container a .avatar {
   width: 4vw;
   height: 4vw;
-  margin-right: 4%;
+  margin-right: 0.2vw;
   padding: 0.5%;
   display: flex;
   align-items: center;
@@ -479,7 +437,7 @@
   border: 0.15vw solid transparent;
   background: linear-gradient(white, white) padding-box, linear-gradient(to left, rgb(168, 0, 168), rgb(243, 64, 10)) border-box;
 }
-.feed-view .feed .feed-posts .image .image-modal .right .user .all-info .image-container .avatar img {
+.feed-view .feed .feed-posts .image .image-modal .right .user .all-info .image-container a .avatar img {
   width: 100%;
   border-radius: 50%;
 }
@@ -500,20 +458,26 @@
   width: 1.5vw;
   height: 1.5vw;
 }
-.feed-view .feed .feed-posts .image .image-modal .right .user .all-info .image-container .likes .data span {
+.feed-view .feed .feed-posts .image .image-modal .right .user .all-info .image-container .likes .data .likes-counter {
   margin-left: 2%;
   margin-right: 5%;
   font-size: 0.9vw;
 }
-.feed-view .feed .feed-posts .image .image-modal .right .user .all-info .image-container .likes .data a {
+.feed-view .feed .feed-posts .image .image-modal .right .user .all-info .image-container .likes .data .likes-boolean,
+.feed-view .feed .feed-posts .image .image-modal .right .user .all-info .image-container .likes .data .follows-boolean {
   margin: 0 2%;
-  padding: 1% 3%;
+  transition: all 0.5s ease-in-out;
+}
+.feed-view .feed .feed-posts .image .image-modal .right .user .all-info .image-container .likes .data .likes-boolean a,
+.feed-view .feed .feed-posts .image .image-modal .right .user .all-info .image-container .likes .data .follows-boolean a {
+  padding: 0.5vw 1vw;
   text-decoration: none;
   background-color: #0095f6;
   color: #fff;
   border-radius: 0.2vw;
   font-weight: 500;
   font-size: 0.9vw;
+  transition: all 0.5s ease-in-out;
 }
 .feed-view .feed .feed-posts .image .image-modal .right .user .all-info .image-container .likes .caption {
   margin-bottom: 3%;
@@ -583,4 +547,4 @@
   font-weight: 500;
   font-size: 0.9vw;
   cursor: pointer;
-}/*# sourceMappingURL=explore.css.map */
+}/*# sourceMappingURL=index.css.map */
