@@ -92,8 +92,9 @@ if (modalClosers) {
 
 // ajax function to update the likes on a post based on a click event
 let likeRequest = (id: string, csrf: string, e: Event) => {
+  let baseURL = new URL(document.URL)
   let req = new XMLHttpRequest();
-  let url = `${document.URL}like/${id}/`;
+  let url = `${baseURL.origin}/like/${id}/`;
   let headers = {
     "Content-Type": "application/json",
     "X-CSRFToken": csrf,
@@ -157,8 +158,9 @@ let likeRequest = (id: string, csrf: string, e: Event) => {
 
 // ajax function to update the likes on a post based on a click event
 let followRequest = (user1: string, user2: string, csrf: string, id: string) => {
+  let baseURL = new URL(document.URL)
   let req = new XMLHttpRequest();
-  let url = `${document.URL}users/follow/${user1}/${user2}/`;
+  let url = `${baseURL.origin}/users/follow/${user1}/${user2}/`;
   let headers = {
     "Content-Type": "application/json",
     "X-CSRFToken": csrf,

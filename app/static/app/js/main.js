@@ -71,8 +71,9 @@ if (modalClosers) {
 }
 // ajax function to update the likes on a post based on a click event
 var likeRequest = function (id, csrf, e) {
+    var baseURL = new URL(document.URL);
     var req = new XMLHttpRequest();
-    var url = "".concat(document.URL, "like/").concat(id, "/");
+    var url = "".concat(baseURL.origin, "/like/").concat(id, "/");
     var headers = {
         "Content-Type": "application/json",
         "X-CSRFToken": csrf
@@ -123,8 +124,9 @@ var likeRequest = function (id, csrf, e) {
 };
 // ajax function to update the likes on a post based on a click event
 var followRequest = function (user1, user2, csrf, id) {
+    var baseURL = new URL(document.URL);
     var req = new XMLHttpRequest();
-    var url = "".concat(document.URL, "users/follow/").concat(user1, "/").concat(user2, "/");
+    var url = "".concat(baseURL.origin, "/users/follow/").concat(user1, "/").concat(user2, "/");
     var headers = {
         "Content-Type": "application/json",
         "X-CSRFToken": csrf
