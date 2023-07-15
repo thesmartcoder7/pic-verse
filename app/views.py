@@ -425,8 +425,7 @@ def like(request, post_id):
                     'likes': post.likes,
                     'button_text': 'Like'
                 }
-                # response = HttpResponse('Like')
-                # trigger_client_event(response, 'update-likes', post.id)
+                return HttpResponse(json.dumps(response))
             else:
                 new, created = Like.objects.get_or_create(user=user, post=post)
                 new.save()
@@ -437,8 +436,7 @@ def like(request, post_id):
                     'likes': post.likes,
                     'button_text': 'Unlike'
                 }
-                # response = HttpResponse('Unlike')
-                # trigger_client_event(response, 'update-likes', post.id)
+                return HttpResponse(json.dumps(response))
     else:
         new, created = Like.objects.get_or_create(user=user, post=post)
         new.save()
@@ -449,32 +447,8 @@ def like(request, post_id):
             'likes': post.likes,
             'button_text': 'Unlike'
         }
-        # response = HttpResponse('Unlike')
-        # trigger_client_event(response, 'update-likes', post.id)
+        return HttpResponse(json.dumps(response))
 
-    return HttpResponse(json.dumps(response))
-
-
-def update_likes(request, id):
-    post = Post.objects.get(pk=id)
-
-    if post.likes:
-        if post.likes > 1 or post == 0:
-            response = HttpResponse(f'{post.likes} Likes')
-            trigger_client_event(response, 'update-likes-svg', post.id)
-        else:
-            response = HttpResponse(f'{post.likes} Like')
-            trigger_client_event(response, 'update-likes-svg', post.id)
-    else:
-        response = HttpResponse(f'{post.likes} Likes')
-        trigger_client_event(response, 'update-likes-svg', post.id)
-
-    return response
-
-
-def update_likes_svg(request, id):
-    post = Post.objects.get(pk=id)
-    return HttpResponse(post.likes)
 
 
 @login_required

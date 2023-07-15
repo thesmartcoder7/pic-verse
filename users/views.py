@@ -23,26 +23,40 @@ def signup(request):
 
 
 def follow_count(user_id, followee_id):
-    u_following = len(Follow.objects.filter(following=user_id))
-    f_followers = len(Follow.objects.filter(follower=followee_id))
-    if (u_following > 1 or u_following == 0):
+    userFollows = Follow.objects.filter(follower=user_id)
+    followeeFollows = Follow.objects.filter(following=followee_id)
+    u_following_a = []
+    for follow in userFollows:
+        if follow.follower:
+            u_following_a.append(follow)
+    if u_following_a:
+        u_following = len(u_following_a)
+        uft = 'Followers' if u_following > 1 else 'Follower'
+    else:
+        u_following = 0
         uft = 'Followers'
-    else:
-        uft = 'Follower'
 
-    if (f_followers > 1 or f_followers == 0):
+    f_following_a = []
+    for follow in followeeFollows:
+        if follow.follower:
+            f_following_a.append(follow)
+    if f_following_a:
+        f_following = len(f_following_a)
+        fft = 'Followers' if f_following > 1 else 'Follower'
+    else:
+        f_following = 0
         fft = 'Followers'
-    else:
-        fft = 'Follower'
 
-    return [u_following, uft, f_followers, fft]
+    return [u_following, uft, f_following, fft]
 
 
 @login_required
-def follow(request, username):
-    user = User.objects.filter(username=username).first()
-    followee_profile = Profile.objects.filter(user=user).first()
+def follow(request, user1, user2):
+    user1 = User.objects.filter(username=user1).first()
+    user2 = User.objects.filter(username=user2).first()
+    followee_profile = Profile.objects.filter(user=user2).first()
     follow = Follow.objects.filter(follower=request.user.id)
+
     response = {
         'status': False,
         'message': 'An issuer occured!',
@@ -52,7 +66,7 @@ def follow(request, username):
         for item in follow:
             if item.following == followee_profile:
                 item.delete()
-                data = follow_count(user.id, followee_profile.user.id)
+                data = follow_count(user1.id, followee_profile.user.id)
                 response = {
                     'status': True,
                     'auth_following': data[0],
@@ -61,12 +75,13 @@ def follow(request, username):
                     'followee_text': data[3],
                     'button_text': 'Follow'
                 }
+                return HttpResponse(json.dumps(response))
 
             else:
                 new, created = Follow.objects.get_or_create(
                     follower=item.follower, following=followee_profile)
                 new.save()
-                data = follow_count(user.id, followee_profile.user.id)
+                data = follow_count(user1.id, followee_profile.user.id)
                 response = {
                     'status': True,
                     'auth_following': data[0],
@@ -75,6 +90,7 @@ def follow(request, username):
                     'followee_text': data[3],
                     'button_text': 'Unfollow'
                 }
+                return HttpResponse(json.dumps(response))
 
     else:
         follower_user = User.objects.filter(username=request.user).first()
@@ -82,7 +98,7 @@ def follow(request, username):
         new, created = Follow.objects.get_or_create(
             follower=follower_profile, following=followee_profile)
         new.save()
-        data = follow_count(user.id, followee_profile.user.id)
+        data = follow_count(user1.id, followee_profile.user.id)
         response = {
             'status': True,
             'auth_following': data[0],
@@ -91,5 +107,4 @@ def follow(request, username):
             'followee_text': data[3],
             'button_text': 'Unfollow'
         }
-
-    return HttpResponse(json.dumps(response))
+        return HttpResponse(json.dumps(response))

@@ -156,9 +156,9 @@ let likeRequest = (id: string, csrf: string, e: Event) => {
 };
 
 // ajax function to update the likes on a post based on a click event
-let followRequest = (username: string, csrf: string, e: Event) => {
+let followRequest = (user1: string, user2: string, csrf: string, id: string) => {
   let req = new XMLHttpRequest();
-  let url = `${document.URL}users/follow/${username}/`;
+  let url = `${document.URL}users/follow/${user1}/${user2}/`;
   let headers = {
     "Content-Type": "application/json",
     "X-CSRFToken": csrf,
@@ -175,8 +175,23 @@ let followRequest = (username: string, csrf: string, e: Event) => {
       if (req.status == 200) {
         let res = JSON.parse(req.responseText);
         if (res.status) {
-          console.log(res);
+          let followButtons = document.querySelectorAll(
+            ".ajax-follow-button"
+          ) as NodeListOf<HTMLAnchorElement>;
+          if (followButtons) {
+            followButtons.forEach((button) => {
+              if (button.getAttribute("data-id") == id) {
+                button.textContent = res.button_text;
+              }
+            });
+          }
 
+          let userFollowingCount = document.querySelectorAll('.user-following-count') as NodeListOf<HTMLParagraphElement>
+          if(userFollowingCount){
+            userFollowingCount.forEach((count)=>{
+              count.textContent = res.auth_following
+            })
+          }
           // let likeSvgs = document.querySelectorAll(
           //   ".likes-counter-svg"
           // ) as NodeListOf<HTMLSpanElement>;

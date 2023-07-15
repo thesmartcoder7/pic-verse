@@ -122,13 +122,15 @@
                         {% if post.1 %}
                         <a
                           class="ajax-follow-button"
-                          onclick="followRequest('{{user.username}}', '{{csrf_token}}', event)"
+                          data-id="{{post.0.user.id}}"
+                          onclick="followRequest('{{user.username}}', '{{post.0.user.username}}', '{{csrf_token}}', '{{post.0.user.id}}')"
                           >Unfollow</a
                         >
                         {% else %}
                         <a
                           class="ajax-follow-button"
-                          onclick="followRequest('{{user.username}}', '{{csrf_token}}', event)"
+                          data-id="{{post.0.user.id}}"
+                          onclick="followRequest('{{user.username}}', '{{post.0.user.username}}', '{{csrf_token}}','{{post.0.user.id}}')"
                           >Follow</a
                         >
                         {% endif %}
