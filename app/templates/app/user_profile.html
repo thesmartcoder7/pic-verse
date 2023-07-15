@@ -36,43 +36,14 @@
             <p>Posts</p>
           </div>
           <div class="followers">
-            <p
-              class="count"
-              id="htmx-user-followers"
-              hx-trigger="update-followers from:body"
-              hx-get="{% url 'update-followers-count' filtered_user.id %}"
-              hx-swap="innerHTML"
-            >
-              {{filtered_user.profile.follower.count}}
-            </p>
+            <p class="count">{{filtered_user.profile.follower.count}}</p>
             <!-- conditional text -->
             {% if filtered_user.profile.follower.count > 1 %}
-            <p
-              id="htmx-user-followers-text"
-              hx-trigger="update-follower-text from:body"
-              hx-get="{% url 'update-follower-text' filtered_user.id %}"
-              hx-swap="innerHTML"
-            >
-              Followers
-            </p>
+            <p>Followers</p>
             {% elif filtered_user.profile.follower.count == 0%}
-            <p
-              id="htmx-user-followers-text"
-              hx-trigger="update-follower-text from:body"
-              hx-get="{% url 'update-follower-text' filtered_user.id %}"
-              hx-swap="innerHTML"
-            >
-              Followers
-            </p>
+            <p>Followers</p>
             {% else %}
-            <p
-              id="htmx-user-followers-text"
-              hx-trigger="update-follower-text from:body"
-              hx-get="{% url 'update-follower-text' filtered_user.id %}"
-              hx-swap="innerHTML"
-            >
-              Follower
-            </p>
+            <p>Follower</p>
             {% endif %}
             <!-- end of conditional text -->
           </div>
@@ -83,23 +54,9 @@
         </div>
         <div class="follow-unfollow">
           {% if follow %}
-          <a
-            id="htmx-unfollow-button-s"
-            hx-post="{% url 'user-follow' filtered_user.username %}"
-            hx-swap="innerHTML"
-            hx-swap-oob="true"
-            hx-target="this"
-            >Unfollow</a
-          >
+          <a>Unfollow</a>
           {% else %}
-          <a
-            id="htmx-unfollow-button-s"
-            hx-post="{% url 'user-follow' filtered_user.username %}"
-            hx-swap="innerHTML"
-            hx-target="this"
-            hx-swap-oob="true"
-            >Follow</a
-          >
+          <a>Follow</a>
           {% endif %}
         </div>
       </div>
@@ -111,14 +68,7 @@
       {% if posts %}
       <!--  -->
       {% for post in posts %}
-      <div
-        class="image"
-        hx-post="{% url 'user-follow-status' user.id filtered_user.id %}"
-        hx-swap="innerHTML"
-        hx-trigger="click"
-        hx-target="#htmx-unfollow-button"
-        hx-swap-oob="true"
-      >
+      <div class="image">
         <img
           class="display_image"
           src="{{post.0.image.url}}"
@@ -133,7 +83,9 @@
                   d="M2 8.4A5.4 5.4 0 0 1 7.5 3A5.991 5.991 0 0 1 12 5a5.991 5.991 0 0 1 4.5-2A5.4 5.4 0 0 1 22 8.4c0 5.356-6.379 9.4-10 12.6C8.387 17.773 2 13.76 2 8.4Z"
                 />
               </svg>
-              <span>{{post.0.likes}}</span>
+              <span class="likes-counter-svg" data-id="{{post.0.id}}"
+                >{{post.0.likes}}</span
+              >
             </li>
             <li>
               <svg aria-hidden="true" role="img" viewBox="0 0 24 24">
@@ -142,21 +94,14 @@
                   d="M12 2C6.486 2 2 5.589 2 10c0 2.908 1.898 5.515 5 6.934V22l5.34-4.005C17.697 17.852 22 14.32 22 10c0-4.411-4.486-8-10-8z"
                 />
               </svg>
-              <span> {{post.0.comments}} </span>
+              <span class="likes-comments-svg" data-id="{{post.0.id}}">
+                {{post.0.comments}}
+              </span>
             </li>
           </ul>
         </div>
-        <div class="image-modal" id="insta-image-modal">
-          <p
-            class="close"
-            id="htmx-unfollow-button-status"
-            hx-post="{% url 'user-follow-status' user.id filtered_user.id %}"
-            hx-swap="innerHTML"
-            hx-target="#htmx-unfollow-button-s"
-            hx-swap-oob="true"
-          >
-            &times;
-          </p>
+        <div class="image-modal">
+          <p class="close">&times;</p>
           <div class="left">
             <img class="display_image" src="{{post.0.image.url}}" alt="" />
           </div>
@@ -175,7 +120,7 @@
 
                   <div class="likes">
                     <div class="caption">{{post.0.caption}}</div>
-                    <div class="data" id="like-and-display">
+                    <div class="data" class="like-and-display">
                       <svg aria-hidden="true" role="img" viewBox="0 0 24 24">
                         <path
                           fill="#af2634"
@@ -184,17 +129,15 @@
                       </svg>
 
                       <!--  -->
-                      <div
-                        class="likes-counter"
-                        id="likes-counter"
-                        hx-trigger="update-likes from:body"
-                        hx-get="{% url 'update-likes' post.0.id %}"
-                        hx-swap="innerHTML"
-                      >
+                      <div class="likes-counter">
                         {% if post.0.likes == 1 %}
-                        <span>{{post.0.likes}} Like</span>
+                        <span class="post-like-counter" data-id="{{post.0.id}}"
+                          >{{post.0.likes}} Like</span
+                        >
                         {% else %}
-                        <span>{{post.0.likes}} Likes</span>
+                        <span class="post-like-counter" data-id="{{post.0.id}}"
+                          >{{post.0.likes}} Likes</span
+                        >
                         {% endif %}
                       </div>
 
@@ -202,18 +145,16 @@
                       <div class="likes-boolean">
                         {% if post.2 %}
                         <a
-                          id="htmx-like-button"
-                          hx-post="{% url 'insta-like' post.0.id %}"
-                          hx-swap="innerHTML"
-                          hx-target="this"
+                          class="ajax-like-button"
+                          data-id="{{post.0.id}}"
+                          onclick="likeRequest('{{post.0.id}}', '{{csrf_token}}', event)"
                           >Unlike</a
                         >
                         {% else %}
                         <a
-                          id="htmx-like-button"
-                          hx-post="{% url 'insta-like' post.0.id %}"
-                          hx-swap="innerHTML"
-                          hx-target="this"
+                          class="ajax-like-button"
+                          data-id="{{post.0.id}}"
+                          onclick="likeRequest('{{post.0.id}}', '{{csrf_token}}', event)"
                           >Like</a
                         >
                         {% endif %}
@@ -221,31 +162,21 @@
 
                       <!--  -->
 
-                      <div class="follows-boolean" id="follows-boolean">
+                      <div class="follows-boolean">
                         {% if user.is_authenticated and user != post.0.user %}
                         <!--  -->
                         {% if post.1 %}
-                        <!-- <a href="{% url 'user-follow' post.0.user.username %}"
-                          >Unfollow</a
-                        > -->
                         <a
-                          id="htmx-unfollow-button"
-                          hx-post="{% url 'user-follow' post.0.user.username %}"
-                          hx-swap="innerHTML"
-                          hx-target="this"
-                          hx-swap-oob="true"
+                          class="ajax-follow-button"
+                          data-id="{{post.0.user.id}}"
+                          onclick="followRequest('{{user.username}}', '{{post.0.user.username}}', '{{csrf_token}}', '{{post.0.user.id}}')"
                           >Unfollow</a
                         >
                         {% else %}
-                        <!-- <a href="{% url 'user-follow' post.0.user.username %}"
-                          >Follow</a
-                        > -->
                         <a
-                          id="htmx-unfollow-button"
-                          hx-post="{% url 'user-follow' post.0.user.username %}"
-                          hx-swap="innerHTML"
-                          hx-target="this"
-                          hx-swap-oob="true"
+                          class="ajax-follow-button"
+                          data-id="{{post.0.user.id}}"
+                          onclick="followRequest('{{user.username}}', '{{post.0.user.username}}', '{{csrf_token}}','{{post.0.user.id}}')"
                           >Follow</a
                         >
                         {% endif %}
