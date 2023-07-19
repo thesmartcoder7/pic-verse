@@ -10,7 +10,8 @@ class Post(models.Model):
     number of comments, and number of likes.
 
     """
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts', unique=False)
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name='posts', unique=False)
     image = models.ImageField(upload_to='post_images/', blank=True)
     name = models.CharField(max_length=20)
     caption = models.TextField()
@@ -58,7 +59,7 @@ class Comment(models.Model):
     """
     content = models.TextField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    post=models.ForeignKey(Post, on_delete=models.CASCADE, null=True)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, null=True)
 
     def __str__(self) -> str:
         """
@@ -89,8 +90,10 @@ class Like(models.Model):
     Contains fields for the user who liked the post and the post itself.
 
     """
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_like')
-    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='post_likes', default=0)
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name='user_like')
+    post = models.ForeignKey(
+        Post, on_delete=models.CASCADE, related_name='post_likes', default=0)
 
     def __str__(self) -> str:
         """

@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from users.models import Follow
 from .forms import *
 from .models import *
-from django_htmx.http import trigger_client_event
+from django.core import serializers
 
 import random
 import json
@@ -380,23 +380,37 @@ def like(request, post_id):
 
 @login_required
 def comments(request, post_id):
-    c_form = CommentForm(request.POST)
-    if request.method == 'POST':
-        c_form = CommentForm(request.POST)
-        if c_form.is_valid():
-            user = User.objects.filter(username=request.user).first()
-            post = Post.objects.filter(id=post_id).first()
-            new, created = Comment.objects.get_or_create(
-                user=user, content=request.POST['content'], post=post)
-            new.save()
-            post.comments += 1
-            post.save()
-            return redirect('insta-home')
-        else:
-            return redirect('insta-home')
+    data = json.loads(request.body)
+    print()
+    print(data['comment'])
+    print()
+    response = {
+        'status': False,
+        'message': 'Comment has not been updated'
+    }
+
+    if data['comment']:
+        user = User.objects.filter(username=request.user).first()
+        post = Post.objects.filter(id=post_id).first()
+        new, created = Comment.objects.get_or_create(
+            user=user, content=data['comment'], post=post)
+
+        new.save()
+        post.comments += 1
+        post.save()
+
+        post_comments = Comment.objects.filter(post=post)
+        serialized = serializers.serialize('json', post_comments, fields=[
+                                           'content', 'post', 'user'])
+
+        response = {
+            'status': True,
+            'comments': serialized
+        }
+
+        return HttpResponse(json.dumps(response))
     else:
-        c_form = CommentForm(request.POST)
-        return redirect('insta-home')
+        return HttpResponse(json.dumps(response))
 
 
 @login_required

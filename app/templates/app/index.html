@@ -150,7 +150,7 @@
                     <a
                       href="{% url 'insta-user' comment.user.username %}"
                       class="username"
-                      >{{comment.user}}</a
+                      >@{{comment.user | lower }}</a
                     >
                     <br />
                     <p>{{comment.content}}</p>
@@ -169,11 +169,19 @@
               </div>
               <div class="user-comment">
                 <form
-                  action="{% url 'insta-comment' post.0.id %}"
                   method="post"
+                  enctype="multipart/form-data"
+                  onsubmit="updateComment('{{post.0.id}}', '{{csrf_token}}', event )"
                 >
-                  {% csrf_token %} {{c_form}}
-                  <input type="submit" value="comment" />
+                  {% csrf_token %}
+                  <textarea
+                    name="comment_field"
+                    class="comment_field"
+                    required="true"
+                    data-id="{{post.0.id}}"
+                  ></textarea>
+
+                  <input type="submit" value="Comment" />
                 </form>
               </div>
             </div>

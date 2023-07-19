@@ -536,7 +536,11 @@
   padding: 3%;
   margin-bottom: 2%;
 }
-.feed-view .feed .feed-posts .image .image-modal .right .user .user-comment form input {
+.feed-view .feed .feed-posts .image .image-modal .right .user .user-comment form .comment_error {
+  display: none;
+}
+.feed-view .feed .feed-posts .image .image-modal .right .user .user-comment form input,
+.feed-view .feed .feed-posts .image .image-modal .right .user .user-comment form button {
   outline: none;
   border: none;
   padding: 1.5% 3%;

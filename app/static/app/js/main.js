@@ -169,3 +169,44 @@ var followRequest = function (user1, user2, csrf, id) {
     };
     req.send();
 };
+// ajax function to update the comments on a post based on a submission event
+var updateComment = function (postId, csrf, event) {
+    event.preventDefault();
+    var baseURL = new URL(document.URL);
+    var req = new XMLHttpRequest();
+    var url = "".concat(baseURL.origin, "/comment/").concat(postId, "/");
+    var headers = {
+        "Content-Type": "application/json",
+        "X-CSRFToken": csrf
+    };
+    var comments = document.querySelectorAll(".comment_field");
+    var value;
+    if (comments) {
+        comments.forEach(function (comment) {
+            if (comment.getAttribute("data-id") == postId) {
+                value = comment.value;
+            }
+        });
+    }
+    var formData = {
+        comment: value
+    };
+    req.open("POST", url, true);
+    for (var header in headers) {
+        req.setRequestHeader(header, headers[header]);
+    }
+    req.onreadystatechange = function () {
+        if (req.readyState == 4 && req.status == 200) {
+            var res = JSON.parse(req.responseText);
+            console.log(JSON.parse(res.comments));
+            if (res.status == true && res.comments) {
+                var html_1 = "";
+                res.comments.forEach(function (comment) {
+                    html_1 += "\n              <div class=\"single-comment\">\n              <a\n                href=\"{% url 'insta-user' comment.user.username %}\"\n                class=\"username\"\n                >@{{comment.user | lower }}</a\n              >\n              <br />\n              <p>{{comment.content}}</p>\n            </div>\n          ";
+                });
+            }
+        }
+    };
+    req.send(JSON.stringify(formData));
+    return;
+};

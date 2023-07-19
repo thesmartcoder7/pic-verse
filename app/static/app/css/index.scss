@@ -570,7 +570,12 @@
                     margin-bottom: 2%;
                   }
 
-                  input {
+                  .comment_error {
+                    display: none;
+                  }
+
+                  input,
+                  button {
                     outline: none;
                     border: none;
                     padding: 1.5% 3%;
