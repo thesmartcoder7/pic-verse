@@ -39,6 +39,7 @@ ALLOWED_HOSTS = ['*']
 INSTALLED_APPS = [
     'app.apps.AppConfig',
     'users.apps.UsersConfig',
+    'conversations.apps.ConversationsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
