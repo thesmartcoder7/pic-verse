@@ -9,12 +9,9 @@ python-dotenv = "*"
 django-crispy-forms = "*"
 pillow = "*"
 whitenoise = "*"
-django-heroku = "*"
-gunicorn = "*"
 django-cloudinary-storage = "*"
 psycopg2-binary = "*"
 certifi = "*"
-django-htmx = "*"
 django-restframework = "*"
 
 [dev-packages]
