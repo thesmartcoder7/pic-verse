@@ -14,7 +14,7 @@
 
 ## Description
 
-This project is an attemp to clone the instagram photo sharing platform by meta. The features used for this project are similar to the ones of the actual platform. The future plans for this project includes adding more user stories than the ones I currently have. [live site]()
+This project is an attemp to create a photo sharing social media platform. The features used for this project are similar to the ones on instagram platform. The future plans for this project includes adding more user stories than the ones I currently have. [live site]()
 
 # Note: 
 This project is by no means complete. Therefore, don't be alarmed when you encounter bugs in any form. Development is ongoing
@@ -57,14 +57,14 @@ $ python3 -m venv virtual ( or your selected virtual enviroment name )
 - Type the following command in your terminal to clone this repository
 
 ```
-git clone https://github.com/thesmartcoder7/instagram-clone.git
+git clone https://github.com/thesmartcoder7/pic-verse.git
 
 ```
 
 If you are using SSH, use the following command
 
 ```
-git clone git@github.com:thesmartcoder7/instagram-clone.git
+git clone git@github.com:thesmartcoder7/pic-verse.git
 ```
 
 When you run the commands successfully, you should have a local version of this repository.
