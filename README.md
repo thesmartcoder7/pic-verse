@@ -1,4 +1,4 @@
-# Instagram clone
+# Pic-Verse
 
 ![Project Image](app/static/app/images/readme-image.png)
 
@@ -16,7 +16,8 @@
 
 This project is an attemp to create a photo sharing social media platform. The features used for this project are similar to the ones on instagram platform. The future plans for this project includes adding more user stories than the ones I currently have. [live site]()
 
-# Note: 
+# Note:
+
 This project is by no means complete. Therefore, don't be alarmed when you encounter bugs in any form. Development is ongoing
 
 ## Behaviour Driven Development
