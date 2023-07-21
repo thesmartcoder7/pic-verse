@@ -41,14 +41,26 @@ main {
       display: flex;
       align-items: center;
       justify-content: center;
-      svg {
-        width: 1.5vw;
-        height: 1.5vw;
-        margin-right: 2%;
-      }
-      img {
-        width: 6vw;
-        margin-top: 1%;
+      a {
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        svg {
+          width: 2vw;
+          height: 2vw;
+          margin-right: 2%;
+          color: #0095f6;
+        }
+        p {
+          font-size: 1.2vw;
+          font-weight: 500;
+          color: #0095f6;
+          letter-spacing: 0.1vw;
+          span {
+            color: #3f3f3f;
+          }
+        }
       }
     }
 
@@ -62,18 +74,13 @@ main {
       .image-container {
         width: 5.5vw;
         height: 5.5vw;
-        padding: 1%;
-        object-fit: cover;
+        padding: 0.2vw;
         border-radius: 50%;
-        border: 0.15vw solid transparent;
-        background: linear-gradient(white, white) padding-box,
-          linear-gradient(to left, rgb(168, 0, 168), rgb(243, 64, 10))
-            border-box;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        border: 0.15vw solid #0095f6;
+        display: grid;
+        place-items: center;
         img {
-          object-fit: cover;
+          margin-top: 0.05vw;
           width: 100%;
           border-radius: 50%;
         }
@@ -101,14 +108,7 @@ main {
         h2 {
           font-size: 0.9vw;
           font-weight: 500;
-          background: linear-gradient(
-            to left,
-            rgb(168, 0, 168),
-            rgb(243, 64, 10)
-          );
-          background-clip: text;
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
+          color: #0095f6;
         }
       }
       .info {
@@ -157,14 +157,12 @@ main {
           font-size: 0.9vw;
           cursor: pointer;
           &:hover {
-            background: linear-gradient(
-              to left,
-              rgb(168, 0, 168),
-              rgb(243, 64, 10)
-            );
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            // background: linear-gradient(
+            //   to left,
+            //   rgb(168, 0, 168),
+            //   rgb(243, 64, 10)
+            // );
+            color: #0095f6;
           }
           a {
             width: 100%;
@@ -172,9 +170,15 @@ main {
             align-items: center;
             justify-content: flex-start;
             text-decoration: none;
+            &:hover {
+              color: #0095f6;
+            }
             svg {
               width: 1.5vw;
               margin-right: 5%;
+              &:hover {
+                color: #0095f6;
+              }
             }
           }
         }
@@ -198,14 +202,7 @@ main {
           text-decoration: none;
           font-size: 0.9vw;
           &:hover {
-            background: linear-gradient(
-              to left,
-              rgb(168, 0, 168),
-              rgb(243, 64, 10)
-            );
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: #0095f6;
           }
         }
       }
@@ -297,6 +294,7 @@ main {
           width: 1.5vw;
           height: 1.5vw;
           margin-right: 5%;
+          color: #0095f6;
           cursor: pointer;
         }
 
@@ -308,24 +306,16 @@ main {
           cursor: pointer;
           font-size: 0.9vw;
           font-weight: 500;
-          //   border: 0.1vw solid rgb(173, 173, 173);
-          border: none;
+          border: 0.1vw solid #0095f6;
           outline: none;
           border-radius: 0.2vw;
           color: #fff;
-          background: linear-gradient(
-            to left,
-            rgb(168, 0, 168),
-            rgb(243, 64, 10)
-          );
-          transition: 1s ease-in-out;
+          background: #0095f6;
+          transition: 0.2s ease-in-out;
           &:hover {
-            background: linear-gradient(
-              to left,
-              rgb(196, 2, 196),
-              rgb(255, 78, 24)
-            );
-            transition: 1s ease-in-out;
+            background-color: #fff;
+            color: #0095f6;
+            transition: 0.2s ease-in-out;
           }
         }
       }

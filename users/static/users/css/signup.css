@@ -46,15 +46,33 @@ main .right form {
   align-items: center;
   justify-content: flex-start;
 }
-main .right form .word-logo {
-  margin-bottom: 5%;
+main .right form .logo {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 0.5vw;
 }
-main .right form .word-logo img {
-  width: 15vw;
+main .right form .logo a {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+main .right form .logo a svg {
+  width: 2.5vw;
+  height: 2.5vw;
+  margin-right: 2%;
+  color: #0095f6;
+}
+main .right form .logo a p {
+  font-size: 1.5vw;
+  font-weight: 500;
+  color: #0095f6;
+  letter-spacing: 0.1vw;
+}
+main .right form .logo a p span {
+  color: #3f3f3f;
 }
 main .right form .fields {
   width: 100%;

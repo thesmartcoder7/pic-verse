@@ -39,14 +39,26 @@ main .left-panel .logo {
   align-items: center;
   justify-content: center;
 }
-main .left-panel .logo svg {
-  width: 1.5vw;
-  height: 1.5vw;
-  margin-right: 2%;
+main .left-panel .logo a {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-main .left-panel .logo img {
-  width: 6vw;
-  margin-top: 1%;
+main .left-panel .logo a svg {
+  width: 2vw;
+  height: 2vw;
+  margin-right: 2%;
+  color: #0095f6;
+}
+main .left-panel .logo a p {
+  font-size: 1.2vw;
+  font-weight: 500;
+  color: #0095f6;
+  letter-spacing: 0.1vw;
+}
+main .left-panel .logo a p span {
+  color: #3f3f3f;
 }
 main .left-panel .avatar {
   width: 100%;
@@ -58,19 +70,14 @@ main .left-panel .avatar {
 main .left-panel .avatar .image-container {
   width: 5.5vw;
   height: 5.5vw;
-  padding: 1%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  padding: 0.2vw;
   border-radius: 50%;
-  border: 0.15vw solid transparent;
-  background: linear-gradient(white, white) padding-box, linear-gradient(to left, rgb(168, 0, 168), rgb(243, 64, 10)) border-box;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  border: 0.15vw solid #0095f6;
+  display: grid;
+  place-items: center;
 }
 main .left-panel .avatar .image-container img {
-  -o-object-fit: cover;
-     object-fit: cover;
+  margin-top: 0.05vw;
   width: 100%;
   border-radius: 50%;
 }
@@ -96,10 +103,7 @@ main .left-panel .user-info .names h1 {
 main .left-panel .user-info .names h2 {
   font-size: 0.9vw;
   font-weight: 500;
-  background: linear-gradient(to left, rgb(168, 0, 168), rgb(243, 64, 10));
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #0095f6;
 }
 main .left-panel .user-info .info {
   padding: 0 5%;
@@ -145,10 +149,7 @@ main .left-panel .nav-panel ul li {
   cursor: pointer;
 }
 main .left-panel .nav-panel ul li:hover {
-  background: linear-gradient(to left, rgb(168, 0, 168), rgb(243, 64, 10));
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #0095f6;
 }
 main .left-panel .nav-panel ul li a {
   width: 100%;
@@ -157,9 +158,15 @@ main .left-panel .nav-panel ul li a {
   justify-content: flex-start;
   text-decoration: none;
 }
+main .left-panel .nav-panel ul li a:hover {
+  color: #0095f6;
+}
 main .left-panel .nav-panel ul li a svg {
   width: 1.5vw;
   margin-right: 5%;
+}
+main .left-panel .nav-panel ul li a svg:hover {
+  color: #0095f6;
 }
 main .left-panel .logout-button {
   width: 100%;
@@ -181,10 +188,7 @@ main .left-panel .logout-button p a {
   font-size: 0.9vw;
 }
 main .left-panel .logout-button p a:hover {
-  background: linear-gradient(to left, rgb(168, 0, 168), rgb(243, 64, 10));
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #0095f6;
 }
 main .main-content {
   width: 80%;
@@ -268,6 +272,7 @@ main .main-content .top-bar .user-actions svg {
   width: 1.5vw;
   height: 1.5vw;
   margin-right: 5%;
+  color: #0095f6;
   cursor: pointer;
 }
 main .main-content .top-bar .user-actions button {
@@ -278,16 +283,17 @@ main .main-content .top-bar .user-actions button {
   cursor: pointer;
   font-size: 0.9vw;
   font-weight: 500;
-  border: none;
+  border: 0.1vw solid #0095f6;
   outline: none;
   border-radius: 0.2vw;
   color: #fff;
-  background: linear-gradient(to left, rgb(168, 0, 168), rgb(243, 64, 10));
-  transition: 1s ease-in-out;
+  background: #0095f6;
+  transition: 0.2s ease-in-out;
 }
 main .main-content .top-bar .user-actions button:hover {
-  background: linear-gradient(to left, rgb(196, 2, 196), rgb(255, 78, 24));
-  transition: 1s ease-in-out;
+  background-color: #fff;
+  color: #0095f6;
+  transition: 0.2s ease-in-out;
 }
 main .post-modal {
   background-color: rgba(32, 32, 32, 0.3019607843);

@@ -16,16 +16,10 @@
   text-transform: capitalize;
 }
 .profile-view .profile-nav li.active {
-  background: linear-gradient(to left, rgb(168, 0, 168), rgb(243, 64, 10));
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #0095f6;
 }
 .profile-view .profile-nav li:hover {
-  background: linear-gradient(to left, rgb(168, 0, 168), rgb(243, 64, 10));
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #0095f6;
 }
 .profile-view .profile-posts .coming-soon {
   font-size: 1.2vw;
@@ -214,15 +208,14 @@
   width: 4vw;
   height: 4vw;
   margin-right: 4%;
-  padding: 0.5%;
+  padding: 0.1vw;
   display: flex;
   align-items: center;
   justify-content: center;
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 50%;
-  border: 0.15vw solid transparent;
-  background: linear-gradient(white, white) padding-box, linear-gradient(to left, rgb(168, 0, 168), rgb(243, 64, 10)) border-box;
+  border: 0.15vw solid #0095f6;
 }
 .profile-view .profile-posts .all-posts .image .image-modal .right .user .all-info .image-container .avatar img,
 .profile-view .profile-posts .saved .image .image-modal .right .user .all-info .image-container .avatar img,
@@ -321,10 +314,7 @@
 .profile-view .profile-posts .all-posts .image .image-modal .right .user .all-info .all-comments .single-comment a:hover,
 .profile-view .profile-posts .saved .image .image-modal .right .user .all-info .all-comments .single-comment a:hover,
 .profile-view .profile-posts .tagged .image .image-modal .right .user .all-info .all-comments .single-comment a:hover {
-  background: linear-gradient(to left, rgb(168, 0, 168), rgb(243, 64, 10));
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #0095f6;
 }
 .profile-view .profile-posts .all-posts .image .image-modal .right .user .all-info .all-comments .single-comment p,
 .profile-view .profile-posts .saved .image .image-modal .right .user .all-info .all-comments .single-comment p,

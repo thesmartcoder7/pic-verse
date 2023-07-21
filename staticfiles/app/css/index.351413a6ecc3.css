@@ -158,12 +158,15 @@
   width: 4vw;
   height: 4vw;
   margin-right: 0.2vw;
-  padding: 0.1vw;
+  padding: 0.5%;
   display: flex;
   align-items: center;
   justify-content: center;
+  -o-object-fit: cover;
+     object-fit: cover;
   border-radius: 50%;
-  border: 0.15vw solid #0095f6;
+  border: 0.15vw solid transparent;
+  background: linear-gradient(white, white) padding-box, linear-gradient(to left, rgb(168, 0, 168), rgb(243, 64, 10)) border-box;
 }
 .feed-view .latest .latest-posts .image .image-modal .right .user .all-info .image-container a .avatar img {
   width: 100%;
@@ -428,8 +431,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  -o-object-fit: cover;
+     object-fit: cover;
   border-radius: 50%;
-  border: 0.15vw solid #0095f6;
+  border: 0.15vw solid transparent;
+  background: linear-gradient(white, white) padding-box, linear-gradient(to left, rgb(168, 0, 168), rgb(243, 64, 10)) border-box;
 }
 .feed-view .feed .feed-posts .image .image-modal .right .user .all-info .image-container a .avatar img {
   width: 100%;
@@ -497,7 +503,10 @@
   line-height: 1.8vw;
 }
 .feed-view .feed .feed-posts .image .image-modal .right .user .all-info .all-comments .single-comment a:hover {
-  color: #0095f6;
+  background: linear-gradient(to left, rgb(168, 0, 168), rgb(243, 64, 10));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 .feed-view .feed .feed-posts .image .image-modal .right .user .all-info .all-comments .single-comment p {
   font-size: 0.9vw;
@@ -542,4 +551,4 @@
   font-weight: 500;
   font-size: 0.9vw;
   cursor: pointer;
-}/*# sourceMappingURL=index.css.map */
+}/*# sourceMappingURL=index.351413a6ecc3.css.map */

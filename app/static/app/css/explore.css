@@ -37,13 +37,12 @@
 .feed-view .users .avatar .image-container {
   width: 3.5vw;
   height: 3.5vw;
-  padding: 1%;
+  padding: 0.1vw;
   margin-bottom: 7%;
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 50%;
-  border: 0.15vw solid transparent;
-  background: linear-gradient(white, white) padding-box, linear-gradient(to left, rgb(168, 0, 168), rgb(243, 64, 10)) border-box;
+  border: 0.15vw solid #0095f6;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -203,15 +202,14 @@
   width: 4vw;
   height: 4vw;
   margin-right: 0.2vw;
-  padding: 0.5%;
+  padding: 0.1vw;
   display: flex;
   align-items: center;
   justify-content: center;
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 50%;
-  border: 0.15vw solid transparent;
-  background: linear-gradient(white, white) padding-box, linear-gradient(to left, rgb(168, 0, 168), rgb(243, 64, 10)) border-box;
+  border: 0.15vw solid #0095f6;
 }
 .feed-view .latest .latest-posts .image .image-modal .right .user .all-info .image-container a .avatar img {
   width: 100%;
@@ -279,10 +277,7 @@
   line-height: 1.8vw;
 }
 .feed-view .latest .latest-posts .image .image-modal .right .user .all-info .all-comments .single-comment a:hover {
-  background: linear-gradient(to left, rgb(168, 0, 168), rgb(243, 64, 10));
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #0095f6;
 }
 .feed-view .latest .latest-posts .image .image-modal .right .user .all-info .all-comments .single-comment p {
   font-size: 0.9vw;

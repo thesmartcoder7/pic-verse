@@ -79,24 +79,16 @@
         cursor: pointer;
         font-size: 0.9vw;
         font-weight: 500;
-        //   border: 0.1vw solid rgb(173, 173, 173);
-        border: none;
+        border: 0.1vw solid #0095f6;
         outline: none;
         border-radius: 0.2vw;
         color: #fff;
-        background: linear-gradient(
-          to left,
-          rgb(168, 0, 168),
-          rgb(243, 64, 10)
-        );
-        transition: 1s ease-in-out;
+        background: #0095f6;
+        transition: 0.1s ease-in-out;
         &:hover {
-          background: linear-gradient(
-            to left,
-            rgb(196, 2, 196),
-            rgb(255, 78, 24)
-          );
-          transition: 1s ease-in-out;
+          color: #0095f6;
+          background-color: #fff;
+          transition: 0.1s ease-in-out;
         }
       }
     }

@@ -153,20 +153,13 @@
                       width: 4vw;
                       height: 4vw;
                       margin-right: 0.2vw;
-                      padding: 0.5%;
+                      padding: 0.1vw;
                       display: flex;
                       align-items: center;
                       justify-content: center;
-                      object-fit: cover;
                       border-radius: 50%;
-                      border: 0.15vw solid transparent;
-                      background: linear-gradient(white, white) padding-box,
-                        linear-gradient(
-                            to left,
-                            rgb(168, 0, 168),
-                            rgb(243, 64, 10)
-                          )
-                          border-box;
+                      border: 0.15vw solid #0095f6;
+
                       img {
                         width: 100%;
                         border-radius: 50%;
@@ -446,16 +439,9 @@
                       display: flex;
                       align-items: center;
                       justify-content: center;
-                      object-fit: cover;
                       border-radius: 50%;
-                      border: 0.15vw solid transparent;
-                      background: linear-gradient(white, white) padding-box,
-                        linear-gradient(
-                            to left,
-                            rgb(168, 0, 168),
-                            rgb(243, 64, 10)
-                          )
-                          border-box;
+                      border: 0.15vw solid #0095f6;
+
                       img {
                         width: 100%;
                         border-radius: 50%;
@@ -529,14 +515,7 @@
                       font-weight: 700;
                       line-height: 1.8vw;
                       &:hover {
-                        background: linear-gradient(
-                          to left,
-                          rgb(168, 0, 168),
-                          rgb(243, 64, 10)
-                        );
-                        background-clip: text;
-                        -webkit-background-clip: text;
-                        -webkit-text-fill-color: transparent;
+                        color: #0095f6;
                       }
                     }
                     p {

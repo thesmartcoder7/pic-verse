@@ -27,19 +27,14 @@
 .feed-view .latest .top-section .avatar .image-container {
   width: 10vw;
   height: 10vw;
-  padding: 1%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  padding: 0.25vw;
   border-radius: 50%;
-  border: 0.15vw solid transparent;
-  background: linear-gradient(white, white) padding-box, linear-gradient(to left, rgb(168, 0, 168), rgb(243, 64, 10)) border-box;
+  border: 0.15vw solid #0095f6;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .feed-view .latest .top-section .avatar .image-container img {
-  -o-object-fit: cover;
-     object-fit: cover;
   width: 100%;
   border-radius: 50%;
 }
@@ -253,15 +248,14 @@
   width: 4vw;
   height: 4vw;
   margin-right: 4%;
-  padding: 0.5%;
+  padding: 0.1vw;
   display: flex;
   align-items: center;
   justify-content: center;
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 50%;
-  border: 0.15vw solid transparent;
-  background: linear-gradient(white, white) padding-box, linear-gradient(to left, rgb(168, 0, 168), rgb(243, 64, 10)) border-box;
+  border: 0.15vw solid #0095f6;
 }
 .feed-view .latest .latest-posts .image .image-modal .right .user .all-info .image-container .avatar img {
   width: 100%;
@@ -329,10 +323,7 @@
   line-height: 1.8vw;
 }
 .feed-view .latest .latest-posts .image .image-modal .right .user .all-info .all-comments .single-comment a:hover {
-  background: linear-gradient(to left, rgb(168, 0, 168), rgb(243, 64, 10));
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #0095f6;
 }
 .feed-view .latest .latest-posts .image .image-modal .right .user .all-info .all-comments .single-comment p {
   font-size: 0.9vw;
@@ -526,8 +517,7 @@
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 50%;
-  border: 0.15vw solid transparent;
-  background: linear-gradient(white, white) padding-box, linear-gradient(to left, rgb(168, 0, 168), rgb(243, 64, 10)) border-box;
+  border: 0.15vw solid #0095f6;
 }
 .feed-view .feed .feed-posts .image .image-modal .right .user .all-info .image-container .avatar img {
   width: 100%;
@@ -589,10 +579,7 @@
   line-height: 1.8vw;
 }
 .feed-view .feed .feed-posts .image .image-modal .right .user .all-info .all-comments .single-comment a:hover {
-  background: linear-gradient(to left, rgb(168, 0, 168), rgb(243, 64, 10));
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #0095f6;
 }
 .feed-view .feed .feed-posts .image .image-modal .right .user .all-info .all-comments .single-comment p {
   font-size: 0.9vw;
