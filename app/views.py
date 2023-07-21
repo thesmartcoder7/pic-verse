@@ -400,12 +400,12 @@ def comments(request, post_id):
         post.save()
 
         post_comments = Comment.objects.filter(post=post)
-        serialized = serializers.serialize('json', post_comments, fields=[
-                                           'content', 'post', 'user'])
+        serialized = serializers.serialize('json', post_comments, fields=(
+            'content', 'post', 'user', 'user__username'), use_natural_foreign_keys=True)
 
         response = {
             'status': True,
-            'comments': serialized
+            'comments': serialized,
         }
 
         return HttpResponse(json.dumps(response))
