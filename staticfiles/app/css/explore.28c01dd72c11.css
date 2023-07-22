@@ -13,94 +13,49 @@
   margin-bottom: 2%;
   font-size: 1.2vw;
 }
-.feed-view .latest .top-section {
-  display: flex;
-  align-self: flex-start;
-  justify-content: flex-start;
+.feed-view h2 {
+  margin-bottom: 2%;
+  font-size: 1.1vw;
 }
-.feed-view .latest .top-section .avatar {
+.feed-view .users {
+  width: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
-  margin-right: 3%;
+  justify-content: flex-start;
+  margin-bottom: 5%;
 }
-.feed-view .latest .top-section .avatar .image-container {
-  width: 10vw;
-  height: 10vw;
-  padding: 0.25vw;
+.feed-view .users a {
+  margin-right: 5%;
+  text-decoration: none;
+}
+.feed-view .users .avatar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.feed-view .users .avatar .image-container {
+  width: 3.5vw;
+  height: 3.5vw;
+  padding: 0.1vw;
+  margin-bottom: 7%;
+  -o-object-fit: cover;
+     object-fit: cover;
   border-radius: 50%;
   border: 0.15vw solid #0095f6;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.feed-view .latest .top-section .avatar .image-container img {
+.feed-view .users .avatar .image-container img {
+  -o-object-fit: cover;
+     object-fit: cover;
   width: 100%;
   border-radius: 50%;
 }
-.feed-view .latest .top-section .user-info {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-}
-.feed-view .latest .top-section .user-info .names {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-}
-.feed-view .latest .top-section .user-info .names h1 {
-  font-size: 1.1vw;
-  font-weight: 500;
-}
-.feed-view .latest .top-section .user-info .names h2 {
+.feed-view .users .avatar .names h2 {
   font-size: 0.9vw;
   font-weight: 500;
-  color: #0095f6;
-}
-.feed-view .latest .top-section .user-info .info {
-  width: 100%;
-  margin-left: -3%;
-  padding-top: 2%;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-}
-.feed-view .latest .top-section .user-info .info div {
-  font-size: 0.8vw;
-  width: 10%;
-  text-align: center;
-}
-.feed-view .latest .top-section .user-info .info div p {
-  color: #838383;
-  letter-spacing: 0.03vw;
-}
-.feed-view .latest .top-section .user-info .info div .count {
-  font-weight: 700;
-  color: #1a1a1a;
-}
-.feed-view .latest .top-section .user-info .info .followers {
-  border-right: solid 0.1vw rgb(173, 173, 173);
-  border-left: solid 0.1vw rgb(173, 173, 173);
-}
-.feed-view .latest .top-section .user-info .follow-unfollow {
-  width: 100%;
-  margin-top: 3%;
-}
-.feed-view .latest .top-section .user-info .follow-unfollow a {
-  padding: 1% 2%;
-  background-color: #0095f6;
-  color: #fff;
-  font-weight: 500;
-  border-radius: 0.3vw;
-  text-decoration: none;
-  font-size: 0.9vw;
-}
-.feed-view .latest .title {
-  margin-top: 5%;
 }
 .feed-view .latest .latest-posts {
   width: 100%;
@@ -110,12 +65,11 @@
   justify-content: flex-start;
   flex-wrap: wrap;
   overflow: hidden;
-  margin-top: 5%;
 }
 .feed-view .latest .latest-posts .image {
   animation: appear 0.5s ease-in-out;
-  width: 18%;
-  height: 13vw;
+  width: 23%;
+  height: 15vw;
   border-radius: 0.5vw;
   position: relative;
   margin-right: 2%;
@@ -241,10 +195,13 @@
   padding-bottom: 2%;
   border-bottom: 0.05vw solid rgba(206, 206, 206, 0.466);
 }
-.feed-view .latest .latest-posts .image .image-modal .right .user .all-info .image-container .avatar {
+.feed-view .latest .latest-posts .image .image-modal .right .user .all-info .image-container a {
+  margin-right: 0.5vw;
+}
+.feed-view .latest .latest-posts .image .image-modal .right .user .all-info .image-container a .avatar {
   width: 4vw;
   height: 4vw;
-  margin-right: 4%;
+  margin-right: 0.2vw;
   padding: 0.1vw;
   display: flex;
   align-items: center;
@@ -254,7 +211,7 @@
   border-radius: 50%;
   border: 0.15vw solid #0095f6;
 }
-.feed-view .latest .latest-posts .image .image-modal .right .user .all-info .image-container .avatar img {
+.feed-view .latest .latest-posts .image .image-modal .right .user .all-info .image-container a .avatar img {
   width: 100%;
   border-radius: 50%;
 }
@@ -514,7 +471,8 @@
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 50%;
-  border: 0.15vw solid #0095f6;
+  border: 0.15vw solid transparent;
+  background: linear-gradient(white, white) padding-box, linear-gradient(to left, rgb(168, 0, 168), rgb(243, 64, 10)) border-box;
 }
 .feed-view .feed .feed-posts .image .image-modal .right .user .all-info .image-container .avatar img {
   width: 100%;
@@ -576,7 +534,10 @@
   line-height: 1.8vw;
 }
 .feed-view .feed .feed-posts .image .image-modal .right .user .all-info .all-comments .single-comment a:hover {
-  color: #0095f6;
+  background: linear-gradient(to left, rgb(168, 0, 168), rgb(243, 64, 10));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 .feed-view .feed .feed-posts .image .image-modal .right .user .all-info .all-comments .single-comment p {
   font-size: 0.9vw;
@@ -617,4 +578,4 @@
   font-weight: 500;
   font-size: 0.9vw;
   cursor: pointer;
-}/*# sourceMappingURL=user_profile.css.map */
+}/*# sourceMappingURL=explore.28c01dd72c11.css.map */

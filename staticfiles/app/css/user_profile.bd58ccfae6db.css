@@ -59,7 +59,10 @@
 .feed-view .latest .top-section .user-info .names h2 {
   font-size: 0.9vw;
   font-weight: 500;
-  color: #0095f6;
+  background: linear-gradient(to left, rgb(168, 0, 168), rgb(243, 64, 10));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 .feed-view .latest .top-section .user-info .info {
   width: 100%;
@@ -617,4 +620,4 @@
   font-weight: 500;
   font-size: 0.9vw;
   cursor: pointer;
-}/*# sourceMappingURL=user_profile.css.map */
+}/*# sourceMappingURL=user_profile.bd58ccfae6db.css.map */
