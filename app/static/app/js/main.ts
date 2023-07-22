@@ -61,7 +61,9 @@ if (profileNavs) {
 if (hoverimages) {
   for (let image of hoverimages as any) {
     image.addEventListener("mouseover", (e: any) => {
-      e.target.nextElementSibling.style.display = "flex";
+      if (e.target.nextElementSibling) {
+        e.target.nextElementSibling.style.display = "flex";
+      }
     });
 
     image.addEventListener("click", (e: any) => {
@@ -78,6 +80,14 @@ if (imageCounters) {
 
     counter.addEventListener("click", (e: any) => {
       e.target.nextElementSibling.style.display = "flex";
+      let commentPArentDivs = document.querySelectorAll(
+        ".all-comments"
+      ) as NodeListOf<HTMLDivElement>;
+      if (commentPArentDivs) {
+        commentPArentDivs.forEach((parent) => {
+          parent.scrollTo(0, parent.scrollHeight);
+        });
+      }
     });
   }
 }
@@ -240,6 +250,7 @@ let updateComment = (postId: string, csrf: string, event: Event) => {
     comments.forEach((comment) => {
       if (comment.getAttribute("data-id") == postId) {
         value = comment.value;
+        comment.value = "";
       }
     });
   }
@@ -256,21 +267,46 @@ let updateComment = (postId: string, csrf: string, event: Event) => {
   req.onreadystatechange = () => {
     if (req.readyState == 4 && req.status == 200) {
       let res = JSON.parse(req.responseText);
-      console.log(JSON.parse(res.comments));
+      let comments: object[] = JSON.parse(res.comments);
+      let commentCount = document.querySelectorAll(".comments-counter-svg");
+
       if (res.status == true && res.comments) {
         let html = "";
-        res.comments.forEach((comment) => {
+        let allComments = document.querySelectorAll(
+          ".all-comments"
+        ) as NodeListOf<HTMLDivElement>;
+
+        comments.forEach((comment: any) => {
           html += `
               <div class="single-comment">
               <a
-                href="{% url 'insta-user' comment.user.username %}"
+                href="${baseURL.origin}/user/${comment.fields.user[0]}"
                 class="username"
-                >@{{comment.user | lower }}</a
+                >@${comment.fields.user[0].toLowerCase()}</a
               >
               <br />
-              <p>{{comment.content}}</p>
+              <p>${comment.fields.content}</p>
             </div>
           `;
+          if (allComments) {
+            allComments.forEach((parent) => {
+              if (parent.getAttribute("data-id") == postId) {
+                if (html != "undefined" || !html) {
+                  parent.innerHTML = html;
+                }
+
+                parent.scrollTo(0, parent.scrollHeight);
+              }
+            });
+          }
+
+          if (commentCount) {
+            commentCount.forEach((svg) => {
+              if (svg.getAttribute("data-id") == postId) {
+                svg.textContent = String(comments.length);
+              }
+            });
+          }
         });
       }
     }

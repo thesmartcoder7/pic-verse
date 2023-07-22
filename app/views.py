@@ -381,9 +381,6 @@ def like(request, post_id):
 @login_required
 def comments(request, post_id):
     data = json.loads(request.body)
-    print()
-    print(data['comment'])
-    print()
     response = {
         'status': False,
         'message': 'Comment has not been updated'
@@ -392,23 +389,36 @@ def comments(request, post_id):
     if data['comment']:
         user = User.objects.filter(username=request.user).first()
         post = Post.objects.filter(id=post_id).first()
-        new, created = Comment.objects.get_or_create(
-            user=user, content=data['comment'], post=post)
+        try:
+            comment = Comment.objects.get(content=data['comment'])
+            post_comments = Comment.objects.filter(post=post)
+            serialized = serializers.serialize('json', post_comments, fields=(
+                'content', 'post', 'user', 'user__username'), use_natural_foreign_keys=True)
 
-        new.save()
-        post.comments += 1
-        post.save()
+            response = {
+                'status': True,
+                'comments': serialized,
+            }
 
-        post_comments = Comment.objects.filter(post=post)
-        serialized = serializers.serialize('json', post_comments, fields=(
-            'content', 'post', 'user', 'user__username'), use_natural_foreign_keys=True)
+            return HttpResponse(json.dumps(response))
+        except:
+            new, created = Comment.objects.get_or_create(
+                user=user, content=data['comment'], post=post)
 
-        response = {
-            'status': True,
-            'comments': serialized,
-        }
+            new.save()
+            post.comments += 1
+            post.save()
 
-        return HttpResponse(json.dumps(response))
+            post_comments = Comment.objects.filter(post=post)
+            serialized = serializers.serialize('json', post_comments, fields=(
+                'content', 'post', 'user', 'user__username'), use_natural_foreign_keys=True)
+
+            response = {
+                'status': True,
+                'comments': serialized,
+            }
+
+            return HttpResponse(json.dumps(response))
     else:
         post_comments = Comment.objects.filter(post=post)
         serialized = serializers.serialize('json', post_comments, fields=(

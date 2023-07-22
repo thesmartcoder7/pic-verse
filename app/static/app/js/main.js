@@ -43,7 +43,9 @@ if (hoverimages) {
     for (var _b = 0, _c = hoverimages; _b < _c.length; _b++) {
         var image = _c[_b];
         image.addEventListener("mouseover", function (e) {
-            e.target.nextElementSibling.style.display = "flex";
+            if (e.target.nextElementSibling) {
+                e.target.nextElementSibling.style.display = "flex";
+            }
         });
         image.addEventListener("click", function (e) {
             console.log(e);
@@ -58,6 +60,12 @@ if (imageCounters) {
         });
         counter.addEventListener("click", function (e) {
             e.target.nextElementSibling.style.display = "flex";
+            var commentPArentDivs = document.querySelectorAll(".all-comments");
+            if (commentPArentDivs) {
+                commentPArentDivs.forEach(function (parent) {
+                    parent.scrollTo(0, parent.scrollHeight);
+                });
+            }
         });
     }
 }
@@ -185,6 +193,7 @@ var updateComment = function (postId, csrf, event) {
         comments.forEach(function (comment) {
             if (comment.getAttribute("data-id") == postId) {
                 value = comment.value;
+                comment.value = "";
             }
         });
     }
@@ -198,11 +207,30 @@ var updateComment = function (postId, csrf, event) {
     req.onreadystatechange = function () {
         if (req.readyState == 4 && req.status == 200) {
             var res = JSON.parse(req.responseText);
-            console.log(JSON.parse(res.comments));
+            var comments_1 = JSON.parse(res.comments);
+            var commentCount_1 = document.querySelectorAll(".comments-counter-svg");
             if (res.status == true && res.comments) {
                 var html_1 = "";
-                res.comments.forEach(function (comment) {
-                    html_1 += "\n              <div class=\"single-comment\">\n              <a\n                href=\"{% url 'insta-user' comment.user.username %}\"\n                class=\"username\"\n                >@{{comment.user | lower }}</a\n              >\n              <br />\n              <p>{{comment.content}}</p>\n            </div>\n          ";
+                var allComments_1 = document.querySelectorAll(".all-comments");
+                comments_1.forEach(function (comment) {
+                    html_1 += "\n              <div class=\"single-comment\">\n              <a\n                href=\"".concat(baseURL.origin, "/user/").concat(comment.fields.user[0], "\"\n                class=\"username\"\n                >@").concat(comment.fields.user[0].toLowerCase(), "</a\n              >\n              <br />\n              <p>").concat(comment.fields.content, "</p>\n            </div>\n          ");
+                    if (allComments_1) {
+                        allComments_1.forEach(function (parent) {
+                            if (parent.getAttribute("data-id") == postId) {
+                                if (html_1 != "undefined" || !html_1) {
+                                    parent.innerHTML = html_1;
+                                }
+                                parent.scrollTo(0, parent.scrollHeight);
+                            }
+                        });
+                    }
+                    if (commentCount_1) {
+                        commentCount_1.forEach(function (svg) {
+                            if (svg.getAttribute("data-id") == postId) {
+                                svg.textContent = String(comments_1.length);
+                            }
+                        });
+                    }
                 });
             }
         }
