@@ -16,6 +16,156 @@
 <!-- block content -->
 {% block content %}
 <div class="messages">
-  <h3 class="coming-soon profile">&nbsp;&nbsp;Coming Soon . . .</h3>
+  <div class="list">
+    <ul>
+      <li>
+        <div class="image">
+          <img
+            src="{% static 'app/images/insta-sample.png' %}"
+            alt="test image"
+          />
+        </div>
+        <div class="info">
+          <div class="name"><p>@testuser</p></div>
+          <div class="time"><p>Today at 2:00pm</p></div>
+        </div>
+      </li>
+      <li>
+        <div class="image">
+          <img
+            src="{% static 'app/images/insta-sample.png' %}"
+            alt="test image"
+          />
+        </div>
+        <div class="info">
+          <div class="name"><p>@testuser</p></div>
+          <div class="time"><p>Today at 2:00pm</p></div>
+        </div>
+      </li>
+      <li>
+        <div class="image">
+          <img
+            src="{% static 'app/images/insta-sample.png' %}"
+            alt="test image"
+          />
+        </div>
+        <div class="info">
+          <div class="name"><p>@testuser</p></div>
+          <div class="time"><p>Today at 2:00pm</p></div>
+        </div>
+      </li>
+      <li>
+        <div class="image">
+          <img
+            src="{% static 'app/images/insta-sample.png' %}"
+            alt="test image"
+          />
+        </div>
+        <div class="info">
+          <div class="name"><p>@testuser</p></div>
+          <div class="time"><p>Today at 2:00pm</p></div>
+        </div>
+      </li>
+      <li>
+        <div class="image">
+          <img
+            src="{% static 'app/images/insta-sample.png' %}"
+            alt="test image"
+          />
+        </div>
+        <div class="info">
+          <div class="name"><p>@testuser</p></div>
+          <div class="time"><p>Today at 2:00pm</p></div>
+        </div>
+      </li>
+      <li>
+        <div class="image">
+          <img
+            src="{% static 'app/images/insta-sample.png' %}"
+            alt="test image"
+          />
+        </div>
+        <div class="info">
+          <div class="name"><p>@testuser</p></div>
+          <div class="time"><p>Today at 2:00pm</p></div>
+        </div>
+      </li>
+      <li>
+        <div class="image">
+          <img
+            src="{% static 'app/images/insta-sample.png' %}"
+            alt="test image"
+          />
+        </div>
+        <div class="info">
+          <div class="name"><p>@testuser</p></div>
+          <div class="time"><p>Today at 2:00pm</p></div>
+        </div>
+      </li>
+      <li>
+        <div class="image">
+          <img
+            src="{% static 'app/images/insta-sample.png' %}"
+            alt="test image"
+          />
+        </div>
+        <div class="info">
+          <div class="name"><p>@testuser</p></div>
+          <div class="time"><p>Today at 2:00pm</p></div>
+        </div>
+      </li>
+      <li>
+        <div class="image">
+          <img
+            src="{% static 'app/images/insta-sample.png' %}"
+            alt="test image"
+          />
+        </div>
+        <div class="info">
+          <div class="name"><p>@testuser</p></div>
+          <div class="time"><p>Today at 2:00pm</p></div>
+        </div>
+      </li>
+      <li>
+        <div class="image">
+          <img
+            src="{% static 'app/images/insta-sample.png' %}"
+            alt="test image"
+          />
+        </div>
+        <div class="info">
+          <div class="name"><p>@testuser</p></div>
+          <div class="time"><p>Today at 2:00pm</p></div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="view">
+    {% if not toggled_message %}
+    <div class="no-message">
+      <div class="message-icon">
+        <svg viewBox="0 0 21 21">
+          <g fill="none" fill-rule="evenodd">
+            <path
+              stroke="#adadad"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M16.5 3.5a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2l-2.999-.001l-2.294 2.294a1 1 0 0 1-1.32.083l-.094-.083l-2.294-2.294L4.5 17.5a2 2 0 0 1-2-2v-10a2 2 0 0 1 2-2z"
+            />
+            <path
+              fill="#adadad"
+              d="M10.499 11.5c.5 0 1-.5 1-1s-.5-1-1-1s-.999.5-.999 1s.499 1 .999 1zm-4 0c.5 0 1-.5 1-1s-.5-1-1-1s-.999.5-.999 1s.499 1 .999 1zm8 0c.5 0 1-.5 1-1s-.5-1-1-1s-.999.5-.999 1s.499 1 .999 1z"
+            />
+          </g>
+        </svg>
+      </div>
+      <div class="message-text">
+        <p>
+          You have no messages yet. Create connections and talk about anything!
+        </p>
+      </div>
+    </div>
+    {% endif %}
+  </div>
 </div>
 {% endblock %}

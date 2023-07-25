@@ -1,0 +1,88 @@
+.messages {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+
+  .list {
+    width: 40%;
+    border-right: solid 0.1vw rgb(173, 173, 173);
+    padding-right: 2vw;
+    min-height: 100vh;
+    ul {
+      width: 100%;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      li {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 1vw 0;
+        border-bottom: solid 0.1vw rgb(173, 173, 173);
+        &:hover {
+          background-color: rgba(185, 185, 185, 0.116);
+        }
+        .image {
+          width: 4vw;
+          height: 4vw;
+          object-fit: cover;
+          border-radius: 50%;
+          margin-right: 1vw;
+
+          img {
+            width: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+          }
+        }
+        .info {
+          width: 80%;
+          .name {
+            margin: 0.2vw 0;
+          }
+          .time {
+            margin: 0.2vw 0;
+          }
+        }
+      }
+    }
+  }
+
+  .view {
+    width: 60%;
+    min-height: 100vh;
+    height: auto;
+    .no-message {
+      position: sticky;
+      top: 40%;
+      width: 100%;
+      min-height: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      .message-icon {
+        margin-bottom: 1.5vw;
+        svg {
+          width: 5vw;
+          height: 5vw;
+        }
+      }
+
+      .message-text {
+        padding: 0 10vw;
+        p {
+          text-align: center;
+          line-height: 1.8vw;
+          color: #adadad;
+        }
+      }
+    }
+  }
+}
