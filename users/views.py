@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect, HttpResponse
 from .forms import *
 from .models import *
 import json
+from app.forms import *
 
 # Create your views here.
 

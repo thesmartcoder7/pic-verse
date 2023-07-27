@@ -265,15 +265,6 @@ def settings(request):
 
 
 @login_required
-def messages(request):
-    post_form = PostCreationForm()
-    context = {
-        'post_form': post_form
-    }
-    return render(request, 'app/messages.html', context)
-
-
-@login_required
 def single_user(request, username):
     post_form = PostCreationForm()
     c_form = CommentForm(request.POST)
