@@ -315,3 +315,30 @@ let updateComment = (postId: string, csrf: string, event: Event) => {
   req.send(JSON.stringify(formData));
   return;
 };
+
+// function to view the messages
+let view_message = (thread_id: string, csrf: string) => {
+  let baseURL = new URL(document.URL);
+  let req = new XMLHttpRequest();
+  let url = `${baseURL.origin}/thread/${thread_id}/`;
+  let headers = {
+    "Content-Type": "application/json",
+    "X-CSRFToken": csrf,
+  };
+
+  for (let header in headers) {
+    req.setRequestHeader(header, headers[header]);
+  }
+
+  req.open("POST", url, true);
+
+  req.onreadystatechange = () => {
+    if (req.readyState == 4) {
+      if (req.status == 200) {
+        console.log("the view is working . . .");
+      } else {
+        alert("Error Occured");
+      }
+    }
+  };
+};

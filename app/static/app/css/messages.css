@@ -4,13 +4,13 @@
   justify-content: space-between;
   width: 100%;
 }
-.messages .list {
+.messages .messages {
   width: 40%;
   border-right: solid 0.1vw rgb(173, 173, 173);
   padding-right: 2vw;
   min-height: 100vh;
 }
-.messages .list ul {
+.messages .messages ul {
   width: 100%;
   list-style: none;
   display: flex;
@@ -18,18 +18,19 @@
   align-items: flex-start;
   justify-content: flex-start;
 }
-.messages .list ul li {
+.messages .messages ul li {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   padding: 1vw 0;
   border-bottom: solid 0.1vw rgb(173, 173, 173);
+  cursor: pointer;
 }
-.messages .list ul li:hover {
+.messages .messages ul li:hover {
   background-color: rgba(185, 185, 185, 0.116);
 }
-.messages .list ul li .image {
+.messages .messages ul li .image {
   width: 3.5vw;
   height: 3.5vw;
   -o-object-fit: cover;
@@ -37,19 +38,19 @@
   border-radius: 50%;
   margin-right: 1vw;
 }
-.messages .list ul li .image img {
+.messages .messages ul li .image img {
   width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 50%;
 }
-.messages .list ul li .info {
+.messages .messages ul li .info {
   width: 80%;
 }
-.messages .list ul li .info .name {
+.messages .messages ul li .info .name {
   margin: 0.2vw 0;
 }
-.messages .list ul li .info .time {
+.messages .messages ul li .info .time {
   margin: 0.2vw 0;
 }
 .messages .view {

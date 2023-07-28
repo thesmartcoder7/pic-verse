@@ -238,3 +238,27 @@ var updateComment = function (postId, csrf, event) {
     req.send(JSON.stringify(formData));
     return;
 };
+// function to view the messages
+var view_message = function (thread_id, csrf) {
+    var baseURL = new URL(document.URL);
+    var req = new XMLHttpRequest();
+    var url = "".concat(baseURL.origin, "/thread/").concat(thread_id, "/");
+    var headers = {
+        "Content-Type": "application/json",
+        "X-CSRFToken": csrf
+    };
+    for (var header in headers) {
+        req.setRequestHeader(header, headers[header]);
+    }
+    req.open("POST", url, true);
+    req.onreadystatechange = function () {
+        if (req.readyState == 4) {
+            if (req.status == 200) {
+                console.log("the view is working . . .");
+            }
+            else {
+                alert("Error Occured");
+            }
+        }
+    };
+};

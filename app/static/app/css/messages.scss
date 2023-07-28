@@ -4,7 +4,7 @@
   justify-content: space-between;
   width: 100%;
 
-  .list {
+  .messages {
     width: 40%;
     border-right: solid 0.1vw rgb(173, 173, 173);
     padding-right: 2vw;
@@ -23,6 +23,7 @@
         justify-content: flex-start;
         padding: 1vw 0;
         border-bottom: solid 0.1vw rgb(173, 173, 173);
+        cursor: pointer;
         &:hover {
           background-color: rgba(185, 185, 185, 0.116);
         }
