@@ -16,8 +16,10 @@
 <!-- block content -->
 {% block content %}
 <div class="messages">
-  <div class="messages">
+  {% if user_messages%}
+  <div class="list">
     <ul>
+      {% for message in user_messages %}
       <li>
         <div class="image">
           <img
@@ -30,116 +32,10 @@
           <div class="time"><p>Today at 2:00pm</p></div>
         </div>
       </li>
-      <li>
-        <div class="image">
-          <img
-            src="{% static 'app/images/insta-sample.png' %}"
-            alt="test image"
-          />
-        </div>
-        <div class="info">
-          <div class="name"><p>@testuser</p></div>
-          <div class="time"><p>Today at 2:00pm</p></div>
-        </div>
-      </li>
-      <li>
-        <div class="image">
-          <img
-            src="{% static 'app/images/insta-sample.png' %}"
-            alt="test image"
-          />
-        </div>
-        <div class="info">
-          <div class="name"><p>@testuser</p></div>
-          <div class="time"><p>Today at 2:00pm</p></div>
-        </div>
-      </li>
-      <li>
-        <div class="image">
-          <img
-            src="{% static 'app/images/insta-sample.png' %}"
-            alt="test image"
-          />
-        </div>
-        <div class="info">
-          <div class="name"><p>@testuser</p></div>
-          <div class="time"><p>Today at 2:00pm</p></div>
-        </div>
-      </li>
-      <li>
-        <div class="image">
-          <img
-            src="{% static 'app/images/insta-sample.png' %}"
-            alt="test image"
-          />
-        </div>
-        <div class="info">
-          <div class="name"><p>@testuser</p></div>
-          <div class="time"><p>Today at 2:00pm</p></div>
-        </div>
-      </li>
-      <li>
-        <div class="image">
-          <img
-            src="{% static 'app/images/insta-sample.png' %}"
-            alt="test image"
-          />
-        </div>
-        <div class="info">
-          <div class="name"><p>@testuser</p></div>
-          <div class="time"><p>Today at 2:00pm</p></div>
-        </div>
-      </li>
-      <li>
-        <div class="image">
-          <img
-            src="{% static 'app/images/insta-sample.png' %}"
-            alt="test image"
-          />
-        </div>
-        <div class="info">
-          <div class="name"><p>@testuser</p></div>
-          <div class="time"><p>Today at 2:00pm</p></div>
-        </div>
-      </li>
-      <li>
-        <div class="image">
-          <img
-            src="{% static 'app/images/insta-sample.png' %}"
-            alt="test image"
-          />
-        </div>
-        <div class="info">
-          <div class="name"><p>@testuser</p></div>
-          <div class="time"><p>Today at 2:00pm</p></div>
-        </div>
-      </li>
-      <li>
-        <div class="image">
-          <img
-            src="{% static 'app/images/insta-sample.png' %}"
-            alt="test image"
-          />
-        </div>
-        <div class="info">
-          <div class="name"><p>@testuser</p></div>
-          <div class="time"><p>Today at 2:00pm</p></div>
-        </div>
-      </li>
-      <li>
-        <div class="image">
-          <img
-            src="{% static 'app/images/insta-sample.png' %}"
-            alt="test image"
-          />
-        </div>
-        <div class="info">
-          <div class="name"><p>@testuser</p></div>
-          <div class="time"><p>Today at 2:00pm</p></div>
-        </div>
-      </li>
+      {% endfor %}
     </ul>
   </div>
+  {% endif %}
   <div class="view">
     {% if not toggled_message %}
     <div class="no-message">

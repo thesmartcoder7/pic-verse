@@ -8,8 +8,14 @@ from conversations.models import *
 
 @login_required
 def messages(request):
+    user = User.objects.get(username=request.user)
     post_form = PostCreationForm()
-    user_messages = Thread.objects.filter(participants=request.user)
+    user_messages = []
+    user_threads = Thread.objects.filter(participants=request.user)
+
+    for thread in user_threads:
+        print(thread.participants.all())
+
     context = {
         'post_form': post_form,
         'user_messages': user_messages
