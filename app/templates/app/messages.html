@@ -28,8 +28,10 @@
           />
         </div>
         <div class="info">
-          <div class="name"><p>{{message.respondent | title}}</p></div>
-          <div class="time"><p>Today at 2:00pm</p></div>
+          <div class="name"><p>{{ message.respondent | title }}</p></div>
+          <div class="last-in">
+            <p>{{ message.last_in.content | truncatechars:30 }}</p>
+          </div>
         </div>
         <div class="delete">
           <button>Delete</button>

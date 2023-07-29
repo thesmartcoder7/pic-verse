@@ -58,12 +58,13 @@
   margin: 0.2vw 0;
 }
 .messages .list ul li .info .name p {
+  color: #0095f6;
   font-size: 0.9vw;
 }
-.messages .list ul li .info .time {
+.messages .list ul li .info .last-in {
   margin: 0.2vw 0;
 }
-.messages .list ul li .info .time p {
+.messages .list ul li .info .last-in p {
   font-size: 0.9vw;
 }
 .messages .list ul li .delete {

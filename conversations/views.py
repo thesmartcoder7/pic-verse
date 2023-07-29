@@ -16,18 +16,19 @@ def messages(request):
     for thread in user_threads:
         id = thread.id
         participants = list(thread.participants.all())
+        thread_messages = list(reversed(DirectMessage.objects.filter(
+            thread=id)))
         if user in participants:
             participants.remove(user)
             respondent = participants[0]
 
         message = {
             'id': id,
-            'respondent': respondent
+            'respondent': respondent,
+            'last_in': thread_messages[0]
         }
 
         user_messages.append(message)
-
-    print(user_messages)
 
     context = {
         'post_form': post_form,
