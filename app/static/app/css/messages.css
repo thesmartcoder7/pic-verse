@@ -83,4 +83,25 @@
   text-align: center;
   line-height: 1.8vw;
   color: #adadad;
+}
+.messages .empty-messages {
+  width: 100%;
+  min-height: 70vh;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.messages .empty-messages .message-icon svg {
+  width: 5vw;
+  height: 5vw;
+}
+.messages .empty-messages .message-text {
+  padding: 0 10vw;
+}
+.messages .empty-messages .message-text p {
+  text-align: center;
+  line-height: 1.8vw;
+  color: #adadad;
 }/*# sourceMappingURL=messages.css.map */
