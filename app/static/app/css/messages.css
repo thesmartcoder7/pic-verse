@@ -28,7 +28,14 @@
   cursor: pointer;
 }
 .messages .list ul li:hover {
-  background-color: rgba(185, 185, 185, 0.116);
+  border-bottom: solid 0.1vw #0095f6;
+  pointer-events: auto;
+}
+.messages .list ul li:hover .delete {
+  display: grid;
+  place-items: center;
+  opacity: 1;
+  pointer-events: auto;
 }
 .messages .list ul li .image {
   width: 3.5vw;
@@ -50,13 +57,41 @@
 .messages .list ul li .info .name {
   margin: 0.2vw 0;
 }
+.messages .list ul li .info .name p {
+  font-size: 0.9vw;
+}
 .messages .list ul li .info .time {
   margin: 0.2vw 0;
 }
+.messages .list ul li .info .time p {
+  font-size: 0.9vw;
+}
+.messages .list ul li .delete {
+  opacity: 0;
+  pointer-events: none;
+}
+.messages .list ul li .delete button {
+  padding: 0.5vw 1.5vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 0.9vw;
+  font-weight: 500;
+  border: 0.1vw solid #0095f6;
+  outline: none;
+  border-radius: 0.2vw;
+  color: #fff;
+  background: #0095f6;
+  transition: 0.2s ease-in-out;
+}
+.messages .list ul li .delete button:hover {
+  background-color: #fff;
+  color: #0095f6;
+  transition: 0.2s ease-in-out;
+}
 .messages .view {
   width: 60%;
-  min-height: 100vh;
-  height: auto;
 }
 .messages .view .no-message {
   position: sticky;

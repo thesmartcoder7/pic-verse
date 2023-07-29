@@ -23,13 +23,16 @@
       <li>
         <div class="image">
           <img
-            src="{% static 'app/images/insta-sample.png' %}"
+            src="{{message.respondent.profile.image.url}}"
             alt="test image"
           />
         </div>
         <div class="info">
-          <div class="name"><p>@testuser</p></div>
+          <div class="name"><p>{{message.respondent | title}}</p></div>
           <div class="time"><p>Today at 2:00pm</p></div>
+        </div>
+        <div class="delete">
+          <button>Delete</button>
         </div>
       </li>
       {% endfor %}

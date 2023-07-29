@@ -11,10 +11,23 @@ def messages(request):
     user = User.objects.get(username=request.user)
     post_form = PostCreationForm()
     user_messages = []
-    user_threads = Thread.objects.filter(participants=request.user)
+    user_threads = Thread.objects.filter(participants=user)
 
     for thread in user_threads:
-        print(thread.participants.all())
+        id = thread.id
+        participants = list(thread.participants.all())
+        if user in participants:
+            participants.remove(user)
+            respondent = participants[0]
+
+        message = {
+            'id': id,
+            'respondent': respondent
+        }
+
+        user_messages.append(message)
+
+    print(user_messages)
 
     context = {
         'post_form': post_form,
