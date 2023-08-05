@@ -127,15 +127,30 @@
 
     .thread-view {
       height: 100%;
+      width: 100%;
       .thread-messages {
-        height: inherit;
+        width: 100%;
+        height: 75%;
         position: relative;
+        overflow-y: scroll;
+        &::-webkit-scrollbar {
+          width: 0.3vw;
+        }
+        &::-webkit-scrollbar-track {
+          box-shadow: inset 0 0 0.5vw rgba(224, 224, 224, 0.3);
+        }
+
+        &::-webkit-scrollbar-thumb {
+          height: 1vw;
+          background-color: #d1d1d1;
+          outline: none;
+        }
+
         padding: 1vw;
         .respondent,
         .user-messages {
           width: 100%;
-          margin: 0.5vw 0;
-          padding: 1vw;
+          padding: 1vw 0;
           border-radius: 0.5vw;
           display: flex;
           align-items: flex-start;
@@ -145,7 +160,7 @@
           }
           .main {
             width: 45%;
-            background-color: #f0f0f0;
+            background-color: #afafaf15;
 
             padding: 1vw;
             border-radius: 0.5vw;
@@ -156,9 +171,10 @@
           }
         }
         .reply {
-          width: 45%;
+          background-color: #fff;
+          width: 43.3%;
           position: fixed;
-          bottom: 3vw;
+          bottom: 2.5vw;
           form {
             width: 100%;
             display: flex;
