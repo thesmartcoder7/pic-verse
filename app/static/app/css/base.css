@@ -193,7 +193,7 @@ main .main-content {
   width: 80%;
   height: 90%;
   padding: 0 3%;
-  overflow: auto;
+  overflow: hidden;
 }
 main .main-content::-webkit-scrollbar {
   width: 0.5vw;

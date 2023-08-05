@@ -3,12 +3,12 @@
   align-items: flex-start;
   justify-content: space-between;
   width: 100%;
-  height: 100%;
 }
 .messages .list {
   width: 40%;
+  border-right: solid 0.1vw rgb(173, 173, 173);
   padding-right: 2vw;
-  height: 100%;
+  min-height: 100vh;
 }
 .messages .list ul {
   width: 100%;
@@ -93,8 +93,6 @@
 }
 .messages .view {
   width: 60%;
-  height: 100%;
-  border-left: solid 0.1vw rgb(173, 173, 173);
 }
 .messages .view .no-message {
   position: sticky;
@@ -122,69 +120,6 @@
   line-height: 1.8vw;
   color: #adadad;
 }
-.messages .view .thread-view {
-  height: 100%;
-}
-.messages .view .thread-view .thread-messages {
-  height: inherit;
-  position: relative;
-  padding: 1vw;
-}
-.messages .view .thread-view .thread-messages .respondent,
-.messages .view .thread-view .thread-messages .user-messages {
-  width: 100%;
-  margin: 0.5vw 0;
-  padding: 1vw;
-  border-radius: 0.5vw;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-}
-.messages .view .thread-view .thread-messages .respondent .dummy,
-.messages .view .thread-view .thread-messages .user-messages .dummy {
-  width: 45%;
-}
-.messages .view .thread-view .thread-messages .respondent .main,
-.messages .view .thread-view .thread-messages .user-messages .main {
-  width: 45%;
-  background-color: #f0f0f0;
-  padding: 1vw;
-  border-radius: 0.5vw;
-}
-.messages .view .thread-view .thread-messages .respondent .main p,
-.messages .view .thread-view .thread-messages .user-messages .main p {
-  color: #1f1f1f;
-  font-size: 0.9vw;
-}
-.messages .view .thread-view .thread-messages .reply {
-  width: 45%;
-  position: fixed;
-  bottom: 3vw;
-}
-.messages .view .thread-view .thread-messages .reply form {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: flex-start;
-}
-.messages .view .thread-view .thread-messages .reply form textarea {
-  width: 100%;
-  height: 5vw;
-  padding: 1vw;
-  font-size: 0.9vw;
-}
-.messages .view .thread-view .thread-messages .reply form input[type=submit] {
-  background-color: #0095f6;
-  padding: 0.5vw 2vw;
-  color: #fff;
-  font-size: 0.9vw;
-  border: none;
-  outline: none;
-  border-radius: 0.3vw;
-  cursor: pointer;
-  margin-top: 0.5vw;
-}
 .messages .empty-messages {
   width: 100%;
   min-height: 70vh;
@@ -205,4 +140,4 @@
   text-align: center;
   line-height: 1.8vw;
   color: #adadad;
-}/*# sourceMappingURL=messages.css.map */
+}/*# sourceMappingURL=messages.f0b1bfd0eab4.css.map */

@@ -41,7 +41,7 @@
     </ul>
   </div>
   <div class="view">
-    {% if not toggled_message %}
+    <!-- {% if not toggled_message %}
     <div class="no-message">
       <div class="message-icon">
         <svg viewBox="0 0 21 21">
@@ -60,12 +60,55 @@
         </svg>
       </div>
       <div class="message-text">
-        <p>
-          You have no messages yet. Create connections and talk about anything!
-        </p>
+        <p>Select any thread to view here . . .</p>
       </div>
     </div>
-    {% endif %}
+    {% else %}
+    <div class="thread-view">
+      <div class="thread-messages">
+        <div class="respondent">
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quo, rerum!
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Non at ab
+          ipsam?
+        </div>
+        <div class="user-messages">
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis
+          labore, earum esse assumenda saepe molestiae quaerat natus nisi dicta
+          minima.
+        </div>
+      </div>
+    </div>
+    {% endif %} -->
+    <div class="thread-view">
+      <div class="thread-messages">
+        <div class="respondent">
+          <div class="main">
+            <p>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quo,
+              rerum! Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Non at ab ipsam?
+            </p>
+          </div>
+          <div class="dummy"></div>
+        </div>
+        <div class="user-messages">
+          <div class="dummy"></div>
+          <div class="main">
+            <p>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quo,
+              rerum! Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Non at ab ipsam?
+            </p>
+          </div>
+        </div>
+        <div class="reply">
+          <form action="">
+            <textarea name="reply-message" id="reply-message"></textarea>
+            <input type="submit" value="Reply" />
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
   {% else %}
   <div class="empty-messages">

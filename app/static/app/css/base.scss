@@ -214,7 +214,7 @@ main {
     width: 80%;
     height: 90%;
     padding: 0 3%;
-    overflow: auto;
+    overflow: hidden;
     &::-webkit-scrollbar {
       width: 0.5vw;
     }
