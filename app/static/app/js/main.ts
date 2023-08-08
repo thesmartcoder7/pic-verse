@@ -317,20 +317,20 @@ let updateComment = (postId: string, csrf: string, event: Event) => {
 };
 
 // function to view the messages
-let view_message = (thread_id: string, csrf: string) => {
+let viewMessageThread = (thread_id: string, csrf: string) => {
   let baseURL = new URL(document.URL);
   let req = new XMLHttpRequest();
-  let url = `${baseURL.origin}/thread/${thread_id}/`;
+  let url = `${baseURL.origin}/messages/thread/${thread_id}/`;
   let headers = {
     "Content-Type": "application/json",
     "X-CSRFToken": csrf,
   };
 
+  req.open("GET", url, true);
+
   for (let header in headers) {
     req.setRequestHeader(header, headers[header]);
   }
-
-  req.open("POST", url, true);
 
   req.onreadystatechange = () => {
     if (req.readyState == 4) {
@@ -341,4 +341,6 @@ let view_message = (thread_id: string, csrf: string) => {
       }
     }
   };
+
+  req.send();
 };

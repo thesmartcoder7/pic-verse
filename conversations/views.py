@@ -11,10 +11,11 @@
     - conversations.models.DirectMessage: The model representing direct messages.
 """
 
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 from app.forms import PostCreationForm
 from conversations.models import *
+import json
 
 
 @login_required
@@ -89,3 +90,23 @@ def delete_thread(request, id):
         print("There is no such thread that exists")
 
     return redirect('insta-messages')
+
+
+@login_required
+def view_thread(request, id):
+    response = {
+        'status': False,
+        'message': 'An issue occurred!',
+    }
+    try:
+        messages = list(
+            reversed(DirectMessage.objects.filter(thread=id)))
+        if messages:
+            response = {
+                'status': True,
+                'messages': messages
+            }
+            return HttpResponse(json.dumps(response))
+
+    except:
+        pass

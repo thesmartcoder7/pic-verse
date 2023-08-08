@@ -20,14 +20,17 @@
   <div class="list">
     <ul>
       {% for message in user_messages %}
-      <li onclick="viewMessageThread(message.id)">
+      <li>
         <div class="image">
           <img
             src="{{message.respondent.profile.image.url}}"
             alt="test image"
           />
         </div>
-        <div class="info">
+        <div
+          class="info"
+          onclick="viewMessageThread('{{message.id}}', '{{csrf_token}}')"
+        >
           <div class="name"><p>{{ message.respondent | title }}</p></div>
           <div class="last-in">
             <p>{{ message.last_in.content | truncatechars:30 }}</p>
