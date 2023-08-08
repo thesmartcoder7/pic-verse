@@ -20,7 +20,7 @@
   <div class="list">
     <ul>
       {% for message in user_messages %}
-      <li>
+      <li onclick="viewMessageThread(message.id)">
         <div class="image">
           <img
             src="{{message.respondent.profile.image.url}}"
@@ -34,7 +34,7 @@
           </div>
         </div>
         <div class="delete">
-          <button>Delete</button>
+          <a href="{% url 'delete-thread' message.id %}">Delete</a>
         </div>
       </li>
       {% endfor %}

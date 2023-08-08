@@ -71,11 +71,13 @@
   opacity: 0;
   pointer-events: none;
 }
-.messages .list ul li .delete button {
+.messages .list ul li .delete button,
+.messages .list ul li .delete a {
   padding: 0.5vw 1.5vw;
   display: flex;
   align-items: center;
   justify-content: center;
+  text-decoration: none;
   cursor: pointer;
   font-size: 0.9vw;
   font-weight: 500;
@@ -86,7 +88,8 @@
   background: #0095f6;
   transition: 0.2s ease-in-out;
 }
-.messages .list ul li .delete button:hover {
+.messages .list ul li .delete button:hover,
+.messages .list ul li .delete a:hover {
   background-color: #fff;
   color: #0095f6;
   transition: 0.2s ease-in-out;

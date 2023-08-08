@@ -11,7 +11,7 @@
     - conversations.models.DirectMessage: The model representing direct messages.
 """
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from app.forms import PostCreationForm
 from conversations.models import *
@@ -55,11 +55,15 @@ def messages(request):
             participants.remove(user)
             respondent = participants[0]
 
+        last_in = None
+        if thread_messages:
+            last_in = thread_messages[0]
+
         # Create a dictionary containing relevant data for each thread
         message = {
             'id': id,
             'respondent': respondent,
-            'last_in': thread_messages[0]
+            'last_in': last_in
         }
 
         # Append the message data to the user_messages list
@@ -73,3 +77,15 @@ def messages(request):
 
     # Render the 'messages.html' template with the given context and return as an HTTP response
     return render(request, 'app/messages.html', context)
+
+
+@login_required
+def delete_thread(request, id):
+    try:
+        thread = Thread.objects.get(id=id)
+        if thread:
+            thread.delete()
+    except:
+        print("There is no such thread that exists")
+
+    return redirect('insta-messages')
