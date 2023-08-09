@@ -254,12 +254,10 @@ var viewThreadMessages = function (threadId, csrf) {
     req.onreadystatechange = function () {
         if (req.readyState == 4 && req.status == 200) {
             var res = JSON.parse(req.responseText);
-            if (res.status == true) {
-                console.log("This works up to response received");
-            }
+            console.log(res);
         }
         else {
-            alert("Something is off");
+            alert("Something is off in the receiver function");
         }
     };
     req.send();

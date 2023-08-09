@@ -321,7 +321,7 @@ let viewThreadMessages = (threadId: string, csrf: string) => {
   let baseURL = new URL(document.URL);
   let req = new XMLHttpRequest();
   let url = `${baseURL.origin}/messages/thread/${threadId}`;
-  
+
   let headers = {
     "Content-Type": "application/json",
     "X-CSRFToken": csrf,
@@ -335,11 +335,9 @@ let viewThreadMessages = (threadId: string, csrf: string) => {
   req.onreadystatechange = () => {
     if (req.readyState == 4 && req.status == 200) {
       let res = JSON.parse(req.responseText);
-      if (res.status == true) {
-        console.log("This works up to response received");
-      }
+      console.log(res)
     } else {
-      alert("Something is off");
+      alert("Something is off in the receiver function");
     }
   };
 

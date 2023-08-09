@@ -16,9 +16,8 @@ from django.contrib.auth.decorators import login_required
 from app.forms import PostCreationForm
 from conversations.models import *
 from conversations.serializers import *
+from django.core.serializers import serialize
 import json
-from django.http import JsonResponse
-from rest_framework.response import Response
 
 
 @login_required
@@ -102,17 +101,10 @@ def view_thread(request, id):
         'message': 'An issue occurred!',
     }
     try:
-        messages = DMSerializer(DirectMessage.objects.filter(thread=id), many=True
-                                )
-        print('code gets to this point')
-        print(messages.data)
-
-        if messages:
-            # response = {
-            #     'status': True,
-            #     'messages': messages.data
-            # }
-            return Response(messages.data)
+        messages = DirectMessage.objects.filter(thread=id)
+        serialized_data = serialize("json", messages)
+        return HttpResponse(json.dumps(serialized_data))
 
     except:
-        return redirect('insta-messages')
+        # return redirect('insta-messages')
+        return HttpResponse('something is off')
