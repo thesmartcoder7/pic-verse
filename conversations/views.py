@@ -15,7 +15,10 @@ from django.shortcuts import render, redirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 from app.forms import PostCreationForm
 from conversations.models import *
+from conversations.serializers import *
 import json
+from django.http import JsonResponse
+from rest_framework.response import Response
 
 
 @login_required
@@ -99,14 +102,17 @@ def view_thread(request, id):
         'message': 'An issue occurred!',
     }
     try:
-        messages = list(
-            reversed(DirectMessage.objects.filter(thread=id)))
+        messages = DMSerializer(DirectMessage.objects.filter(thread=id), many=True
+                                )
+        print('code gets to this point')
+        print(messages.data)
+
         if messages:
-            response = {
-                'status': True,
-                'messages': messages
-            }
-            return HttpResponse(json.dumps(response))
+            # response = {
+            #     'status': True,
+            #     'messages': messages.data
+            # }
+            return Response(messages.data)
 
     except:
-        pass
+        return redirect('insta-messages')

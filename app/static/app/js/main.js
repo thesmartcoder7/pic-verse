@@ -239,27 +239,29 @@ var updateComment = function (postId, csrf, event) {
     return;
 };
 // function to view the messages
-var viewMessageThread = function (thread_id, csrf) {
+var viewThreadMessages = function (threadId, csrf) {
     var baseURL = new URL(document.URL);
     var req = new XMLHttpRequest();
-    var url = "".concat(baseURL.origin, "/messages/thread/").concat(thread_id, "/");
+    var url = "".concat(baseURL.origin, "/messages/thread/").concat(threadId);
     var headers = {
         "Content-Type": "application/json",
         "X-CSRFToken": csrf
     };
-    req.open("GET", url, true);
+    req.open("POST", url, true);
     for (var header in headers) {
         req.setRequestHeader(header, headers[header]);
     }
     req.onreadystatechange = function () {
-        if (req.readyState == 4) {
-            if (req.status == 200) {
-                console.log("the view is working . . .");
+        if (req.readyState == 4 && req.status == 200) {
+            var res = JSON.parse(req.responseText);
+            if (res.status == true) {
+                console.log("This works up to response received");
             }
-            else {
-                alert("Error Occured");
-            }
+        }
+        else {
+            alert("Something is off");
         }
     };
     req.send();
+    return;
 };
