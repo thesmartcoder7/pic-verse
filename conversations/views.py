@@ -117,4 +117,26 @@ def view_thread(request, id):
 
 @login_required
 def reply_to_thread(request, id):
-    return HttpResponse('this route works')
+    thread = Thread.objects.get(id=id)
+    author = User.objects.get(username=request.user)
+    new_message = DirectMessage.objects.create(
+        thread=thread, author=author, content=json.loads(request.body)['message'])
+    new_message.save()
+    
+    response = {
+        'status': False,
+        'message': 'An issue occurred!',
+    }
+    try:
+        messages = DirectMessage.objects.filter(thread=id)
+        serialized_data = serialize("json", messages, fields=(
+            'thread', 'author', 'author__username', 'content', 'timestamp'), use_natural_foreign_keys=True)
+        response = {
+            'status': True,
+            'messages': serialized_data,
+        }
+        return HttpResponse(json.dumps(response))
+
+    except:
+        # return redirect('insta-messages')
+        return HttpResponse(json.dumps(response))

@@ -379,7 +379,7 @@ let viewThreadMessages = (
           <div class="thread-messages">
             ${html}
             <div class="reply">
-              <form method="post" onsubmit="threadReply(event, '${threadId}', '${csrf}', '${username}', '${respondent}')">
+              <form method="post" onsubmit="threadReply(event, '${threadId}', '${csrf}', '${username}', '${respondent}', '${imageUrl}')">
               <input type="hidden" name="csrfmiddlewaretoken" value="${csrf}">
               <textarea required name="reply-message" id="reply-message"></textarea>
                 <input type="submit" value="Reply" />
@@ -408,20 +408,90 @@ let threadReply = (
   threadId: string,
   csrf: string,
   username: string,
-  respondent: string
+  respondent: string,
+  imageUrl: string
 ) => {
   e.preventDefault();
-  alert("this reply has been triggered!");
   let reply = document.getElementById("reply-message") as HTMLTextAreaElement;
   let baseURL = new URL(document.URL);
   let req = new XMLHttpRequest();
   let url = `${baseURL.origin}/messages/thread/reply/${threadId}`;
   let threadArea = document.querySelector(".view") as HTMLDivElement;
 
-  // let headers = {
-  //   "Content-Type": "application/json",
-  //   "X-CSRFToken": csrf,
-  // };
+  let headers = {
+    "Content-Type": "application/json",
+    "X-CSRFToken": csrf,
+  };
 
-  // req.open("POST", url, true);
+  let data = {
+    sender: username,
+    receiver: respondent,
+    threadId: threadId,
+    message: reply.value,
+  };
+
+  req.open("POST", url, true);
+
+  for (let header in headers) {
+    req.setRequestHeader(header, headers[header]);
+  }
+
+  req.onreadystatechange = () => {
+    let html = "";
+    if (req.readyState == 4 && req.status == 200) {
+      let res: any = JSON.parse(req.responseText);
+      JSON.parse(res.messages).forEach((item: any) => {
+        if (item.fields.author[0] != username) {
+          html += `
+          <div class="respondent">
+          <div class="main">
+            <p>
+              ${item.fields.content}
+            </p>
+          </div>
+          <div class="dummy"></div>
+        </div>`;
+        } else {
+          html += `
+          <div class="user-messages">
+          <div class="dummy"></div>
+          <div class="main">
+            <p>
+              ${item.fields.content}
+            </p>
+          </div>
+          
+        </div>`;
+        }
+      });
+
+      let container = `
+        <div class="thread-view">
+          <div class=respondent-thread>
+            <img src='${imageUrl}' />
+            <p>${respondent}</p>
+          </div>
+          <div class="thread-messages">
+            ${html}
+            <div class="reply">
+              <form method="post" onsubmit="threadReply(event, '${threadId}', '${csrf}', '${username}', '${respondent}', '${imageUrl}')">
+              <input type="hidden" name="csrfmiddlewaretoken" value="${csrf}">
+              <textarea required name="reply-message" id="reply-message"></textarea>
+                <input type="submit" value="Reply" />
+              </form>
+            </div>
+          </div>
+        </div>
+      `;
+
+      if (container != "undefined" || !container) {
+        threadArea.innerHTML = container;
+        threadArea.scrollTo(0, threadArea.scrollHeight);
+      }
+    } else if (req.readyState == 4) {
+      alert("Something is off in the receiver function");
+    }
+  };
+
+  req.send(JSON.stringify(data));
 };

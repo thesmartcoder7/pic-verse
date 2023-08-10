@@ -265,7 +265,7 @@ var viewThreadMessages = function (threadId, csrf, username, respondent, imageUr
                     html += "\n          <div class=\"user-messages\">\n          <div class=\"dummy\"></div>\n          <div class=\"main\">\n            <p>\n              ".concat(item.fields.content, "\n            </p>\n          </div>\n          \n        </div>");
                 }
             });
-            var container = "\n        <div class=\"thread-view\">\n          <div class=respondent-thread>\n            <img src='".concat(imageUrl, "' />\n            <p>").concat(respondent, "</p>\n          </div>\n          <div class=\"thread-messages\">\n            ").concat(html, "\n            <div class=\"reply\">\n              <form method=\"post\" onsubmit=\"threadReply(event, '").concat(threadId, "', '").concat(csrf, "', '").concat(username, "', '").concat(respondent, "')\">\n              <input type=\"hidden\" name=\"csrfmiddlewaretoken\" value=\"").concat(csrf, "\">\n              <textarea required name=\"reply-message\" id=\"reply-message\"></textarea>\n                <input type=\"submit\" value=\"Reply\" />\n              </form>\n            </div>\n          </div>\n        </div>\n      ");
+            var container = "\n        <div class=\"thread-view\">\n          <div class=respondent-thread>\n            <img src='".concat(imageUrl, "' />\n            <p>").concat(respondent, "</p>\n          </div>\n          <div class=\"thread-messages\">\n            ").concat(html, "\n            <div class=\"reply\">\n              <form method=\"post\" onsubmit=\"threadReply(event, '").concat(threadId, "', '").concat(csrf, "', '").concat(username, "', '").concat(respondent, "', '").concat(imageUrl, "')\">\n              <input type=\"hidden\" name=\"csrfmiddlewaretoken\" value=\"").concat(csrf, "\">\n              <textarea required name=\"reply-message\" id=\"reply-message\"></textarea>\n                <input type=\"submit\" value=\"Reply\" />\n              </form>\n            </div>\n          </div>\n        </div>\n      ");
             if (container != "undefined" || !container) {
                 threadArea.innerHTML = container;
                 threadArea.scrollTo(0, threadArea.scrollHeight);
@@ -279,17 +279,48 @@ var viewThreadMessages = function (threadId, csrf, username, respondent, imageUr
     return;
 };
 // function to send thread replies
-var threadReply = function (e, threadId, csrf, username, respondent) {
+var threadReply = function (e, threadId, csrf, username, respondent, imageUrl) {
     e.preventDefault();
-    alert("this reply has been triggered!");
     var reply = document.getElementById("reply-message");
     var baseURL = new URL(document.URL);
     var req = new XMLHttpRequest();
     var url = "".concat(baseURL.origin, "/messages/thread/reply/").concat(threadId);
     var threadArea = document.querySelector(".view");
-    // let headers = {
-    //   "Content-Type": "application/json",
-    //   "X-CSRFToken": csrf,
-    // };
-    // req.open("POST", url, true);
+    var headers = {
+        "Content-Type": "application/json",
+        "X-CSRFToken": csrf
+    };
+    var data = {
+        sender: username,
+        receiver: respondent,
+        threadId: threadId,
+        message: reply.value
+    };
+    req.open("POST", url, true);
+    for (var header in headers) {
+        req.setRequestHeader(header, headers[header]);
+    }
+    req.onreadystatechange = function () {
+        var html = "";
+        if (req.readyState == 4 && req.status == 200) {
+            var res = JSON.parse(req.responseText);
+            JSON.parse(res.messages).forEach(function (item) {
+                if (item.fields.author[0] != username) {
+                    html += "\n          <div class=\"respondent\">\n          <div class=\"main\">\n            <p>\n              ".concat(item.fields.content, "\n            </p>\n          </div>\n          <div class=\"dummy\"></div>\n        </div>");
+                }
+                else {
+                    html += "\n          <div class=\"user-messages\">\n          <div class=\"dummy\"></div>\n          <div class=\"main\">\n            <p>\n              ".concat(item.fields.content, "\n            </p>\n          </div>\n          \n        </div>");
+                }
+            });
+            var container = "\n        <div class=\"thread-view\">\n          <div class=respondent-thread>\n            <img src='".concat(imageUrl, "' />\n            <p>").concat(respondent, "</p>\n          </div>\n          <div class=\"thread-messages\">\n            ").concat(html, "\n            <div class=\"reply\">\n              <form method=\"post\" onsubmit=\"threadReply(event, '").concat(threadId, "', '").concat(csrf, "', '").concat(username, "', '").concat(respondent, "', '").concat(imageUrl, "')\">\n              <input type=\"hidden\" name=\"csrfmiddlewaretoken\" value=\"").concat(csrf, "\">\n              <textarea required name=\"reply-message\" id=\"reply-message\"></textarea>\n                <input type=\"submit\" value=\"Reply\" />\n              </form>\n            </div>\n          </div>\n        </div>\n      ");
+            if (container != "undefined" || !container) {
+                threadArea.innerHTML = container;
+                threadArea.scrollTo(0, threadArea.scrollHeight);
+            }
+        }
+        else if (req.readyState == 4) {
+            alert("Something is off in the receiver function");
+        }
+    };
+    req.send(JSON.stringify(data));
 };
