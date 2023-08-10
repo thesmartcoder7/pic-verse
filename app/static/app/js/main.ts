@@ -379,8 +379,9 @@ let viewThreadMessages = (
           <div class="thread-messages">
             ${html}
             <div class="reply">
-              <form action="">
-                <textarea name="reply-message" id="reply-message"></textarea>
+              <form method="post" onsubmit="threadReply(event, '${threadId}', '${csrf}', '${username}', '${respondent}')">
+              <input type="hidden" name="csrfmiddlewaretoken" value="${csrf}">
+              <textarea required name="reply-message" id="reply-message"></textarea>
                 <input type="submit" value="Reply" />
               </form>
             </div>
@@ -399,4 +400,28 @@ let viewThreadMessages = (
 
   req.send();
   return;
+};
+
+// function to send thread replies
+let threadReply = (
+  e: Event,
+  threadId: string,
+  csrf: string,
+  username: string,
+  respondent: string
+) => {
+  e.preventDefault();
+  alert("this reply has been triggered!");
+  let reply = document.getElementById("reply-message") as HTMLTextAreaElement;
+  let baseURL = new URL(document.URL);
+  let req = new XMLHttpRequest();
+  let url = `${baseURL.origin}/messages/thread/reply/${threadId}`;
+  let threadArea = document.querySelector(".view") as HTMLDivElement;
+
+  // let headers = {
+  //   "Content-Type": "application/json",
+  //   "X-CSRFToken": csrf,
+  // };
+
+  // req.open("POST", url, true);
 };

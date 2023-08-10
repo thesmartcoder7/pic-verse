@@ -113,3 +113,8 @@ def view_thread(request, id):
     except:
         # return redirect('insta-messages')
         return HttpResponse(json.dumps(response))
+
+
+@login_required
+def reply_to_thread(request, id):
+    return HttpResponse('this route works')
