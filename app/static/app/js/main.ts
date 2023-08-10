@@ -112,6 +112,74 @@ new EmojiPicker({
   dragButton: true,
 });
 
+// format time
+function getDayWithSuffix(day: number): string {
+  if (day >= 11 && day <= 13) {
+    return `${day}th`;
+  }
+  switch (day % 10) {
+    case 1:
+      return `${day}st`;
+    case 2:
+      return `${day}nd`;
+    case 3:
+      return `${day}rd`;
+    default:
+      return `${day}th`;
+  }
+}
+
+function formatTimestamp(timestamp: string): string {
+  const now = new Date();
+  const inputDate = new Date(timestamp);
+  const timeDiff = now.getTime() - inputDate.getTime();
+
+  if (timeDiff < 86400000) {
+    // Less than a day
+    return `Today, ${inputDate
+      .toLocaleTimeString("en-US", {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true,
+      })
+      .toLowerCase()}`;
+  } else if (timeDiff < 604800000) {
+    // Less than a week
+    const daysOfWeek = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+    return `${daysOfWeek[inputDate.getDay()]} at ${inputDate
+      .toLocaleTimeString("en-US", {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true,
+      })
+      .toLowerCase()}`;
+  } else if (now.getFullYear() === inputDate.getFullYear()) {
+    // Within the same year
+    const dayWithSuffix = getDayWithSuffix(inputDate.getDate());
+    return `${dayWithSuffix} - ${inputDate.toLocaleString("default", {
+      month: "short",
+    })} at ${inputDate
+      .toLocaleTimeString("en-US", {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true,
+      })
+      .toLowerCase()}`;
+  } else {
+    // More than a year ago
+    const yearsAgo = now.getFullYear() - inputDate.getFullYear();
+    return `${yearsAgo} year${yearsAgo > 1 ? "s" : ""} ago`;
+  }
+}
+
 // ajax function to update the likes on a post based on a click event
 let likeRequest = (id: string, csrf: string, e: Event) => {
   let baseURL = new URL(document.URL);
@@ -359,12 +427,14 @@ let viewThreadMessages = (
       // console.log(JSON.parse(res.messages));
       JSON.parse(res.messages).forEach((item: any) => {
         if (item.fields.author[0] != username) {
+          console.log(item.fields.timestamp);
           html += `
           <div class="respondent">
           <div class="main">
             <p>
               ${item.fields.content}
             </p>
+            <p class="timestamp">${formatTimestamp(item.fields.timestamp)}</p>
           </div>
           <div class="dummy"></div>
         </div>`;
@@ -376,9 +446,11 @@ let viewThreadMessages = (
             <p>
               ${item.fields.content}
             </p>
+            <p class="timestamp">${formatTimestamp(item.fields.timestamp)}</p>
           </div>
           
-        </div>`;
+          </div>
+          `;
         }
       });
 
@@ -468,6 +540,7 @@ let threadReply = (
             <p>
               ${item.fields.content}
             </p>
+            <p class="timestamp">${formatTimestamp(item.fields.timestamp)}</p>
           </div>
           <div class="dummy"></div>
         </div>`;
@@ -479,6 +552,7 @@ let threadReply = (
             <p>
               ${item.fields.content}
             </p>
+            <p class="timestamp">${formatTimestamp(item.fields.timestamp)}</p>
           </div>
           
         </div>`;

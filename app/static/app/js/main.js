@@ -88,6 +88,74 @@ new EmojiPicker({
     closeButton: true,
     dragButton: true
 });
+// format time
+function getDayWithSuffix(day) {
+    if (day >= 11 && day <= 13) {
+        return "".concat(day, "th");
+    }
+    switch (day % 10) {
+        case 1:
+            return "".concat(day, "st");
+        case 2:
+            return "".concat(day, "nd");
+        case 3:
+            return "".concat(day, "rd");
+        default:
+            return "".concat(day, "th");
+    }
+}
+function formatTimestamp(timestamp) {
+    var now = new Date();
+    var inputDate = new Date(timestamp);
+    var timeDiff = now.getTime() - inputDate.getTime();
+    if (timeDiff < 86400000) {
+        // Less than a day
+        return "Today, ".concat(inputDate
+            .toLocaleTimeString("en-US", {
+            hour: "2-digit",
+            minute: "2-digit",
+            hour12: true
+        })
+            .toLowerCase());
+    }
+    else if (timeDiff < 604800000) {
+        // Less than a week
+        var daysOfWeek = [
+            "Sunday",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+        ];
+        return "".concat(daysOfWeek[inputDate.getDay()], " at ").concat(inputDate
+            .toLocaleTimeString("en-US", {
+            hour: "2-digit",
+            minute: "2-digit",
+            hour12: true
+        })
+            .toLowerCase());
+    }
+    else if (now.getFullYear() === inputDate.getFullYear()) {
+        // Within the same year
+        var dayWithSuffix = getDayWithSuffix(inputDate.getDate());
+        return "".concat(dayWithSuffix, " - ").concat(inputDate.toLocaleString("default", {
+            month: "short"
+        }), " at ").concat(inputDate
+            .toLocaleTimeString("en-US", {
+            hour: "2-digit",
+            minute: "2-digit",
+            hour12: true
+        })
+            .toLowerCase());
+    }
+    else {
+        // More than a year ago
+        var yearsAgo = now.getFullYear() - inputDate.getFullYear();
+        return "".concat(yearsAgo, " year").concat(yearsAgo > 1 ? "s" : "", " ago");
+    }
+}
 // ajax function to update the likes on a post based on a click event
 var likeRequest = function (id, csrf, e) {
     var baseURL = new URL(document.URL);
@@ -270,10 +338,11 @@ var viewThreadMessages = function (threadId, csrf, username, respondent, imageUr
             // console.log(JSON.parse(res.messages));
             JSON.parse(res.messages).forEach(function (item) {
                 if (item.fields.author[0] != username) {
-                    html += "\n          <div class=\"respondent\">\n          <div class=\"main\">\n            <p>\n              ".concat(item.fields.content, "\n            </p>\n          </div>\n          <div class=\"dummy\"></div>\n        </div>");
+                    console.log(item.fields.timestamp);
+                    html += "\n          <div class=\"respondent\">\n          <div class=\"main\">\n            <p>\n              ".concat(item.fields.content, "\n            </p>\n            <p class=\"timestamp\">").concat(formatTimestamp(item.fields.timestamp), "</p>\n          </div>\n          <div class=\"dummy\"></div>\n        </div>");
                 }
                 else {
-                    html += "\n          <div class=\"user-messages\">\n          <div class=\"dummy\"></div>\n          <div class=\"main\">\n            <p>\n              ".concat(item.fields.content, "\n            </p>\n          </div>\n          \n        </div>");
+                    html += "\n          <div class=\"user-messages\">\n          <div class=\"dummy\"></div>\n          <div class=\"main\">\n            <p>\n              ".concat(item.fields.content, "\n            </p>\n            <p class=\"timestamp\">").concat(formatTimestamp(item.fields.timestamp), "</p>\n          </div>\n          \n          </div>\n          ");
                 }
             });
             var container = "\n        <div class=\"thread-view\">\n          <div class=respondent-thread>\n            <img src='".concat(imageUrl, "' />\n            <p>").concat(respondent, "</p>\n          </div>\n          <div class=\"thread-messages\">\n            ").concat(html, "\n            <div class=\"reply\">\n              <form method=\"post\" onsubmit=\"threadReply(event, '").concat(threadId, "', '").concat(csrf, "', '").concat(username, "', '").concat(respondent, "', '").concat(imageUrl, "')\">\n              <input type=\"hidden\" name=\"csrfmiddlewaretoken\" value=\"").concat(csrf, "\">\n              <textarea required name=\"reply-message\" id=\"reply-message\"></textarea>\n              <div class=\"form-actions\">\n              <span id=\"e-selector\">\uD83D\uDE00</span>\n              <input type=\"submit\" value=\"Reply\" />\n              </div> \n              \n              </form>\n            </div>\n          </div>\n        </div>\n      ");
@@ -319,10 +388,10 @@ var threadReply = function (e, threadId, csrf, username, respondent, imageUrl) {
             var res = JSON.parse(req.responseText);
             JSON.parse(res.messages).forEach(function (item) {
                 if (item.fields.author[0] != username) {
-                    html += "\n          <div class=\"respondent\">\n          <div class=\"main\">\n            <p>\n              ".concat(item.fields.content, "\n            </p>\n          </div>\n          <div class=\"dummy\"></div>\n        </div>");
+                    html += "\n          <div class=\"respondent\">\n          <div class=\"main\">\n            <p>\n              ".concat(item.fields.content, "\n            </p>\n            <p class=\"timestamp\">").concat(formatTimestamp(item.fields.timestamp), "</p>\n          </div>\n          <div class=\"dummy\"></div>\n        </div>");
                 }
                 else {
-                    html += "\n          <div class=\"user-messages\">\n          <div class=\"dummy\"></div>\n          <div class=\"main\">\n            <p>\n              ".concat(item.fields.content, "\n            </p>\n          </div>\n          \n        </div>");
+                    html += "\n          <div class=\"user-messages\">\n          <div class=\"dummy\"></div>\n          <div class=\"main\">\n            <p>\n              ".concat(item.fields.content, "\n            </p>\n            <p class=\"timestamp\">").concat(formatTimestamp(item.fields.timestamp), "</p>\n          </div>\n          \n        </div>");
                 }
             });
             var container = "\n        <div class=\"thread-view\">\n          <div class=respondent-thread>\n            <img src='".concat(imageUrl, "' />\n            <p>").concat(respondent, "</p>\n          </div>\n          <div class=\"thread-messages\">\n            ").concat(html, "\n            <div class=\"reply\">\n              <form method=\"post\" onsubmit=\"threadReply(event, '").concat(threadId, "', '").concat(csrf, "', '").concat(username, "', '").concat(respondent, "', '").concat(imageUrl, "')\">\n              <input type=\"hidden\" name=\"csrfmiddlewaretoken\" value=\"").concat(csrf, "\">\n              <textarea required name=\"reply-message\" id=\"reply-message\"></textarea>\n              <div class=\"form-actions\">\n              <span id=\"e-selector\">\uD83D\uDE00</span>\n              <input type=\"submit\" value=\"Reply\" />\n              </div> \n              </form>\n            </div>\n          </div>\n        </div>\n      ");

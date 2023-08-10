@@ -195,6 +195,10 @@
   color: #1f1f1f;
   font-size: 0.9vw;
 }
+.messages .view .thread-view .thread-messages .respondent .main p.timestamp {
+  margin-top: 1vw;
+  font-size: 0.75vw;
+}
 .messages .view .thread-view .thread-messages .user-messages {
   width: 100%;
   padding: 1vw 0;
@@ -214,6 +218,10 @@
 .messages .view .thread-view .thread-messages .user-messages .main p {
   color: #fff;
   font-size: 0.9vw;
+}
+.messages .view .thread-view .thread-messages .user-messages .main p.timestamp {
+  margin-top: 1vw;
+  font-size: 0.75vw;
 }
 .messages .view .thread-view .thread-messages .reply {
   background-color: #fff;

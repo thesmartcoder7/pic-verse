@@ -196,6 +196,11 @@
               color: #1f1f1f;
               font-size: 0.9vw;
             }
+
+            p.timestamp {
+              margin-top: 1vw;
+              font-size: 0.75vw;
+            }
           }
         }
 
@@ -216,6 +221,10 @@
             p {
               color: #fff;
               font-size: 0.9vw;
+            }
+            p.timestamp {
+              margin-top: 1vw;
+              font-size: 0.75vw;
             }
           }
         }
