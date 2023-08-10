@@ -12,6 +12,9 @@ body {
   height: 100vh;
   transition: all ease-in 1s;
 }
+body .fg-picker-special-buttons a {
+  background-color: #0095f6;
+}
 
 a {
   cursor: pointer;

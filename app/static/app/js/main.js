@@ -84,7 +84,9 @@ new EmojiPicker({
             insertInto: ["#reply-message"],
             selector: "#e-selector"
         },
-    ]
+    ],
+    closeButton: true,
+    dragButton: true
 });
 // ajax function to update the likes on a post based on a click event
 var likeRequest = function (id, csrf, e) {
