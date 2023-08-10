@@ -317,10 +317,11 @@ let updateComment = (postId: string, csrf: string, event: Event) => {
 };
 
 // function to view the messages
-let viewThreadMessages = (threadId: string, csrf: string) => {
+let viewThreadMessages = (threadId: string, csrf: string, username: string) => {
   let baseURL = new URL(document.URL);
   let req = new XMLHttpRequest();
   let url = `${baseURL.origin}/messages/thread/${threadId}`;
+  let threadArea = document.querySelector(".view") as HTMLDivElement;
 
   let headers = {
     "Content-Type": "application/json",
@@ -332,11 +333,56 @@ let viewThreadMessages = (threadId: string, csrf: string) => {
   for (let header in headers) {
     req.setRequestHeader(header, headers[header]);
   }
+
   req.onreadystatechange = () => {
+    let html = "";
     if (req.readyState == 4 && req.status == 200) {
-      let res = JSON.parse(req.responseText);
-      console.log(res)
-    } else {
+      let res: any = JSON.parse(req.responseText);
+      // console.log(JSON.parse(res.messages));
+      JSON.parse(res.messages).forEach((item: any) => {
+        if (item.fields.author[0] != username) {
+          html += `
+          <div class="respondent">
+          <div class="main">
+            <p>
+              ${item.fields.content}
+            </p>
+          </div>
+          <div class="dummy"></div>
+        </div>`;
+        } else {
+          html += `
+          <div class="user-messages">
+          <div class="dummy"></div>
+          <div class="main">
+            <p>
+              ${item.fields.content}
+            </p>
+          </div>
+          
+        </div>`;
+        }
+      });
+
+      let container = `
+        <div class="thread-view">
+          <div class="thread-messages">
+            ${html}
+            <div class="reply">
+              <form action="">
+                <textarea name="reply-message" id="reply-message"></textarea>
+                <input type="submit" value="Reply" />
+              </form>
+            </div>
+          </div>
+        </div>
+      `;
+
+      if (container != "undefined" || !container) {
+        threadArea.innerHTML = container;
+        threadArea.scrollTo(0, threadArea.scrollHeight);
+      }
+    } else if (req.readyState == 4) {
       alert("Something is off in the receiver function");
     }
   };

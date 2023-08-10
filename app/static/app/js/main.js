@@ -239,10 +239,11 @@ var updateComment = function (postId, csrf, event) {
     return;
 };
 // function to view the messages
-var viewThreadMessages = function (threadId, csrf) {
+var viewThreadMessages = function (threadId, csrf, username) {
     var baseURL = new URL(document.URL);
     var req = new XMLHttpRequest();
     var url = "".concat(baseURL.origin, "/messages/thread/").concat(threadId);
+    var threadArea = document.querySelector(".view");
     var headers = {
         "Content-Type": "application/json",
         "X-CSRFToken": csrf
@@ -252,11 +253,25 @@ var viewThreadMessages = function (threadId, csrf) {
         req.setRequestHeader(header, headers[header]);
     }
     req.onreadystatechange = function () {
+        var html = "";
         if (req.readyState == 4 && req.status == 200) {
             var res = JSON.parse(req.responseText);
-            console.log(res);
+            // console.log(JSON.parse(res.messages));
+            JSON.parse(res.messages).forEach(function (item) {
+                if (item.fields.author[0] != username) {
+                    html += "\n          <div class=\"respondent\">\n          <div class=\"main\">\n            <p>\n              ".concat(item.fields.content, "\n            </p>\n          </div>\n          <div class=\"dummy\"></div>\n        </div>");
+                }
+                else {
+                    html += "\n          <div class=\"user-messages\">\n          <div class=\"dummy\"></div>\n          <div class=\"main\">\n            <p>\n              ".concat(item.fields.content, "\n            </p>\n          </div>\n          \n        </div>");
+                }
+            });
+            var container = "\n        <div class=\"thread-view\">\n          <div class=\"thread-messages\">\n            ".concat(html, "\n            <div class=\"reply\">\n              <form action=\"\">\n                <textarea name=\"reply-message\" id=\"reply-message\"></textarea>\n                <input type=\"submit\" value=\"Reply\" />\n              </form>\n            </div>\n          </div>\n        </div>\n      ");
+            if (container != "undefined" || !container) {
+                threadArea.innerHTML = container;
+                threadArea.scrollTo(0, threadArea.scrollHeight);
+            }
         }
-        else {
+        else if (req.readyState == 4) {
             alert("Something is off in the receiver function");
         }
     };

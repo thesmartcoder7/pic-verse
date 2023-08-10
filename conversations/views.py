@@ -102,9 +102,14 @@ def view_thread(request, id):
     }
     try:
         messages = DirectMessage.objects.filter(thread=id)
-        serialized_data = serialize("json", messages)
-        return HttpResponse(json.dumps(serialized_data))
+        serialized_data = serialize("json", messages, fields=(
+            'thread', 'author', 'author__username', 'content', 'timestamp'), use_natural_foreign_keys=True)
+        response = {
+            'status': True,
+            'messages': serialized_data,
+        }
+        return HttpResponse(json.dumps(response))
 
     except:
         # return redirect('insta-messages')
-        return HttpResponse('something is off')
+        return HttpResponse(json.dumps(response))
