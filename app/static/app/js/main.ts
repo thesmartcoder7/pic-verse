@@ -407,7 +407,11 @@ let viewThreadMessages = (
 
       if (container != "undefined" || !container) {
         threadArea.innerHTML = container;
+        let threadMessages = document.querySelector(
+          ".thread-messages"
+        ) as HTMLDivElement;
         threadArea.scrollTo(0, threadArea.scrollHeight);
+        threadMessages.scrollTo(0, threadMessages.scrollHeight);
       }
     } else if (req.readyState == 4) {
       alert("Something is off in the receiver function");
@@ -505,7 +509,11 @@ let threadReply = (
 
       if (container != "undefined" || !container) {
         threadArea.innerHTML = container;
+        let threadMessages = document.querySelector(
+          ".thread-messages"
+        ) as HTMLDivElement;
         threadArea.scrollTo(0, threadArea.scrollHeight);
+        threadMessages.scrollTo(0, threadMessages.scrollHeight);
       }
     } else if (req.readyState == 4) {
       alert("Something is off in the receiver function");
