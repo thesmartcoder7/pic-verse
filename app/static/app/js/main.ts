@@ -100,6 +100,16 @@ if (modalClosers) {
   }
 }
 
+// emoji picker for the textarea
+new EmojiPicker({
+  trigger: [
+    {
+      insertInto: ["#reply-message"],
+      selector: "#e-selector",
+    },
+  ],
+});
+
 // ajax function to update the likes on a post based on a click event
 let likeRequest = (id: string, csrf: string, e: Event) => {
   let baseURL = new URL(document.URL);
@@ -382,7 +392,11 @@ let viewThreadMessages = (
               <form method="post" onsubmit="threadReply(event, '${threadId}', '${csrf}', '${username}', '${respondent}', '${imageUrl}')">
               <input type="hidden" name="csrfmiddlewaretoken" value="${csrf}">
               <textarea required name="reply-message" id="reply-message"></textarea>
-                <input type="submit" value="Reply" />
+              <div class="form-actions">
+              <span id="e-selector">😀</span>
+              <input type="submit" value="Reply" />
+              </div> 
+              
               </form>
             </div>
           </div>
@@ -477,7 +491,10 @@ let threadReply = (
               <form method="post" onsubmit="threadReply(event, '${threadId}', '${csrf}', '${username}', '${respondent}', '${imageUrl}')">
               <input type="hidden" name="csrfmiddlewaretoken" value="${csrf}">
               <textarea required name="reply-message" id="reply-message"></textarea>
-                <input type="submit" value="Reply" />
+              <div class="form-actions">
+              <span id="e-selector">😀</span>
+              <input type="submit" value="Reply" />
+              </div> 
               </form>
             </div>
           </div>

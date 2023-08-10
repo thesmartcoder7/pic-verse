@@ -77,6 +77,15 @@ if (modalClosers) {
         });
     }
 }
+// emoji picker for the textarea
+new EmojiPicker({
+    trigger: [
+        {
+            insertInto: ["#reply-message"],
+            selector: "#e-selector"
+        },
+    ]
+});
 // ajax function to update the likes on a post based on a click event
 var likeRequest = function (id, csrf, e) {
     var baseURL = new URL(document.URL);
@@ -265,7 +274,7 @@ var viewThreadMessages = function (threadId, csrf, username, respondent, imageUr
                     html += "\n          <div class=\"user-messages\">\n          <div class=\"dummy\"></div>\n          <div class=\"main\">\n            <p>\n              ".concat(item.fields.content, "\n            </p>\n          </div>\n          \n        </div>");
                 }
             });
-            var container = "\n        <div class=\"thread-view\">\n          <div class=respondent-thread>\n            <img src='".concat(imageUrl, "' />\n            <p>").concat(respondent, "</p>\n          </div>\n          <div class=\"thread-messages\">\n            ").concat(html, "\n            <div class=\"reply\">\n              <form method=\"post\" onsubmit=\"threadReply(event, '").concat(threadId, "', '").concat(csrf, "', '").concat(username, "', '").concat(respondent, "', '").concat(imageUrl, "')\">\n              <input type=\"hidden\" name=\"csrfmiddlewaretoken\" value=\"").concat(csrf, "\">\n              <textarea required name=\"reply-message\" id=\"reply-message\"></textarea>\n                <input type=\"submit\" value=\"Reply\" />\n              </form>\n            </div>\n          </div>\n        </div>\n      ");
+            var container = "\n        <div class=\"thread-view\">\n          <div class=respondent-thread>\n            <img src='".concat(imageUrl, "' />\n            <p>").concat(respondent, "</p>\n          </div>\n          <div class=\"thread-messages\">\n            ").concat(html, "\n            <div class=\"reply\">\n              <form method=\"post\" onsubmit=\"threadReply(event, '").concat(threadId, "', '").concat(csrf, "', '").concat(username, "', '").concat(respondent, "', '").concat(imageUrl, "')\">\n              <input type=\"hidden\" name=\"csrfmiddlewaretoken\" value=\"").concat(csrf, "\">\n              <textarea required name=\"reply-message\" id=\"reply-message\"></textarea>\n              <div class=\"form-actions\">\n              <span id=\"e-selector\">\uD83D\uDE00</span>\n              <input type=\"submit\" value=\"Reply\" />\n              </div> \n              \n              </form>\n            </div>\n          </div>\n        </div>\n      ");
             if (container != "undefined" || !container) {
                 threadArea.innerHTML = container;
                 threadArea.scrollTo(0, threadArea.scrollHeight);
@@ -312,7 +321,7 @@ var threadReply = function (e, threadId, csrf, username, respondent, imageUrl) {
                     html += "\n          <div class=\"user-messages\">\n          <div class=\"dummy\"></div>\n          <div class=\"main\">\n            <p>\n              ".concat(item.fields.content, "\n            </p>\n          </div>\n          \n        </div>");
                 }
             });
-            var container = "\n        <div class=\"thread-view\">\n          <div class=respondent-thread>\n            <img src='".concat(imageUrl, "' />\n            <p>").concat(respondent, "</p>\n          </div>\n          <div class=\"thread-messages\">\n            ").concat(html, "\n            <div class=\"reply\">\n              <form method=\"post\" onsubmit=\"threadReply(event, '").concat(threadId, "', '").concat(csrf, "', '").concat(username, "', '").concat(respondent, "', '").concat(imageUrl, "')\">\n              <input type=\"hidden\" name=\"csrfmiddlewaretoken\" value=\"").concat(csrf, "\">\n              <textarea required name=\"reply-message\" id=\"reply-message\"></textarea>\n                <input type=\"submit\" value=\"Reply\" />\n              </form>\n            </div>\n          </div>\n        </div>\n      ");
+            var container = "\n        <div class=\"thread-view\">\n          <div class=respondent-thread>\n            <img src='".concat(imageUrl, "' />\n            <p>").concat(respondent, "</p>\n          </div>\n          <div class=\"thread-messages\">\n            ").concat(html, "\n            <div class=\"reply\">\n              <form method=\"post\" onsubmit=\"threadReply(event, '").concat(threadId, "', '").concat(csrf, "', '").concat(username, "', '").concat(respondent, "', '").concat(imageUrl, "')\">\n              <input type=\"hidden\" name=\"csrfmiddlewaretoken\" value=\"").concat(csrf, "\">\n              <textarea required name=\"reply-message\" id=\"reply-message\"></textarea>\n              <div class=\"form-actions\">\n              <span id=\"e-selector\">\uD83D\uDE00</span>\n              <input type=\"submit\" value=\"Reply\" />\n              </div> \n              </form>\n            </div>\n          </div>\n        </div>\n      ");
             if (container != "undefined" || !container) {
                 threadArea.innerHTML = container;
                 threadArea.scrollTo(0, threadArea.scrollHeight);
