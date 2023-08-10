@@ -45,6 +45,7 @@
             width: 100%;
             object-fit: cover;
             border-radius: 50%;
+            box-shadow: 0 0 0.4vw -0.1vw #1f1f1fd5;
           }
         }
         .info {
@@ -99,8 +100,7 @@
     height: 100%;
     border-left: solid 0.1vw rgb(173, 173, 173);
     .no-message {
-      position: sticky;
-      top: 40%;
+      margin-top: -5vw;
       width: 100%;
       min-height: 100%;
       height: 100%;
@@ -130,6 +130,31 @@
     .thread-view {
       height: 100%;
       width: 100%;
+      position: relative;
+      padding: 1vw 0 1vw 1vw;
+      .respondent-thread {
+        width: 100%;
+        padding: 0 1vw;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        position: sticky;
+        top: 0;
+        padding-bottom: 1vw;
+        margin-top: -0.5vw;
+        img {
+          width: 3vw;
+          border-radius: 50%;
+          box-shadow: 0 0 0.3vw -0.1vw #1f1f1fd5;
+          margin-right: 0.5vw;
+        }
+
+        p {
+          font-size: 1vw;
+          text-transform: capitalize;
+          font-weight: 500;
+        }
+      }
       .thread-messages {
         width: 100%;
         height: 75%;
@@ -137,23 +162,24 @@
         overflow-y: scroll;
         &::-webkit-scrollbar {
           width: 0.3vw;
+          opacity: 0;
+          display: none;
         }
         &::-webkit-scrollbar-track {
           box-shadow: inset 0 0 0.5vw rgba(224, 224, 224, 0.3);
+          opacity: 0;
         }
 
         &::-webkit-scrollbar-thumb {
           height: 1vw;
           background-color: #d1d1d1;
           outline: none;
+          opacity: 0;
         }
 
-        padding: 1vw;
-        .respondent,
-        .user-messages {
+        .respondent {
           width: 100%;
           padding: 1vw 0;
-          border-radius: 0.5vw;
           display: flex;
           align-items: flex-start;
           justify-content: space-between;
@@ -163,11 +189,31 @@
           .main {
             width: 45%;
             background-color: #afafaf15;
-
             padding: 1vw;
-            border-radius: 0.5vw;
+            border-radius: 1vw 1vw 1vw 0;
             p {
               color: #1f1f1f;
+              font-size: 0.9vw;
+            }
+          }
+        }
+
+        .user-messages {
+          width: 100%;
+          padding: 1vw 0;
+          display: flex;
+          align-items: flex-start;
+          justify-content: space-between;
+          .dummy {
+            width: 45%;
+          }
+          .main {
+            width: 45%;
+            padding: 1vw;
+            background-color: #0095f6;
+            border-radius: 1vw 1vw 0 1vw;
+            p {
+              color: #fff;
               font-size: 0.9vw;
             }
           }

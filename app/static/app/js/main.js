@@ -239,7 +239,7 @@ var updateComment = function (postId, csrf, event) {
     return;
 };
 // function to view the messages
-var viewThreadMessages = function (threadId, csrf, username) {
+var viewThreadMessages = function (threadId, csrf, username, respondent, imageUrl) {
     var baseURL = new URL(document.URL);
     var req = new XMLHttpRequest();
     var url = "".concat(baseURL.origin, "/messages/thread/").concat(threadId);
@@ -265,7 +265,7 @@ var viewThreadMessages = function (threadId, csrf, username) {
                     html += "\n          <div class=\"user-messages\">\n          <div class=\"dummy\"></div>\n          <div class=\"main\">\n            <p>\n              ".concat(item.fields.content, "\n            </p>\n          </div>\n          \n        </div>");
                 }
             });
-            var container = "\n        <div class=\"thread-view\">\n          <div class=\"thread-messages\">\n            ".concat(html, "\n            <div class=\"reply\">\n              <form action=\"\">\n                <textarea name=\"reply-message\" id=\"reply-message\"></textarea>\n                <input type=\"submit\" value=\"Reply\" />\n              </form>\n            </div>\n          </div>\n        </div>\n      ");
+            var container = "\n        <div class=\"thread-view\">\n          <div class=respondent-thread>\n            <img src='".concat(imageUrl, "' />\n            <p>").concat(respondent, "</p>\n          </div>\n          <div class=\"thread-messages\">\n            ").concat(html, "\n            <div class=\"reply\">\n              <form action=\"\">\n                <textarea name=\"reply-message\" id=\"reply-message\"></textarea>\n                <input type=\"submit\" value=\"Reply\" />\n              </form>\n            </div>\n          </div>\n        </div>\n      ");
             if (container != "undefined" || !container) {
                 threadArea.innerHTML = container;
                 threadArea.scrollTo(0, threadArea.scrollHeight);

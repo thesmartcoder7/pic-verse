@@ -29,7 +29,7 @@
         </div>
         <div
           class="info"
-          onclick="viewThreadMessages('{{message.id}}', '{{csrf_token}}', '{{user.username}}')"
+          onclick="viewThreadMessages('{{message.id}}', '{{csrf_token}}', '{{user.username}}', '{{message.respondent.username}}', '{{message.respondent.profile.image.url}}')"
         >
           <div class="name"><p>{{ message.respondent | title }}</p></div>
           <div class="last-in">

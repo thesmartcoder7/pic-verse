@@ -317,7 +317,13 @@ let updateComment = (postId: string, csrf: string, event: Event) => {
 };
 
 // function to view the messages
-let viewThreadMessages = (threadId: string, csrf: string, username: string) => {
+let viewThreadMessages = (
+  threadId: string,
+  csrf: string,
+  username: string,
+  respondent: string,
+  imageUrl: string
+) => {
   let baseURL = new URL(document.URL);
   let req = new XMLHttpRequest();
   let url = `${baseURL.origin}/messages/thread/${threadId}`;
@@ -366,6 +372,10 @@ let viewThreadMessages = (threadId: string, csrf: string, username: string) => {
 
       let container = `
         <div class="thread-view">
+          <div class=respondent-thread>
+            <img src='${imageUrl}' />
+            <p>${respondent}</p>
+          </div>
           <div class="thread-messages">
             ${html}
             <div class="reply">
