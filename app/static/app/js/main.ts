@@ -458,7 +458,7 @@ let viewThreadMessages = (
         <div class="thread-view">
           <div class=respondent-thread>
             <img src='${imageUrl}' />
-            <p>${respondent}</p>
+            <a href="${baseURL.origin}/user/${respondent}">${respondent}</a>
           </div>
           <div class="thread-messages">
             ${html}
@@ -563,7 +563,7 @@ let threadReply = (
         <div class="thread-view">
           <div class=respondent-thread>
             <img src='${imageUrl}' />
-            <p>${respondent}</p>
+            <a href="${baseURL.origin}/user/${respondent}">${respondent}</a>
           </div>
           <div class="thread-messages">
             ${html}

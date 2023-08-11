@@ -149,10 +149,14 @@
   box-shadow: 0 0 0.3vw -0.1vw rgba(31, 31, 31, 0.8352941176);
   margin-right: 0.5vw;
 }
-.messages .view .thread-view .respondent-thread p {
+.messages .view .thread-view .respondent-thread a {
+  text-decoration: none;
   font-size: 1vw;
   text-transform: capitalize;
   font-weight: 500;
+}
+.messages .view .thread-view .respondent-thread a:hover {
+  color: #0095f6;
 }
 .messages .view .thread-view .thread-messages {
   width: 100%;
