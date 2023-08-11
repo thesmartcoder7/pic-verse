@@ -99,12 +99,30 @@ if (modalClosers) {
 new EmojiPicker({
     trigger: [
         {
-            selector: "#e-selector",
-            insertInto: ["#reply-message"]
+            selector: ".e-selector",
+            insertInto: ["#reply-message", "#prof-message"]
         },
     ],
     closeButton: true,
-    dragButton: true
+    dragButton: true,
+    width: 350,
+    height: 370,
+    addPosX: -130,
+    addPosY: -380,
+    tabbed: true,
+    navPos: "bottom",
+    navButtonReversed: false,
+    disableSearch: false,
+    hiddenScrollBar: true,
+    animation: "slideDown",
+    animationDuration: "0.5s",
+    disableNav: false,
+    emojiDim: {
+        emojiPerRow: 6,
+        emojiSize: 20,
+        emojiButtonHeight: 50,
+        hideCategory: false
+    }
 });
 // new EmojiPicker({
 //   trigger: [
@@ -379,7 +397,7 @@ var viewThreadMessages = function (threadId, csrf, username, respondent, imageUr
                     html += "\n          <div class=\"user-messages\">\n          <div class=\"dummy\"></div>\n          <div class=\"main\">\n            <p>\n              ".concat(item.fields.content, "\n            </p>\n            <p class=\"timestamp\">").concat(formatTimestamp(item.fields.timestamp), "</p>\n          </div>\n          \n          </div>\n          ");
                 }
             });
-            var container = "\n        <div class=\"thread-view\">\n          <div class=respondent-thread>\n            <img src='".concat(imageUrl, "' />\n            <a href=\"").concat(baseURL.origin, "/user/").concat(respondent, "\">").concat(respondent, "</a>\n          </div>\n          <div class=\"thread-messages\">\n            ").concat(html, "\n            <div class=\"reply\">\n              <form method=\"post\" onsubmit=\"threadReply(event, '").concat(threadId, "', '").concat(csrf, "', '").concat(username, "', '").concat(respondent, "', '").concat(imageUrl, "')\">\n              <input type=\"hidden\" name=\"csrfmiddlewaretoken\" value=\"").concat(csrf, "\">\n              <textarea required name=\"reply-message\" id=\"reply-message\"></textarea>\n              <div class=\"form-actions\">\n              <span id=\"e-selector\">\uD83D\uDE00</span>\n              <input type=\"submit\" value=\"Reply\" />\n              </div> \n              \n              </form>\n            </div>\n          </div>\n        </div>\n      ");
+            var container = "\n        <div class=\"thread-view\">\n          <div class=respondent-thread>\n            <img src='".concat(imageUrl, "' />\n            <a href=\"").concat(baseURL.origin, "/user/").concat(respondent, "\">").concat(respondent, "</a>\n          </div>\n          <div class=\"thread-messages\">\n            ").concat(html, "\n            <div class=\"reply\">\n              <form method=\"post\" onsubmit=\"threadReply(event, '").concat(threadId, "', '").concat(csrf, "', '").concat(username, "', '").concat(respondent, "', '").concat(imageUrl, "')\">\n              <input type=\"hidden\" name=\"csrfmiddlewaretoken\" value=\"").concat(csrf, "\">\n              <textarea required name=\"reply-message\" id=\"reply-message\"></textarea>\n              <div class=\"form-actions\">\n              <span class=\"e-selector\">\uD83D\uDE00</span>\n              <input type=\"submit\" value=\"Reply\" />\n              </div> \n              \n              </form>\n            </div>\n          </div>\n        </div>\n      ");
             if (container != "undefined" || !container) {
                 threadArea.innerHTML = container;
                 var threadMessages = document.querySelector(".thread-messages");
@@ -428,7 +446,7 @@ var threadReply = function (e, threadId, csrf, username, respondent, imageUrl) {
                     html += "\n          <div class=\"user-messages\">\n          <div class=\"dummy\"></div>\n          <div class=\"main\">\n            <p>\n              ".concat(item.fields.content, "\n            </p>\n            <p class=\"timestamp\">").concat(formatTimestamp(item.fields.timestamp), "</p>\n          </div>\n          \n        </div>");
                 }
             });
-            var container = "\n        <div class=\"thread-view\">\n          <div class=respondent-thread>\n            <img src='".concat(imageUrl, "' />\n            <a href=\"").concat(baseURL.origin, "/user/").concat(respondent, "\">").concat(respondent, "</a>\n          </div>\n          <div class=\"thread-messages\">\n            ").concat(html, "\n            <div class=\"reply\">\n              <form method=\"post\" onsubmit=\"threadReply(event, '").concat(threadId, "', '").concat(csrf, "', '").concat(username, "', '").concat(respondent, "', '").concat(imageUrl, "')\">\n              <input type=\"hidden\" name=\"csrfmiddlewaretoken\" value=\"").concat(csrf, "\">\n              <textarea required name=\"reply-message\" id=\"reply-message\"></textarea>\n              <div class=\"form-actions\">\n              <span id=\"e-selector\">\uD83D\uDE00</span>\n              <input type=\"submit\" value=\"Reply\" />\n              </div> \n              </form>\n            </div>\n          </div>\n        </div>\n      ");
+            var container = "\n        <div class=\"thread-view\">\n          <div class=respondent-thread>\n            <img src='".concat(imageUrl, "' />\n            <a href=\"").concat(baseURL.origin, "/user/").concat(respondent, "\">").concat(respondent, "</a>\n          </div>\n          <div class=\"thread-messages\">\n            ").concat(html, "\n            <div class=\"reply\">\n              <form method=\"post\" onsubmit=\"threadReply(event, '").concat(threadId, "', '").concat(csrf, "', '").concat(username, "', '").concat(respondent, "', '").concat(imageUrl, "')\">\n              <input type=\"hidden\" name=\"csrfmiddlewaretoken\" value=\"").concat(csrf, "\">\n              <textarea required name=\"reply-message\" id=\"reply-message\"></textarea>\n              <div class=\"form-actions\">\n              <span class=\"e-selector\">\uD83D\uDE00</span>\n              <input type=\"submit\" value=\"Reply\" />\n              </div> \n              </form>\n            </div>\n          </div>\n        </div>\n      ");
             if (container != "undefined" || !container) {
                 threadArea.innerHTML = container;
                 var threadMessages = document.querySelector(".thread-messages");

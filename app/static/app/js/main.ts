@@ -133,12 +133,30 @@ if (modalClosers) {
 new EmojiPicker({
   trigger: [
     {
-      selector: "#e-selector",
-      insertInto: ["#reply-message"],
+      selector: ".e-selector",
+      insertInto: ["#reply-message", "#prof-message"],
     },
   ],
   closeButton: true,
   dragButton: true,
+  width: 350,
+  height: 370,
+  addPosX: -130,
+  addPosY: -380,
+  tabbed: true,
+  navPos: "bottom",
+  navButtonReversed: false,
+  disableSearch: false,
+  hiddenScrollBar: true,
+  animation: "slideDown",
+  animationDuration: "0.5s",
+  disableNav: false,
+  emojiDim: {
+    emojiPerRow: 6,
+    emojiSize: 20,
+    emojiButtonHeight: 50,
+    hideCategory: false,
+  },
 });
 
 // new EmojiPicker({
@@ -516,7 +534,7 @@ let viewThreadMessages = (
               <input type="hidden" name="csrfmiddlewaretoken" value="${csrf}">
               <textarea required name="reply-message" id="reply-message"></textarea>
               <div class="form-actions">
-              <span id="e-selector">😀</span>
+              <span class="e-selector">😀</span>
               <input type="submit" value="Reply" />
               </div> 
               
@@ -621,7 +639,7 @@ let threadReply = (
               <input type="hidden" name="csrfmiddlewaretoken" value="${csrf}">
               <textarea required name="reply-message" id="reply-message"></textarea>
               <div class="form-actions">
-              <span id="e-selector">😀</span>
+              <span class="e-selector">😀</span>
               <input type="submit" value="Reply" />
               </div> 
               </form>

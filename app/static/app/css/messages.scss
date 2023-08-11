@@ -221,9 +221,11 @@
             background-color: #afafaf15;
             padding: 1vw;
             border-radius: 1vw 1vw 1vw 0;
+
             p {
               color: #1f1f1f;
               font-size: 0.9vw;
+              line-height: 1.2vw;
             }
 
             p.timestamp {
@@ -250,6 +252,7 @@
             p {
               color: #fff;
               font-size: 0.9vw;
+              line-height: 1.2vw;
             }
             p.timestamp {
               margin-top: 1vw;
@@ -276,7 +279,7 @@
             }
 
             .form-actions {
-              span#e-selector {
+              span.e-selector {
                 cursor: pointer;
                 margin-right: 1vw;
               }

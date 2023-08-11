@@ -207,7 +207,7 @@
   color: #0095f6;
   transition: 0.2s ease-in-out;
 }
-.feed-view .latest .top-section .user-info .follow-unfollow .prof-message-compose .message-div form #prof-e-selector {
+.feed-view .latest .top-section .user-info .follow-unfollow .prof-message-compose .message-div form .prof-e-selector {
   margin-right: 1vw;
   cursor: pointer;
 }
