@@ -1,3 +1,5 @@
+import { EmojiPicker } from './emoji'
+
 let postSections = document.querySelectorAll(
   ".profile"
 ) as NodeListOf<HTMLDivElement>;
@@ -104,8 +106,19 @@ if (modalClosers) {
 new EmojiPicker({
   trigger: [
     {
-      insertInto: ["#reply-message"],
       selector: "#e-selector",
+      insertInto: ["#reply-message"],
+    },
+  ],
+  closeButton: true,
+  dragButton: true,
+});
+
+new EmojiPicker({
+  trigger: [
+    {
+      selector: "#prof-e-selector",
+      insertInto: ["#prof-message"],
     },
   ],
   closeButton: true,

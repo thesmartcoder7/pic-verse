@@ -8304,3 +8304,5 @@ const openTab = (tab) => {
     }
   }
 };
+
+export { EmojiPicker };

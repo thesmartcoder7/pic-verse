@@ -75,9 +75,38 @@
           <!--  -->
           {% endif %}
 
-          <a class="send-message" data-id="{{filtered_user.id}}"
+          <a class="prof-send-message" data-id="{{filtered_user.id}}"
             >Send Message</a
           >
+          <div class="prof-message-compose">
+            <div class="message-div">
+              <form action="" method="post">
+                {% csrf_token %}
+                <label for="prof-recepient">
+                  <span>To: </span>
+                  <input
+                    type="text"
+                    name="prof-recepient"
+                    id="prof-recepient"
+                    required
+                    disabled
+                    value="{{filtered_user.username|title}}"
+                  />
+                </label>
+                <label for="prof-message">
+                  <textarea
+                    name="prof-message"
+                    id="prof-message"
+                    required
+                  ></textarea>
+                </label>
+                <div class="prof-message-actions">
+                  <span id="prof-e-selector">😀</span>
+                  <input type="submit" value="Send" />
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
       </div>
     </div>

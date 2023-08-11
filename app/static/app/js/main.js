@@ -1,3 +1,6 @@
+"use strict";
+exports.__esModule = true;
+var emoji_1 = require("./emoji");
 var postSections = document.querySelectorAll(".profile");
 var profileNavs = document.querySelectorAll(".p-nav");
 var hoverimages = document.querySelectorAll(".display_image");
@@ -78,11 +81,21 @@ if (modalClosers) {
     }
 }
 // emoji picker for the textarea
-new EmojiPicker({
+new emoji_1.EmojiPicker({
     trigger: [
         {
-            insertInto: ["#reply-message"],
-            selector: "#e-selector"
+            selector: "#e-selector",
+            insertInto: ["#reply-message"]
+        },
+    ],
+    closeButton: true,
+    dragButton: true
+});
+new emoji_1.EmojiPicker({
+    trigger: [
+        {
+            selector: "#prof-e-selector",
+            insertInto: ["#prof-message"]
         },
     ],
     closeButton: true,
