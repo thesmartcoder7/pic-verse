@@ -684,9 +684,16 @@ let composeMessage = (
   }
 
   req.onreadystatechange = () => {
-    let html = "";
     if (req.readyState == 4 && req.status == 200) {
-      console.log("response will we here soon");
+      let form = document.getElementById("compose-form") as HTMLFormElement;
+      let successDiv = document.querySelector(
+        ".message-sent"
+      ) as HTMLDivElement;
+      form.style.display = "none";
+      successDiv.style.display = "flex";
+      setTimeout(() => {
+        messageComposer.style.display = "none";
+      }, 2000);
     } else if (req.readyState == 4) {
       alert("Something is off in the receiver function");
     }

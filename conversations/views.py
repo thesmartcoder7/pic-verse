@@ -43,7 +43,7 @@ def messages(request):
     user_messages = []
 
     # Get all the threads the user is part of
-    user_threads = Thread.objects.filter(participants=user)
+    user_threads = Thread.objects.filter(participants=user).order_by("-timestamp")
 
     # Process each thread to prepare data for the template
     for thread in user_threads:
@@ -156,7 +156,7 @@ def compose_message(request):
 
     all_threads = Thread.objects.all()
     for thread in all_threads:
-        if author and recipient in thread.participants.all():
+        if author in thread.participants.all() and recipient in thread.participants.all():
             new_message = DirectMessage.objects.create(
                 thread=thread, author=author, content=message)
             new_message.save()
@@ -165,7 +165,7 @@ def compose_message(request):
                 'message': 'Message Sent',
             }
             return HttpResponse(json.dumps(response))
-        
+
     new_thread = Thread.objects.create()
     new_thread.participants.add(author, recipient)
     new_thread.save()

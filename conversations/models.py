@@ -1,9 +1,11 @@
+import datetime
 from django.db import models
 from users.models import User
 
 
 class Thread(models.Model):
     participants = models.ManyToManyField(User, related_name='threads')
+    timestamp = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     # Add any other fields, such as a timestamp for the last message in the thread
 
     def __str__(self):

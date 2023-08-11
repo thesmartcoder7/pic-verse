@@ -82,7 +82,7 @@
           <div class="prof-message-compose">
             <div class="message-div">
               <span class="close-message-composer"><p>+</p></span>
-              <form
+              <form id="compose-form"
                 onsubmit="composeMessage(event, '{{filtered_user.username}}', '{{user.username}}', '{{csrf_token}}')"
                 method="post"
               >

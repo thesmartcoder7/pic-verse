@@ -471,9 +471,14 @@ var composeMessage = function (e, recipient, sender, csrf) {
         req.setRequestHeader(header, headers[header]);
     }
     req.onreadystatechange = function () {
-        var html = "";
         if (req.readyState == 4 && req.status == 200) {
-            console.log("response will we here soon");
+            var form = document.getElementById("compose-form");
+            var successDiv = document.querySelector(".message-sent");
+            form.style.display = "none";
+            successDiv.style.display = "flex";
+            setTimeout(function () {
+                messageComposer.style.display = "none";
+            }, 2000);
         }
         else if (req.readyState == 4) {
             alert("Something is off in the receiver function");
