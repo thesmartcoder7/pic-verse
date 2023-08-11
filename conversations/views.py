@@ -18,6 +18,7 @@ from conversations.models import *
 from conversations.serializers import *
 from django.core.serializers import serialize
 import json
+from django.db.models import Q
 
 
 @login_required
@@ -122,7 +123,7 @@ def reply_to_thread(request, id):
     new_message = DirectMessage.objects.create(
         thread=thread, author=author, content=json.loads(request.body)['message'])
     new_message.save()
-    
+
     response = {
         'status': False,
         'message': 'An issue occurred!',
@@ -140,3 +141,39 @@ def reply_to_thread(request, id):
     except:
         # return redirect('insta-messages')
         return HttpResponse(json.dumps(response))
+
+
+@login_required
+def compose_message(request):
+    payload = json.loads(request.body)
+    author = User.objects.get(username=payload['sender'])
+    recipient = User.objects.get(username=payload['receiver'])
+    message = payload['message']
+    response = {
+        'status': False,
+        'message': 'An issue occurred!',
+    }
+
+    all_threads = Thread.objects.all()
+    for thread in all_threads:
+        if author and recipient in thread.participants.all():
+            new_message = DirectMessage.objects.create(
+                thread=thread, author=author, content=message)
+            new_message.save()
+            response = {
+                'status': True,
+                'message': 'Message Sent',
+            }
+            return HttpResponse(json.dumps(response))
+        
+    new_thread = Thread.objects.create()
+    new_thread.participants.add(author, recipient)
+    new_thread.save()
+    new_message = DirectMessage.objects.create(
+        thread=new_thread, author=author, content=message)
+    new_message.save()
+    response = {
+        'status': True,
+        'message': 'Message Sent',
+    }
+    return HttpResponse(json.dumps(response))

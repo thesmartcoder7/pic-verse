@@ -159,17 +159,6 @@ new EmojiPicker({
   },
 });
 
-// new EmojiPicker({
-//   trigger: [
-//     {
-//       selector: "#prof-e-selector",
-//       insertInto: ["#prof-message"],
-//     },
-//   ],
-//   closeButton: true,
-//   dragButton: true,
-// });
-
 // format time
 function getDayWithSuffix(day: number): string {
   if (day >= 11 && day <= 13) {
@@ -656,6 +645,48 @@ let threadReply = (
         threadArea.scrollTo(0, threadArea.scrollHeight);
         threadMessages.scrollTo(0, threadMessages.scrollHeight);
       }
+    } else if (req.readyState == 4) {
+      alert("Something is off in the receiver function");
+    }
+  };
+
+  req.send(JSON.stringify(data));
+};
+
+// function to compose a message
+let composeMessage = (
+  e: Event,
+  recipient: string,
+  sender: string,
+  csrf: string
+) => {
+  e.preventDefault();
+  let baseURL = new URL(document.URL);
+  let req = new XMLHttpRequest();
+  let url = `${baseURL.origin}/messages/compose`;
+  let message = document.querySelector("#prof-message") as HTMLTextAreaElement;
+
+  let headers = {
+    "Content-Type": "application/json",
+    "X-CSRFToken": csrf,
+  };
+
+  let data = {
+    sender: sender,
+    receiver: recipient,
+    message: message.value,
+  };
+
+  req.open("POST", url, true);
+
+  for (let header in headers) {
+    req.setRequestHeader(header, headers[header]);
+  }
+
+  req.onreadystatechange = () => {
+    let html = "";
+    if (req.readyState == 4 && req.status == 200) {
+      console.log("response will we here soon");
     } else if (req.readyState == 4) {
       alert("Something is off in the receiver function");
     }

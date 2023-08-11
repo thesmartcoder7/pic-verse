@@ -208,9 +208,27 @@
                     }
                   }
                 }
-                .prof-e-selector {
+                .e-selector {
                   margin-right: 1vw;
                   cursor: pointer;
+                }
+              }
+
+              .message-sent {
+                display: none;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                span {
+                  svg {
+                    width: 3vw;
+                    height: 3vw;
+                    color: #0095f6;
+                  }
+                }
+                p {
+                  margin-top: 1vw;
+                  font-size: 1.2vw;
                 }
               }
             }

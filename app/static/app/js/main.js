@@ -124,16 +124,6 @@ new EmojiPicker({
         hideCategory: false
     }
 });
-// new EmojiPicker({
-//   trigger: [
-//     {
-//       selector: "#prof-e-selector",
-//       insertInto: ["#prof-message"],
-//     },
-//   ],
-//   closeButton: true,
-//   dragButton: true,
-// });
 // format time
 function getDayWithSuffix(day) {
     if (day >= 11 && day <= 13) {
@@ -453,6 +443,37 @@ var threadReply = function (e, threadId, csrf, username, respondent, imageUrl) {
                 threadArea.scrollTo(0, threadArea.scrollHeight);
                 threadMessages.scrollTo(0, threadMessages.scrollHeight);
             }
+        }
+        else if (req.readyState == 4) {
+            alert("Something is off in the receiver function");
+        }
+    };
+    req.send(JSON.stringify(data));
+};
+// function to compose a message
+var composeMessage = function (e, recipient, sender, csrf) {
+    e.preventDefault();
+    var baseURL = new URL(document.URL);
+    var req = new XMLHttpRequest();
+    var url = "".concat(baseURL.origin, "/messages/compose");
+    var message = document.querySelector("#prof-message");
+    var headers = {
+        "Content-Type": "application/json",
+        "X-CSRFToken": csrf
+    };
+    var data = {
+        sender: sender,
+        receiver: recipient,
+        message: message.value
+    };
+    req.open("POST", url, true);
+    for (var header in headers) {
+        req.setRequestHeader(header, headers[header]);
+    }
+    req.onreadystatechange = function () {
+        var html = "";
+        if (req.readyState == 4 && req.status == 200) {
+            console.log("response will we here soon");
         }
         else if (req.readyState == 4) {
             alert("Something is off in the receiver function");
