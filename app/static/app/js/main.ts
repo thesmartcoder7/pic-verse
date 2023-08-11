@@ -409,6 +409,17 @@ let viewThreadMessages = (
   let url = `${baseURL.origin}/messages/thread/${threadId}`;
   let threadArea = document.querySelector(".view") as HTMLDivElement;
 
+  let allThreads = document.querySelectorAll(
+    ".info"
+  ) as NodeListOf<HTMLDivElement>;
+  if (allThreads) {
+    allThreads.forEach((thread: HTMLDivElement) => {
+      if (thread.getAttribute("data-id") == threadId) {
+        thread.classList.remove("start-message");
+      }
+    });
+  }
+
   let headers = {
     "Content-Type": "application/json",
     "X-CSRFToken": csrf,

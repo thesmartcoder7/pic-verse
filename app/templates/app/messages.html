@@ -27,8 +27,10 @@
             alt="test image"
           />
         </div>
+        {% if message.last_in %}
         <div
           class="info"
+          data-id="{{message.id}}"
           onclick="viewThreadMessages('{{message.id}}', '{{csrf_token}}', '{{user.username}}', '{{message.respondent.username}}', '{{message.respondent.profile.image.url}}')"
         >
           <div class="name"><p>{{ message.respondent | title }}</p></div>
@@ -36,6 +38,18 @@
             <p>{{ message.last_in.content | truncatechars:30 }}</p>
           </div>
         </div>
+        {% else %}
+        <div
+          class="info start-message"
+          data-id="{{message.id}}"
+          onclick="viewThreadMessages('{{message.id}}', '{{csrf_token}}', '{{user.username}}', '{{message.respondent.username}}', '{{message.respondent.profile.image.url}}')"
+        >
+          <div class="name"><p>{{ message.respondent | title }}</p></div>
+          <div class="last-in">
+            <p>Send {{message.respondent | title}} a message . . .</p>
+          </div>
+        </div>
+        {% endif %}
         <div class="delete">
           <a href="{% url 'delete-thread' message.id %}">Delete</a>
         </div>

@@ -323,6 +323,14 @@ var viewThreadMessages = function (threadId, csrf, username, respondent, imageUr
     var req = new XMLHttpRequest();
     var url = "".concat(baseURL.origin, "/messages/thread/").concat(threadId);
     var threadArea = document.querySelector(".view");
+    var allThreads = document.querySelectorAll(".info");
+    if (allThreads) {
+        allThreads.forEach(function (thread) {
+            if (thread.getAttribute("data-id") == threadId) {
+                thread.classList.remove("start-message");
+            }
+        });
+    }
     var headers = {
         "Content-Type": "application/json",
         "X-CSRFToken": csrf
