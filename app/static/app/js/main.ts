@@ -1,4 +1,4 @@
-import { EmojiPicker } from './emoji'
+// import { EmojiPicker } from './emoji'
 
 let postSections = document.querySelectorAll(
   ".profile"
@@ -25,6 +25,33 @@ let createPostToggle = document.querySelector(
 let disablePost = document.querySelector(
   ".disable-post-button"
 ) as HTMLAnchorElement;
+
+let openMessageComposer = document.querySelector(
+  ".prof-send-message"
+) as HTMLAnchorElement;
+let messageComposer = document.querySelector(
+  ".prof-message-compose"
+) as HTMLDivElement;
+
+let closeMessageComposer = document.querySelector(
+  ".close-message-composer"
+) as HTMLSpanElement;
+
+if (openMessageComposer) {
+  openMessageComposer.addEventListener("click", () => {
+    if (messageComposer) {
+      messageComposer.style.display = "grid";
+    }
+  });
+}
+
+if (closeMessageComposer) {
+  closeMessageComposer.addEventListener("click", () => {
+    if (messageComposer) {
+      messageComposer.style.display = "none";
+    }
+  });
+}
 
 if (disablePost) {
   disablePost.addEventListener("click", () => {
@@ -114,16 +141,16 @@ new EmojiPicker({
   dragButton: true,
 });
 
-new EmojiPicker({
-  trigger: [
-    {
-      selector: "#prof-e-selector",
-      insertInto: ["#prof-message"],
-    },
-  ],
-  closeButton: true,
-  dragButton: true,
-});
+// new EmojiPicker({
+//   trigger: [
+//     {
+//       selector: "#prof-e-selector",
+//       insertInto: ["#prof-message"],
+//     },
+//   ],
+//   closeButton: true,
+//   dragButton: true,
+// });
 
 // format time
 function getDayWithSuffix(day: number): string {
@@ -448,10 +475,8 @@ let viewThreadMessages = (
     let html = "";
     if (req.readyState == 4 && req.status == 200) {
       let res: any = JSON.parse(req.responseText);
-      // console.log(JSON.parse(res.messages));
       JSON.parse(res.messages).forEach((item: any) => {
         if (item.fields.author[0] != username) {
-          console.log(item.fields.timestamp);
           html += `
           <div class="respondent">
           <div class="main">

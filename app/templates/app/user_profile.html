@@ -78,8 +78,10 @@
           <a class="prof-send-message" data-id="{{filtered_user.id}}"
             >Send Message</a
           >
+          <!-- compose message modal -->
           <div class="prof-message-compose">
             <div class="message-div">
+              <span class="close-message-composer"><p>+</p></span>
               <form action="" method="post">
                 {% csrf_token %}
                 <label for="prof-recepient">
@@ -94,6 +96,7 @@
                   />
                 </label>
                 <label for="prof-message">
+                  <span>Message: </span>
                   <textarea
                     name="prof-message"
                     id="prof-message"
@@ -107,6 +110,7 @@
               </form>
             </div>
           </div>
+          <!-- end of compose message modal -->
         </div>
       </div>
     </div>

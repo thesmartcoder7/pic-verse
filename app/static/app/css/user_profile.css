@@ -99,6 +99,118 @@
   text-decoration: none;
   font-size: 0.9vw;
 }
+.feed-view .latest .top-section .user-info .follow-unfollow .prof-message-compose {
+  position: fixed;
+  z-index: 5;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: transparent;
+  -webkit-backdrop-filter: blur(0.2vw);
+          backdrop-filter: blur(0.2vw);
+  display: grid;
+  place-items: center;
+  display: none;
+}
+.feed-view .latest .top-section .user-info .follow-unfollow .prof-message-compose .message-div {
+  background-color: #fff;
+  width: 40%;
+  height: 50%;
+  box-shadow: 0 0 0.5vw 0 #bdbdbd;
+  border-radius: 0.5vw;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.feed-view .latest .top-section .user-info .follow-unfollow .prof-message-compose .message-div .close-message-composer {
+  width: 3vw;
+  height: 3vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  position: absolute;
+  top: -7%;
+  right: -4%;
+  font-size: 1.3vw;
+  color: #fff;
+  background-color: rgb(92, 92, 92);
+  transform: rotate(45deg);
+  cursor: pointer;
+}
+.feed-view .latest .top-section .user-info .follow-unfollow .prof-message-compose .message-div .close-message-composer p {
+  display: inline;
+  color: #fff;
+  font-size: 2vw;
+  line-height: 0;
+}
+.feed-view .latest .top-section .user-info .follow-unfollow .prof-message-compose .message-div form {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
+.feed-view .latest .top-section .user-info .follow-unfollow .prof-message-compose .message-div form label {
+  display: flex;
+  flex-direction: column;
+  margin: 0.5vw 0;
+}
+.feed-view .latest .top-section .user-info .follow-unfollow .prof-message-compose .message-div form label span {
+  margin-bottom: 0.5vw;
+}
+.feed-view .latest .top-section .user-info .follow-unfollow .prof-message-compose .message-div form label input {
+  padding: 0.5vw 1vw;
+  font-size: 0.9vw;
+  border: solid 0.1vw #b1b1b1;
+  outline: none;
+  border-radius: 0.2vw;
+}
+.feed-view .latest .top-section .user-info .follow-unfollow .prof-message-compose .message-div form label textarea {
+  padding: 0.5vw 1vw;
+  font-size: 0.9vw;
+  width: 100%;
+  height: 10vw;
+  border: solid 0.1vw #b1b1b1;
+  outline: none;
+  border-radius: 0.2vw;
+}
+.feed-view .latest .top-section .user-info .follow-unfollow .prof-message-compose .message-div form .prof-message-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-bottom: 1vw;
+}
+.feed-view .latest .top-section .user-info .follow-unfollow .prof-message-compose .message-div form .prof-message-actions input,
+.feed-view .latest .top-section .user-info .follow-unfollow .prof-message-compose .message-div form .prof-message-actions button,
+.feed-view .latest .top-section .user-info .follow-unfollow .prof-message-compose .message-div form .prof-message-actions a {
+  padding: 0.5vw 1.5vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 0.9vw;
+  font-weight: 500;
+  border: 0.1vw solid #0095f6;
+  outline: none;
+  border-radius: 0.2vw;
+  color: #fff;
+  background: #0095f6;
+  transition: 0.2s ease-in-out;
+}
+.feed-view .latest .top-section .user-info .follow-unfollow .prof-message-compose .message-div form .prof-message-actions input:hover,
+.feed-view .latest .top-section .user-info .follow-unfollow .prof-message-compose .message-div form .prof-message-actions button:hover,
+.feed-view .latest .top-section .user-info .follow-unfollow .prof-message-compose .message-div form .prof-message-actions a:hover {
+  background-color: #fff;
+  color: #0095f6;
+  transition: 0.2s ease-in-out;
+}
+.feed-view .latest .top-section .user-info .follow-unfollow .prof-message-compose .message-div form #prof-e-selector {
+  margin-right: 1vw;
+  cursor: pointer;
+}
 .feed-view .latest .title {
   margin-top: 5%;
 }

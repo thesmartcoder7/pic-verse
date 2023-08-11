@@ -1,6 +1,4 @@
-"use strict";
-exports.__esModule = true;
-var emoji_1 = require("./emoji");
+// import { EmojiPicker } from './emoji'
 var postSections = document.querySelectorAll(".profile");
 var profileNavs = document.querySelectorAll(".p-nav");
 var hoverimages = document.querySelectorAll(".display_image");
@@ -9,6 +7,23 @@ var modalClosers = document.querySelectorAll(".close");
 var postModal = document.querySelector(".post-modal");
 var createPostToggle = document.querySelector(".toggle-add-post");
 var disablePost = document.querySelector(".disable-post-button");
+var openMessageComposer = document.querySelector(".prof-send-message");
+var messageComposer = document.querySelector(".prof-message-compose");
+var closeMessageComposer = document.querySelector(".close-message-composer");
+if (openMessageComposer) {
+    openMessageComposer.addEventListener("click", function () {
+        if (messageComposer) {
+            messageComposer.style.display = "grid";
+        }
+    });
+}
+if (closeMessageComposer) {
+    closeMessageComposer.addEventListener("click", function () {
+        if (messageComposer) {
+            messageComposer.style.display = "none";
+        }
+    });
+}
 if (disablePost) {
     disablePost.addEventListener("click", function () {
         if (createPostToggle) {
@@ -81,7 +96,7 @@ if (modalClosers) {
     }
 }
 // emoji picker for the textarea
-new emoji_1.EmojiPicker({
+new EmojiPicker({
     trigger: [
         {
             selector: "#e-selector",
@@ -91,16 +106,16 @@ new emoji_1.EmojiPicker({
     closeButton: true,
     dragButton: true
 });
-new emoji_1.EmojiPicker({
-    trigger: [
-        {
-            selector: "#prof-e-selector",
-            insertInto: ["#prof-message"]
-        },
-    ],
-    closeButton: true,
-    dragButton: true
-});
+// new EmojiPicker({
+//   trigger: [
+//     {
+//       selector: "#prof-e-selector",
+//       insertInto: ["#prof-message"],
+//     },
+//   ],
+//   closeButton: true,
+//   dragButton: true,
+// });
 // format time
 function getDayWithSuffix(day) {
     if (day >= 11 && day <= 13) {
@@ -356,10 +371,8 @@ var viewThreadMessages = function (threadId, csrf, username, respondent, imageUr
         var html = "";
         if (req.readyState == 4 && req.status == 200) {
             var res = JSON.parse(req.responseText);
-            // console.log(JSON.parse(res.messages));
             JSON.parse(res.messages).forEach(function (item) {
                 if (item.fields.author[0] != username) {
-                    console.log(item.fields.timestamp);
                     html += "\n          <div class=\"respondent\">\n          <div class=\"main\">\n            <p>\n              ".concat(item.fields.content, "\n            </p>\n            <p class=\"timestamp\">").concat(formatTimestamp(item.fields.timestamp), "</p>\n          </div>\n          <div class=\"dummy\"></div>\n        </div>");
                 }
                 else {
