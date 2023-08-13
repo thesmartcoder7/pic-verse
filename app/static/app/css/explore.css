@@ -302,6 +302,7 @@
 .feed-view .latest .latest-posts .image .image-modal .right .user .user-comment form textarea {
   width: 100%;
   height: 3vw;
+  font-size: 0.9vw;
   outline: none;
   border: 0.1vw solid rgb(173, 173, 173);
   border-radius: 0.3vw;
@@ -318,6 +319,16 @@
   border-radius: 0.2vw;
   font-weight: 500;
   font-size: 0.9vw;
+  cursor: pointer;
+}
+.feed-view .latest .latest-posts .image .image-modal .right .user .user-comment form .explore-comment-actions {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.feed-view .latest .latest-posts .image .image-modal .right .user .user-comment form .explore-comment-actions .e-selector {
+  margin-left: 1vw;
   cursor: pointer;
 }
 .feed-view .feed {

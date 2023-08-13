@@ -134,7 +134,7 @@ new EmojiPicker({
   trigger: [
     {
       selector: ".e-selector",
-      insertInto: ["#reply-message", "#prof-message"],
+      insertInto: ["#reply-message", "#prof-message", ".comment_field"],
     },
   ],
   closeButton: true,
@@ -142,7 +142,7 @@ new EmojiPicker({
   width: 350,
   height: 370,
   addPosX: -130,
-  addPosY: -380,
+  addPosY: -500,
   tabbed: true,
   navPos: "bottom",
   navButtonReversed: false,
