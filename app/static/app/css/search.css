@@ -58,4 +58,5 @@
 .feed-view .latest .found .single .avatar .names h2 {
   font-size: 0.9vw;
   font-weight: 500;
+  text-transform: lowercase;
 }/*# sourceMappingURL=search.css.map */
