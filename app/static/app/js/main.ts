@@ -443,6 +443,15 @@ let updateComment = (postId: string, csrf: string, event: Event) => {
   return;
 };
 
+// timeout id
+let timeoutId: any;
+
+let pauseTimeout = () => {
+  if (timeoutId) {
+    clearTimeout(timeoutId);
+  }
+};
+
 // function to view the messages
 let viewThreadMessages = (
   threadId: string,
@@ -521,7 +530,7 @@ let viewThreadMessages = (
             <div class="reply">
               <form method="post" onsubmit="threadReply(event, '${threadId}', '${csrf}', '${username}', '${respondent}', '${imageUrl}')">
               <input type="hidden" name="csrfmiddlewaretoken" value="${csrf}">
-              <textarea required name="reply-message" id="reply-message"></textarea>
+              <textarea required name="reply-message" id="reply-message" onfocus="pauseTimeout()"></textarea>
               <div class="form-actions">
               <span class="e-selector">😀</span>
               <input type="submit" value="Reply" />
@@ -541,6 +550,14 @@ let viewThreadMessages = (
         threadArea.scrollTo(0, threadArea.scrollHeight);
         threadMessages.scrollTo(0, threadMessages.scrollHeight);
       }
+
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+
+      timeoutId = setTimeout(() => {
+        viewThreadMessages(threadId, csrf, username, respondent, imageUrl);
+      }, 5000); // 5000 milliseconds = 5 seconds
     } else if (req.readyState == 4) {
       alert("Something is off in the receiver function");
     }
@@ -645,6 +662,8 @@ let threadReply = (
         threadArea.scrollTo(0, threadArea.scrollHeight);
         threadMessages.scrollTo(0, threadMessages.scrollHeight);
       }
+
+      viewThreadMessages(threadId, csrf, username, respondent, imageUrl);
     } else if (req.readyState == 4) {
       alert("Something is off in the receiver function");
     }

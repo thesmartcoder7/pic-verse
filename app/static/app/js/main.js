@@ -353,6 +353,13 @@ var updateComment = function (postId, csrf, event) {
     req.send(JSON.stringify(formData));
     return;
 };
+// timeout id
+var timeoutId;
+var pauseTimeout = function () {
+    if (timeoutId) {
+        clearTimeout(timeoutId);
+    }
+};
 // function to view the messages
 var viewThreadMessages = function (threadId, csrf, username, respondent, imageUrl) {
     var baseURL = new URL(document.URL);
@@ -387,13 +394,19 @@ var viewThreadMessages = function (threadId, csrf, username, respondent, imageUr
                     html += "\n          <div class=\"user-messages\">\n          <div class=\"dummy\"></div>\n          <div class=\"main\">\n            <p>\n              ".concat(item.fields.content, "\n            </p>\n            <p class=\"timestamp\">").concat(formatTimestamp(item.fields.timestamp), "</p>\n          </div>\n          \n          </div>\n          ");
                 }
             });
-            var container = "\n        <div class=\"thread-view\">\n          <div class=respondent-thread>\n            <img src='".concat(imageUrl, "' />\n            <a href=\"").concat(baseURL.origin, "/user/").concat(respondent, "\">").concat(respondent, "</a>\n          </div>\n          <div class=\"thread-messages\">\n            ").concat(html, "\n            <div class=\"reply\">\n              <form method=\"post\" onsubmit=\"threadReply(event, '").concat(threadId, "', '").concat(csrf, "', '").concat(username, "', '").concat(respondent, "', '").concat(imageUrl, "')\">\n              <input type=\"hidden\" name=\"csrfmiddlewaretoken\" value=\"").concat(csrf, "\">\n              <textarea required name=\"reply-message\" id=\"reply-message\"></textarea>\n              <div class=\"form-actions\">\n              <span class=\"e-selector\">\uD83D\uDE00</span>\n              <input type=\"submit\" value=\"Reply\" />\n              </div> \n              \n              </form>\n            </div>\n          </div>\n        </div>\n      ");
+            var container = "\n        <div class=\"thread-view\">\n          <div class=respondent-thread>\n            <img src='".concat(imageUrl, "' />\n            <a href=\"").concat(baseURL.origin, "/user/").concat(respondent, "\">").concat(respondent, "</a>\n          </div>\n          <div class=\"thread-messages\">\n            ").concat(html, "\n            <div class=\"reply\">\n              <form method=\"post\" onsubmit=\"threadReply(event, '").concat(threadId, "', '").concat(csrf, "', '").concat(username, "', '").concat(respondent, "', '").concat(imageUrl, "')\">\n              <input type=\"hidden\" name=\"csrfmiddlewaretoken\" value=\"").concat(csrf, "\">\n              <textarea required name=\"reply-message\" id=\"reply-message\" onfocus=\"pauseTimeout()\"></textarea>\n              <div class=\"form-actions\">\n              <span class=\"e-selector\">\uD83D\uDE00</span>\n              <input type=\"submit\" value=\"Reply\" />\n              </div> \n              \n              </form>\n            </div>\n          </div>\n        </div>\n      ");
             if (container != "undefined" || !container) {
                 threadArea.innerHTML = container;
                 var threadMessages = document.querySelector(".thread-messages");
                 threadArea.scrollTo(0, threadArea.scrollHeight);
                 threadMessages.scrollTo(0, threadMessages.scrollHeight);
             }
+            if (timeoutId) {
+                clearTimeout(timeoutId);
+            }
+            timeoutId = setTimeout(function () {
+                viewThreadMessages(threadId, csrf, username, respondent, imageUrl);
+            }, 5000); // 5000 milliseconds = 5 seconds
         }
         else if (req.readyState == 4) {
             alert("Something is off in the receiver function");
@@ -443,6 +456,7 @@ var threadReply = function (e, threadId, csrf, username, respondent, imageUrl) {
                 threadArea.scrollTo(0, threadArea.scrollHeight);
                 threadMessages.scrollTo(0, threadMessages.scrollHeight);
             }
+            viewThreadMessages(threadId, csrf, username, respondent, imageUrl);
         }
         else if (req.readyState == 4) {
             alert("Something is off in the receiver function");
