@@ -73,16 +73,17 @@
           >
           {% endif %}
           <!--  -->
-          {% endif %}
-
+          {% endif %} {% if user.is_authenticated and user != filtered_user %}
           <a class="prof-send-message" data-id="{{filtered_user.id}}"
             >Send Message</a
           >
+          {% endif %}
           <!-- compose message modal -->
           <div class="prof-message-compose">
             <div class="message-div">
               <span class="close-message-composer"><p>+</p></span>
-              <form id="compose-form"
+              <form
+                id="compose-form"
                 onsubmit="composeMessage(event, '{{filtered_user.username}}', '{{user.username}}', '{{csrf_token}}')"
                 method="post"
               >
