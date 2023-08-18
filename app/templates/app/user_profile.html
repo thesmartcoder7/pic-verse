@@ -64,6 +64,9 @@
             onclick="followRequest('{{user.username}}', '{{filtered_user.username}}', '{{csrf_token}}', '{{filtered_user.id}}')"
             >Unfollow</a
           >
+          <a class="prof-send-message" data-id="{{filtered_user.id}}"
+            >Send Message</a
+          >
           {% else %}
           <a
             class="ajax-follow-button"
@@ -71,13 +74,13 @@
             onclick="followRequest('{{user.username}}', '{{filtered_user.username}}', '{{csrf_token}}','{{filtered_user.id}}')"
             >Follow</a
           >
-          {% endif %}
-          <!--  -->
-          {% endif %} {% if user.is_authenticated and user != filtered_user %}
           <a class="prof-send-message" data-id="{{filtered_user.id}}"
             >Send Message</a
           >
           {% endif %}
+          <!--  -->
+          {% endif %}
+
           <!-- compose message modal -->
           <div class="prof-message-compose">
             <div class="message-div">
