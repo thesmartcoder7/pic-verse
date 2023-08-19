@@ -395,11 +395,14 @@ var viewThreadMessages = function (threadId, csrf, username, respondent, imageUr
                 }
             });
             var container = "\n        <div class=\"thread-view\">\n          <div class=respondent-thread>\n            <img src='".concat(imageUrl, "' />\n            <a href=\"").concat(baseURL.origin, "/user/").concat(respondent, "\">").concat(respondent, "</a>\n          </div>\n          <div class=\"thread-messages\">\n            ").concat(html, "\n            <div class=\"reply\">\n              <form method=\"post\" onsubmit=\"threadReply(event, '").concat(threadId, "', '").concat(csrf, "', '").concat(username, "', '").concat(respondent, "', '").concat(imageUrl, "')\">\n              <input type=\"hidden\" name=\"csrfmiddlewaretoken\" value=\"").concat(csrf, "\">\n              <textarea required name=\"reply-message\" id=\"reply-message\" onfocus=\"pauseTimeout()\"></textarea>\n              <div class=\"form-actions\">\n              <span class=\"e-selector\">\uD83D\uDE00</span>\n              <input type=\"submit\" value=\"Reply\" />\n              </div> \n              \n              </form>\n            </div>\n          </div>\n        </div>\n      ");
-            if (container != "undefined" || !container) {
+            if (container != "undefined" || (!container && !timeoutId)) {
                 threadArea.innerHTML = container;
                 var threadMessages = document.querySelector(".thread-messages");
                 threadArea.scrollTo(0, threadArea.scrollHeight);
                 threadMessages.scrollTo(0, threadMessages.scrollHeight);
+            }
+            else {
+                threadArea.innerHTML = container;
             }
             if (timeoutId) {
                 clearTimeout(timeoutId);

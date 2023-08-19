@@ -542,13 +542,15 @@ let viewThreadMessages = (
         </div>
       `;
 
-      if (container != "undefined" || !container) {
+      if (container != "undefined" || (!container && !timeoutId)) {
         threadArea.innerHTML = container;
         let threadMessages = document.querySelector(
           ".thread-messages"
         ) as HTMLDivElement;
         threadArea.scrollTo(0, threadArea.scrollHeight);
         threadMessages.scrollTo(0, threadMessages.scrollHeight);
+      } else {
+        threadArea.innerHTML = container;
       }
 
       if (timeoutId) {
