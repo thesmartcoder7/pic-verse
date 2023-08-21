@@ -121,8 +121,6 @@ def view_thread(request, id):
         except:
             ...
 
-        # TODO
-        # add variable 'updated' to use for updating the thread area
         response = {
             'status': True,
             'messages': serialized_data,
