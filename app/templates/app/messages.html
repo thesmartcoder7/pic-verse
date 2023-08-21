@@ -31,7 +31,7 @@
         <div
           class="info"
           data-id="{{message.id}}"
-          onclick="viewThreadMessages('{{message.id}}', '{{csrf_token}}', '{{user.username}}', '{{message.respondent.username}}', '{{message.respondent.profile.image.url}}')"
+          onclick="viewThreadMessages('{{message.id}}', '{{csrf_token}}', '{{user.username}}', '{{message.respondent.username}}', '{{message.respondent.profile.image.url}}', true)"
         >
           <div class="name"><p>{{ message.respondent | title }}</p></div>
           <div class="last-in">
@@ -42,7 +42,7 @@
         <div
           class="info start-message"
           data-id="{{message.id}}"
-          onclick="viewThreadMessages('{{message.id}}', '{{csrf_token}}', '{{user.username}}', '{{message.respondent.username}}', '{{message.respondent.profile.image.url}}')"
+          onclick="viewThreadMessages('{{message.id}}', '{{csrf_token}}', '{{user.username}}', '{{message.respondent.username}}', '{{message.respondent.profile.image.url}}', true)"
         >
           <div class="name"><p>{{ message.respondent | title }}</p></div>
           <div class="last-in">

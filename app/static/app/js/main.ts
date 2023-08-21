@@ -452,13 +452,16 @@ let pauseTimeout = () => {
   }
 };
 
+let autoScroll = true;
+
 // function to view the messages
 let viewThreadMessages = (
   threadId: string,
   csrf: string,
   username: string,
   respondent: string,
-  imageUrl: string
+  imageUrl: string,
+  first: boolean = false
 ) => {
   let baseURL = new URL(document.URL);
   let req = new XMLHttpRequest();
@@ -525,7 +528,7 @@ let viewThreadMessages = (
             <img src='${imageUrl}' />
             <a href="${baseURL.origin}/user/${respondent}">${respondent}</a>
           </div>
-          <div class="thread-messages">
+          <div class="thread-messages" data-update="${res.last_updated}">
             ${html}
             <div class="reply">
               <form method="post" onsubmit="threadReply(event, '${threadId}', '${csrf}', '${username}', '${respondent}', '${imageUrl}')">
@@ -543,12 +546,35 @@ let viewThreadMessages = (
       `;
 
       if (container != "undefined" || (!container && !timeoutId)) {
+        // alert("View Thread code gets to here");
         threadArea.innerHTML = container;
         let threadMessages = document.querySelector(
           ".thread-messages"
         ) as HTMLDivElement;
-        threadArea.scrollTo(0, threadArea.scrollHeight);
-        threadMessages.scrollTo(0, threadMessages.scrollHeight);
+
+        if (threadMessages && !first) {
+          if (
+            new Date(threadMessages.getAttribute("data-update")) <
+            new Date(res.last_updated)
+          ) {
+            threadArea.scrollTo(0, threadArea.scrollHeight);
+            threadMessages.scrollTo(0, threadMessages.scrollHeight);
+            threadMessages.setAttribute("data-update", res.last_updated);
+          }
+        } else if (first) {
+          threadArea.scrollTo(0, threadArea.scrollHeight);
+          threadMessages.scrollTo(0, threadMessages.scrollHeight);
+        }
+        // if (threadMessages) {
+        //   threadMessages.addEventListener("scroll", () => {
+        //     autoScroll = false;
+        //   });
+        // }
+        // console.log(autoScroll);
+        // if (autoScroll) {
+        // threadArea.scrollTo(0, threadArea.scrollHeight);
+        // threadMessages.scrollTo(0, threadMessages.scrollHeight);
+        // }
       } else {
         threadArea.innerHTML = container;
       }
@@ -657,6 +683,7 @@ let threadReply = (
       `;
 
       if (container != "undefined" || !container) {
+        // alert("reply to thread code gets to here");
         threadArea.innerHTML = container;
         let threadMessages = document.querySelector(
           ".thread-messages"

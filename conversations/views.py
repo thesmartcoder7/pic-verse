@@ -43,7 +43,8 @@ def messages(request):
     user_messages = []
 
     # Get all the threads the user is part of
-    user_threads = Thread.objects.filter(participants=user).order_by("-timestamp")
+    user_threads = Thread.objects.filter(
+        participants=user).order_by("-timestamp")
 
     # Process each thread to prepare data for the template
     for thread in user_threads:
@@ -97,6 +98,7 @@ def delete_thread(request, id):
 
 @login_required
 def view_thread(request, id):
+
     response = {
         'status': False,
         'message': 'An issue occurred!',
@@ -105,9 +107,12 @@ def view_thread(request, id):
         messages = DirectMessage.objects.filter(thread=id)
         serialized_data = serialize("json", messages, fields=(
             'thread', 'author', 'author__username', 'content', 'timestamp'), use_natural_foreign_keys=True)
+
+        print(list(messages)[-1].timestamp)
         response = {
             'status': True,
             'messages': serialized_data,
+            'last_updated': str(list(messages)[-1].timestamp)
         }
         return HttpResponse(json.dumps(response))
 
