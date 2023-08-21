@@ -65,9 +65,7 @@ if (hoverimages) {
                 e.target.nextElementSibling.style.display = "flex";
             }
         });
-        image.addEventListener("click", function (e) {
-            console.log(e);
-        });
+        image.addEventListener("click", function (e) { });
     }
 }
 if (imageCounters) {
@@ -380,6 +378,17 @@ var viewThreadMessages = function (threadId, csrf, username, respondent, imageUr
         "Content-Type": "application/json",
         "X-CSRFToken": csrf
     };
+    var dataDiv = document.querySelector(".thread-messages");
+    var divTime = null;
+    if (dataDiv) {
+        if (dataDiv.getAttribute("data-id") == threadId &&
+            dataDiv.getAttribute("data-update")) {
+            divTime = dataDiv.getAttribute("data-update");
+        }
+    }
+    var data = {
+        timestamp: divTime
+    };
     req.open("POST", url, true);
     for (var header in headers) {
         req.setRequestHeader(header, headers[header]);
@@ -388,6 +397,15 @@ var viewThreadMessages = function (threadId, csrf, username, respondent, imageUr
         var html = "";
         if (req.readyState == 4 && req.status == 200) {
             var res = JSON.parse(req.responseText);
+            if (!res.update) {
+                if (timeoutId) {
+                    clearTimeout(timeoutId);
+                }
+                timeoutId = setTimeout(function () {
+                    viewThreadMessages(threadId, csrf, username, respondent, imageUrl);
+                }, 5000); // 5000 milliseconds = 5 seconds
+                return true;
+            }
             JSON.parse(res.messages).forEach(function (item) {
                 if (item.fields.author[0] != username) {
                     html += "\n          <div class=\"respondent\">\n          <div class=\"main\">\n            <p>\n              ".concat(item.fields.content, "\n            </p>\n            <p class=\"timestamp\">").concat(formatTimestamp(item.fields.timestamp), "</p>\n          </div>\n          <div class=\"dummy\"></div>\n        </div>");
@@ -396,14 +414,13 @@ var viewThreadMessages = function (threadId, csrf, username, respondent, imageUr
                     html += "\n          <div class=\"user-messages\">\n          <div class=\"dummy\"></div>\n          <div class=\"main\">\n            <p>\n              ".concat(item.fields.content, "\n            </p>\n            <p class=\"timestamp\">").concat(formatTimestamp(item.fields.timestamp), "</p>\n          </div>\n          \n          </div>\n          ");
                 }
             });
-            var container = "\n        <div class=\"thread-view\">\n          <div class=respondent-thread>\n            <img src='".concat(imageUrl, "' />\n            <a href=\"").concat(baseURL.origin, "/user/").concat(respondent, "\">").concat(respondent, "</a>\n          </div>\n          <div class=\"thread-messages\" data-update=\"").concat(res.last_updated, "\">\n            ").concat(html, "\n            <div class=\"reply\">\n              <form method=\"post\" onsubmit=\"threadReply(event, '").concat(threadId, "', '").concat(csrf, "', '").concat(username, "', '").concat(respondent, "', '").concat(imageUrl, "')\">\n              <input type=\"hidden\" name=\"csrfmiddlewaretoken\" value=\"").concat(csrf, "\">\n              <textarea required name=\"reply-message\" id=\"reply-message\" onfocus=\"pauseTimeout()\"></textarea>\n              <div class=\"form-actions\">\n              <span class=\"e-selector\">\uD83D\uDE00</span>\n              <input type=\"submit\" value=\"Reply\" />\n              </div> \n              \n              </form>\n            </div>\n          </div>\n        </div>\n      ");
+            var container = "\n        <div class=\"thread-view\">\n          <div class=respondent-thread>\n            <img src='".concat(imageUrl, "' />\n            <a href=\"").concat(baseURL.origin, "/user/").concat(respondent, "\">").concat(respondent, "</a>\n          </div>\n          <div class=\"thread-messages\" data-update=\"").concat(res.last_updated, "\" data-id=\"").concat(threadId, "\">\n            ").concat(html, "\n            <div class=\"reply\">\n              <form method=\"post\" onsubmit=\"threadReply(event, '").concat(threadId, "', '").concat(csrf, "', '").concat(username, "', '").concat(respondent, "', '").concat(imageUrl, "')\">\n              <input type=\"hidden\" name=\"csrfmiddlewaretoken\" value=\"").concat(csrf, "\">\n              <textarea required name=\"reply-message\" id=\"reply-message\" onfocus=\"pauseTimeout()\"></textarea>\n              <div class=\"form-actions\">\n              <span class=\"e-selector\">\uD83D\uDE00</span>\n              <input type=\"submit\" value=\"Reply\" />\n              </div> \n              \n              </form>\n            </div>\n          </div>\n        </div>\n      ");
             if (container != "undefined" || (!container && !timeoutId)) {
                 // alert("View Thread code gets to here");
                 threadArea.innerHTML = container;
                 var threadMessages = document.querySelector(".thread-messages");
                 if (threadMessages && !first) {
-                    if (new Date(threadMessages.getAttribute("data-update")) <
-                        new Date(res.last_updated)) {
+                    if (res.update) {
                         threadArea.scrollTo(0, threadArea.scrollHeight);
                         threadMessages.scrollTo(0, threadMessages.scrollHeight);
                         threadMessages.setAttribute("data-update", res.last_updated);
@@ -413,16 +430,6 @@ var viewThreadMessages = function (threadId, csrf, username, respondent, imageUr
                     threadArea.scrollTo(0, threadArea.scrollHeight);
                     threadMessages.scrollTo(0, threadMessages.scrollHeight);
                 }
-                // if (threadMessages) {
-                //   threadMessages.addEventListener("scroll", () => {
-                //     autoScroll = false;
-                //   });
-                // }
-                // console.log(autoScroll);
-                // if (autoScroll) {
-                // threadArea.scrollTo(0, threadArea.scrollHeight);
-                // threadMessages.scrollTo(0, threadMessages.scrollHeight);
-                // }
             }
             else {
                 threadArea.innerHTML = container;
@@ -438,7 +445,7 @@ var viewThreadMessages = function (threadId, csrf, username, respondent, imageUr
             alert("Something is off in the receiver function");
         }
     };
-    req.send();
+    req.send(JSON.stringify(data));
     return;
 };
 // function to send thread replies

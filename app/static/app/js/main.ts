@@ -95,9 +95,7 @@ if (hoverimages) {
       }
     });
 
-    image.addEventListener("click", (e: any) => {
-      console.log(e);
-    });
+    image.addEventListener("click", (e: any) => {});
   }
 }
 
@@ -484,6 +482,22 @@ let viewThreadMessages = (
     "X-CSRFToken": csrf,
   };
 
+  let dataDiv = document.querySelector(".thread-messages");
+  let divTime = null;
+
+  if (dataDiv) {
+    if (
+      dataDiv.getAttribute("data-id") == threadId &&
+      dataDiv.getAttribute("data-update")
+    ) {
+      divTime = dataDiv.getAttribute("data-update");
+    }
+  }
+
+  let data = {
+    timestamp: divTime,
+  };
+
   req.open("POST", url, true);
 
   for (let header in headers) {
@@ -494,6 +508,16 @@ let viewThreadMessages = (
     let html = "";
     if (req.readyState == 4 && req.status == 200) {
       let res: any = JSON.parse(req.responseText);
+      if (!res.update) {
+        if (timeoutId) {
+          clearTimeout(timeoutId);
+        }
+
+        timeoutId = setTimeout(() => {
+          viewThreadMessages(threadId, csrf, username, respondent, imageUrl);
+        }, 5000); // 5000 milliseconds = 5 seconds
+        return true;
+      }
       JSON.parse(res.messages).forEach((item: any) => {
         if (item.fields.author[0] != username) {
           html += `
@@ -528,7 +552,7 @@ let viewThreadMessages = (
             <img src='${imageUrl}' />
             <a href="${baseURL.origin}/user/${respondent}">${respondent}</a>
           </div>
-          <div class="thread-messages" data-update="${res.last_updated}">
+          <div class="thread-messages" data-update="${res.last_updated}" data-id="${threadId}">
             ${html}
             <div class="reply">
               <form method="post" onsubmit="threadReply(event, '${threadId}', '${csrf}', '${username}', '${respondent}', '${imageUrl}')">
@@ -553,10 +577,7 @@ let viewThreadMessages = (
         ) as HTMLDivElement;
 
         if (threadMessages && !first) {
-          if (
-            new Date(threadMessages.getAttribute("data-update")) <
-            new Date(res.last_updated)
-          ) {
+          if (res.update) {
             threadArea.scrollTo(0, threadArea.scrollHeight);
             threadMessages.scrollTo(0, threadMessages.scrollHeight);
             threadMessages.setAttribute("data-update", res.last_updated);
@@ -565,16 +586,6 @@ let viewThreadMessages = (
           threadArea.scrollTo(0, threadArea.scrollHeight);
           threadMessages.scrollTo(0, threadMessages.scrollHeight);
         }
-        // if (threadMessages) {
-        //   threadMessages.addEventListener("scroll", () => {
-        //     autoScroll = false;
-        //   });
-        // }
-        // console.log(autoScroll);
-        // if (autoScroll) {
-        // threadArea.scrollTo(0, threadArea.scrollHeight);
-        // threadMessages.scrollTo(0, threadMessages.scrollHeight);
-        // }
       } else {
         threadArea.innerHTML = container;
       }
@@ -591,7 +602,7 @@ let viewThreadMessages = (
     }
   };
 
-  req.send();
+  req.send(JSON.stringify(data));
   return;
 };
 

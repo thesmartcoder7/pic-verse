@@ -19,6 +19,7 @@ from conversations.serializers import *
 from django.core.serializers import serialize
 import json
 from django.db.models import Q
+from datetime import datetime
 
 
 @login_required
@@ -98,7 +99,6 @@ def delete_thread(request, id):
 
 @login_required
 def view_thread(request, id):
-
     response = {
         'status': False,
         'message': 'An issue occurred!',
@@ -108,11 +108,26 @@ def view_thread(request, id):
         serialized_data = serialize("json", messages, fields=(
             'thread', 'author', 'author__username', 'content', 'timestamp'), use_natural_foreign_keys=True)
 
-        print(list(messages)[-1].timestamp)
+        cts = list(messages)[-1].timestamp
+        req = json.loads(request.body)
+        update = True
+        try:
+            date_format = "%Y-%m-%d %H:%M:%S.%f%z"
+            rts = datetime.strptime(req['timestamp'], date_format)
+            print(rts)
+            update = cts > rts
+            print('gets here . . ')
+            print(req['timestamp'])
+        except:
+            ...
+
+        # TODO
+        # add variable 'updated' to use for updating the thread area
         response = {
             'status': True,
             'messages': serialized_data,
-            'last_updated': str(list(messages)[-1].timestamp)
+            'last_updated': str(list(messages)[-1].timestamp),
+            'update': update
         }
         return HttpResponse(json.dumps(response))
 
