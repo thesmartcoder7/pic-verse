@@ -25,3 +25,6 @@ active:
 js:
 	tsc app/static/app/js/*.ts -w
 
+dependencies:
+	pipenv sync
+
