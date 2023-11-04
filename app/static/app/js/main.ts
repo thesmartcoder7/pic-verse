@@ -515,7 +515,7 @@ let viewThreadMessages = (
 
         timeoutId = setTimeout(() => {
           viewThreadMessages(threadId, csrf, username, respondent, imageUrl);
-        }, 5000); // 5000 milliseconds = 5 seconds
+        }, 3000); // 3000 milliseconds = 5 seconds
         return true;
       }
       JSON.parse(res.messages).forEach((item: any) => {
@@ -596,7 +596,7 @@ let viewThreadMessages = (
 
       timeoutId = setTimeout(() => {
         viewThreadMessages(threadId, csrf, username, respondent, imageUrl);
-      }, 5000); // 5000 milliseconds = 5 seconds
+      }, 5000); // 3000 milliseconds = 3 seconds
     } else if (req.readyState == 4) {
       alert("Something is off in the receiver function");
     }

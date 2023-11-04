@@ -98,7 +98,7 @@ new EmojiPicker({
     trigger: [
         {
             selector: ".e-selector",
-            insertInto: ["#reply-message", "#prof-message", ".comment_field"]
+            insertInto: ["#reply-message", "#prof-message", ".comment_field"],
         },
     ],
     closeButton: true,
@@ -119,8 +119,8 @@ new EmojiPicker({
         emojiPerRow: 6,
         emojiSize: 20,
         emojiButtonHeight: 50,
-        hideCategory: false
-    }
+        hideCategory: false,
+    },
 });
 // format time
 function getDayWithSuffix(day) {
@@ -148,7 +148,7 @@ function formatTimestamp(timestamp) {
             .toLocaleTimeString("en-US", {
             hour: "2-digit",
             minute: "2-digit",
-            hour12: true
+            hour12: true,
         })
             .toLowerCase());
     }
@@ -167,7 +167,7 @@ function formatTimestamp(timestamp) {
             .toLocaleTimeString("en-US", {
             hour: "2-digit",
             minute: "2-digit",
-            hour12: true
+            hour12: true,
         })
             .toLowerCase());
     }
@@ -175,12 +175,12 @@ function formatTimestamp(timestamp) {
         // Within the same year
         var dayWithSuffix = getDayWithSuffix(inputDate.getDate());
         return "".concat(dayWithSuffix, " - ").concat(inputDate.toLocaleString("default", {
-            month: "short"
+            month: "short",
         }), " at ").concat(inputDate
             .toLocaleTimeString("en-US", {
             hour: "2-digit",
             minute: "2-digit",
-            hour12: true
+            hour12: true,
         })
             .toLowerCase());
     }
@@ -197,7 +197,7 @@ var likeRequest = function (id, csrf, e) {
     var url = "".concat(baseURL.origin, "/like/").concat(id, "/");
     var headers = {
         "Content-Type": "application/json",
-        "X-CSRFToken": csrf
+        "X-CSRFToken": csrf,
     };
     req.open("POST", url, true);
     for (var header in headers) {
@@ -250,7 +250,7 @@ var followRequest = function (user1, user2, csrf, id) {
     var url = "".concat(baseURL.origin, "/users/follow/").concat(user1, "/").concat(user2, "/");
     var headers = {
         "Content-Type": "application/json",
-        "X-CSRFToken": csrf
+        "X-CSRFToken": csrf,
     };
     req.open("POST", url, true);
     for (var header in headers) {
@@ -298,7 +298,7 @@ var updateComment = function (postId, csrf, event) {
     var url = "".concat(baseURL.origin, "/comment/").concat(postId, "/");
     var headers = {
         "Content-Type": "application/json",
-        "X-CSRFToken": csrf
+        "X-CSRFToken": csrf,
     };
     var comments = document.querySelectorAll(".comment_field");
     var value;
@@ -311,7 +311,7 @@ var updateComment = function (postId, csrf, event) {
         });
     }
     var formData = {
-        comment: value
+        comment: value,
     };
     req.open("POST", url, true);
     for (var header in headers) {
@@ -376,7 +376,7 @@ var viewThreadMessages = function (threadId, csrf, username, respondent, imageUr
     }
     var headers = {
         "Content-Type": "application/json",
-        "X-CSRFToken": csrf
+        "X-CSRFToken": csrf,
     };
     var dataDiv = document.querySelector(".thread-messages");
     var divTime = null;
@@ -387,7 +387,7 @@ var viewThreadMessages = function (threadId, csrf, username, respondent, imageUr
         }
     }
     var data = {
-        timestamp: divTime
+        timestamp: divTime,
     };
     req.open("POST", url, true);
     for (var header in headers) {
@@ -403,7 +403,7 @@ var viewThreadMessages = function (threadId, csrf, username, respondent, imageUr
                 }
                 timeoutId = setTimeout(function () {
                     viewThreadMessages(threadId, csrf, username, respondent, imageUrl);
-                }, 5000); // 5000 milliseconds = 5 seconds
+                }, 3000); // 3000 milliseconds = 5 seconds
                 return true;
             }
             JSON.parse(res.messages).forEach(function (item) {
@@ -439,7 +439,7 @@ var viewThreadMessages = function (threadId, csrf, username, respondent, imageUr
             }
             timeoutId = setTimeout(function () {
                 viewThreadMessages(threadId, csrf, username, respondent, imageUrl);
-            }, 5000); // 5000 milliseconds = 5 seconds
+            }, 5000); // 3000 milliseconds = 3 seconds
         }
         else if (req.readyState == 4) {
             alert("Something is off in the receiver function");
@@ -458,13 +458,13 @@ var threadReply = function (e, threadId, csrf, username, respondent, imageUrl) {
     var threadArea = document.querySelector(".view");
     var headers = {
         "Content-Type": "application/json",
-        "X-CSRFToken": csrf
+        "X-CSRFToken": csrf,
     };
     var data = {
         sender: username,
         receiver: respondent,
         threadId: threadId,
-        message: reply.value
+        message: reply.value,
     };
     req.open("POST", url, true);
     for (var header in headers) {
@@ -507,12 +507,12 @@ var composeMessage = function (e, recipient, sender, csrf) {
     var message = document.querySelector("#prof-message");
     var headers = {
         "Content-Type": "application/json",
-        "X-CSRFToken": csrf
+        "X-CSRFToken": csrf,
     };
     var data = {
         sender: sender,
         receiver: recipient,
-        message: message.value
+        message: message.value,
     };
     req.open("POST", url, true);
     for (var header in headers) {
